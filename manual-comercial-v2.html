@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Manual Comercial · Áureo · NOOK San Isidro · v2.0</title>
+<meta name="description" content="Manual operativo de ventas para el equipo comercial de Áureo Desarrollos. NOOK San Isidro. Versión 2.0 — fuente única de verdad." />
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde-nook: #1F2D26;
+    --verde-dark: #0F1A14;
+    --crema: #EFE9DD;
+    --crema-light: #F7F3EB;
+    --beige: #C9B89A;
+    --beige-dark: #9A876B;
+    --negro: #1A1A1A;
+    --muted: #6B6B6B;
+    --acento: #8B6F47;
+  }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--crema-light); color: var(--negro); }
+  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+  .text-verde { color: var(--verde-nook); }
+  .text-beige-dark { color: var(--beige-dark); }
+  .text-acento { color: var(--acento); }
+  .bg-verde { background-color: var(--verde-nook); }
+  .bg-crema { background-color: var(--crema); }
+
+  /* Boxes */
+  .script-box {
+    background: var(--verde-nook); color: white;
+    padding: 1.25rem 1.5rem; border-radius: 4px;
+    border-left: 4px solid var(--beige);
+    font-style: italic; line-height: 1.7; margin: 1rem 0;
+  }
+  .script-box .label {
+    color: var(--beige); font-size: 0.7rem; text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600; font-style: normal;
+    display: block; margin-bottom: 0.5rem;
+  }
+  .highlight-box {
+    background: var(--crema); border-left: 4px solid var(--beige-dark);
+    padding: 1rem 1.25rem; border-radius: 4px; margin: 1rem 0;
+  }
+  .tip-box {
+    background: rgba(201, 184, 154, 0.2); border-left: 3px solid var(--acento);
+    padding: 1rem 1.25rem; border-radius: 4px; margin: 1rem 0;
+  }
+  .warn-box {
+    background: rgba(139, 111, 71, 0.1); border-left: 3px solid #C62828;
+    padding: 0.875rem 1.25rem; border-radius: 4px; margin: 1rem 0;
+  }
+  .case-box {
+    background: white; border: 1px solid var(--beige);
+    padding: 1.5rem 1.75rem; border-radius: 4px; margin: 1.25rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .case-box .case-meta {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--beige-dark); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .case-box h4 {
+    font-family: 'Playfair Display', serif; color: var(--verde-nook);
+    font-size: 1.35rem; margin-bottom: 0.75rem;
+  }
+
+  /* Material hub cards */
+  .material-card {
+    background: white; border-left: 4px solid var(--beige-dark);
+    padding: 1.25rem 1.5rem; margin: 0.75rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 1rem;
+  }
+  .material-card .info { flex: 1; }
+  .material-card .info .tag {
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--beige-dark); font-weight: 600; margin-bottom: 0.25rem;
+  }
+  .material-card .info h4 {
+    font-family: 'Playfair Display', serif; color: var(--verde-nook);
+    font-size: 1.15rem; margin: 0;
+  }
+  .material-card .info p {
+    font-size: 0.85rem; color: var(--muted); margin: 0.25rem 0 0; line-height: 1.4;
+  }
+  .material-card a {
+    background: var(--verde-nook); color: white;
+    padding: 0.6rem 1.25rem; text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 0.05em; font-weight: 600;
+    text-transform: uppercase; white-space: nowrap;
+    transition: background 0.2s;
+  }
+  .material-card a:hover { background: var(--beige-dark); }
+  .material-card.pending a { background: var(--muted); pointer-events: none; opacity: 0.6; }
+
+  /* Sidebar */
+  .nav-link {
+    display: block; padding: 0.5rem 1rem;
+    border-left: 2px solid transparent; color: var(--muted);
+    text-decoration: none; font-size: 0.875rem; line-height: 1.4;
+    transition: all 0.15s ease;
+  }
+  .nav-link:hover { color: var(--verde-nook); background: rgba(201, 184, 154, 0.1); }
+  .nav-link.active {
+    color: var(--verde-nook); border-left-color: var(--beige-dark);
+    background: rgba(201, 184, 154, 0.15); font-weight: 500;
+  }
+  .nav-section {
+    padding: 0.625rem 1rem 0.25rem; font-size: 0.7rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--beige-dark); font-weight: 600;
+  }
+
+  /* Headings */
+  h1.title-big { font-family: 'Playfair Display', serif; color: var(--verde-nook); font-size: 2.5rem; line-height: 1.1; font-weight: 500; }
+  h2.part-title {
+    font-family: 'Playfair Display', serif; color: var(--verde-nook); font-size: 2rem;
+    line-height: 1.15; font-weight: 500; padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--beige); margin: 3.5rem 0 1.5rem;
+  }
+  h3.section-title { font-family: 'Playfair Display', serif; color: var(--verde-nook); font-size: 1.5rem; margin: 2.5rem 0 1rem; font-weight: 500; }
+  h4.subsection-title {
+    color: var(--verde-nook); font-size: 1.05rem;
+    margin: 1.75rem 0 0.75rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  h5.objection-num {
+    color: var(--beige-dark); font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin: 2rem 0 0.25rem;
+  }
+  p, ul, ol { line-height: 1.7; color: var(--negro); }
+  ul { padding-left: 1.25rem; margin: 0.75rem 0; }
+  ul li, ol li { margin-bottom: 0.5rem; }
+  ol { padding-left: 1.5rem; margin: 0.75rem 0; }
+  strong { color: var(--verde-nook); font-weight: 600; }
+  .eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--beige-dark); font-weight: 600; }
+
+  /* Sidebar layout */
+  .sidebar { transition: transform 0.25s ease; }
+  .search-input {
+    background: white; border: 1px solid #ddd; border-radius: 4px;
+    padding: 0.5rem 0.75rem; font-size: 0.875rem; width: 100%;
+  }
+  .search-input:focus { outline: none; border-color: var(--beige-dark); }
+  .hidden-by-search { display: none !important; }
+
+  /* Cover */
+  .cover {
+    background: var(--verde-nook); color: white; padding: 4rem 3rem;
+    border-radius: 8px; margin-bottom: 3rem; position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: 0; right: 0;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle at top right, var(--beige) 0%, transparent 70%);
+    opacity: 0.15;
+  }
+
+  /* Quick stats panel */
+  .quick-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    margin: 2rem 0; padding: 1.5rem; background: white;
+    border-left: 4px solid var(--beige-dark); border-radius: 4px;
+  }
+  .quick-stat .label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--beige-dark); font-weight: 600;
+  }
+  .quick-stat .value {
+    font-family: 'Playfair Display', serif; color: var(--verde-nook);
+    font-size: 1.4rem; line-height: 1.2; margin-top: 0.25rem; font-weight: 500;
+  }
+
+  /* Print + mobile */
+  @media print { .sidebar, .mobile-toggle, .search-wrap { display: none !important; } main { margin-left: 0 !important; } }
+  @media (max-width: 1023px) {
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 280px; height: 100vh;
+      transform: translateX(-100%); z-index: 50;
+      box-shadow: 2px 0 16px rgba(0,0,0,0.1);
+    }
+    .sidebar.open { transform: translateX(0); }
+    main { margin-left: 0 !important; }
+    .quick-stats { grid-template-columns: repeat(2, 1fr); }
+    .material-card { flex-direction: column; align-items: flex-start; }
+  }
+  .backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.4); z-index: 40; display: none; }
+  .backdrop.show { display: block; }
+  .mobile-toggle { display: none; }
+  @media (max-width: 1023px) {
+    .mobile-toggle {
+      display: flex; position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 30;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--verde-nook); color: white;
+      align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2); border: none; cursor: pointer;
+    }
+  }
+
+  /* Table */
+  table.manual-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
+  table.manual-table th { background: var(--verde-nook); color: white; padding: 0.625rem 0.875rem; text-align: left; font-weight: 500; }
+  table.manual-table td { padding: 0.625rem 0.875rem; border-bottom: 1px solid #eee; }
+  table.manual-table tr:nth-child(even) td { background: rgba(201, 184, 154, 0.05); }
+
+  /* WhatsApp template */
+  .wa-template {
+    background: #075E54; color: white; padding: 1rem 1.25rem;
+    border-radius: 8px 8px 8px 2px; margin: 0.75rem 0;
+    font-family: 'Inter', sans-serif; line-height: 1.5; max-width: 700px;
+    white-space: pre-wrap; font-size: 0.95rem;
+  }
+  .wa-template .wa-meta {
+    background: rgba(255,255,255,0.1); color: #B8E6D1;
+    padding: 0.35rem 0.65rem; border-radius: 3px;
+    font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase;
+    font-weight: 600; display: inline-block; margin-bottom: 0.75rem;
+  }
+  .wa-template .wa-name {
+    font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-bottom: 0.5rem;
+    font-family: monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  hr.divider { border: 0; border-top: 1px solid var(--beige); opacity: 0.4; margin: 2rem 0; }
+</style>
+</head>
+<body>
+
+<div class="backdrop" id="backdrop"></div>
+
+<!-- SIDEBAR -->
+<aside class="sidebar fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto z-40" id="sidebar">
+  <div class="p-5 border-b border-gray-200">
+    <div class="font-serif text-2xl text-verde leading-none">Manual</div>
+    <div class="text-xs eyebrow mt-1">Comercial · v2.0</div>
+    <div class="text-xs text-gray-500 mt-2">Áureo · NOOK San Isidro</div>
+  </div>
+
+  <div class="search-wrap p-3 border-b border-gray-200">
+    <input type="text" id="search" class="search-input" placeholder="Buscar..." />
+  </div>
+
+  <nav class="py-3">
+    <div class="nav-section">Inicio</div>
+    <a href="#intro" class="nav-link">Cómo usar este manual</a>
+    <a href="#data-rapida" class="nav-link">Datos rápidos del proyecto</a>
+    <a href="#materiales" class="nav-link">Hub de materiales</a>
+
+    <div class="nav-section">Parte 1 · Marco</div>
+    <a href="#segmentacion" class="nav-link">Segmentación de leads</a>
+    <a href="#producto" class="nav-link">El producto NOOK</a>
+
+    <div class="nav-section">Parte 2 · Antes de llamar</div>
+    <a href="#speed-lead" class="nav-link">Speed-to-lead</a>
+    <a href="#cadencia" class="nav-link">Cadencia 8 toques</a>
+    <a href="#ventanas" class="nav-link">Ventanas horarias</a>
+
+    <div class="nav-section">Parte 3 · Guion 7 etapas</div>
+    <a href="#etapa-1" class="nav-link">1 · Prep 60s</a>
+    <a href="#etapa-2" class="nav-link">2 · Apertura</a>
+    <a href="#etapa-3" class="nav-link">3 · Diagnóstico</a>
+    <a href="#etapa-4" class="nav-link">4 · Caminos</a>
+    <a href="#etapa-5" class="nav-link">5 · Objeciones</a>
+    <a href="#etapa-6" class="nav-link">6 · Cierre</a>
+    <a href="#etapa-7" class="nav-link">7 · Antes de colgar</a>
+
+    <div class="nav-section">Parte 4 · Caminos</div>
+    <a href="#camino-a" class="nav-link">A · Inversor</a>
+    <a href="#camino-b" class="nav-link">B · Vivienda</a>
+    <a href="#camino-c" class="nav-link">C · Stand-by</a>
+
+    <div class="nav-section">Parte 5 · Objeciones</div>
+    <a href="#obj-1" class="nav-link">1 · Mandame por mail</a>
+    <a href="#obj-2" class="nav-link">2 · Sólo WhatsApp</a>
+    <a href="#obj-3" class="nav-link">3 · Modo recolector</a>
+    <a href="#obj-4" class="nav-link">4 · Fuera de presupuesto</a>
+    <a href="#obj-5" class="nav-link">5 · Lo estoy pensando</a>
+    <a href="#obj-6" class="nav-link">6 · Mandame todo</a>
+    <a href="#obj-7" class="nav-link">7 · Comparando varias</a>
+    <a href="#obj-8" class="nav-link">8 · Lo analizo el finde</a>
+    <a href="#obj-9" class="nav-link">9 · Yo te llamo</a>
+    <a href="#obj-10" class="nav-link">10 · Mandame números</a>
+
+    <div class="nav-section">Parte 6 · Situaciones</div>
+    <a href="#post-cot" class="nav-link">Post-cotización</a>
+    <a href="#recontacto" class="nav-link">Recontacto · 5 ventanas</a>
+    <a href="#baja-precio" class="nav-link">Baja de precios</a>
+    <a href="#distancia" class="nav-link">Lead a distancia</a>
+    <a href="#reactivacion" class="nav-link">Reactivación masiva</a>
+    <a href="#pareja" class="nav-link">Decisión familiar</a>
+    <a href="#pivot" class="nav-link">Pivot a otro proyecto</a>
+    <a href="#ff" class="nav-link">Cliente F&amp;F</a>
+    <a href="#multi" class="nav-link">Multi-unidad</a>
+    <a href="#fideicomiso" class="nav-link">Fideicomiso al costo</a>
+    <a href="#ventana-24" class="nav-link">Ventana 24hs WhatsApp</a>
+    <a href="#riesgo-cruzado" class="nav-link">Riesgo cruzado</a>
+
+    <div class="nav-section">Parte 7 · Casos reales</div>
+    <a href="#casos" class="nav-link">Casos documentados</a>
+
+    <div class="nav-section">Parte 8 · WhatsApp</div>
+    <a href="#meta-policy" class="nav-link">Política de Meta</a>
+    <a href="#templates" class="nav-link">15 plantillas</a>
+
+    <div class="nav-section">Parte 9 · Métricas</div>
+    <a href="#metricas" class="nav-link">Diagnóstico de embudo</a>
+
+    <div class="nav-section">Cierre</div>
+    <a href="#salvedades" class="nav-link">Salvedades en cotizaciones</a>
+    <a href="#changelog" class="nav-link">Changelog</a>
+  </nav>
+</aside>
+
+<button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menú">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+</button>
+
+<main class="lg:ml-64 px-6 lg:px-12 py-12 max-w-5xl">
+
+  <!-- COVER -->
+  <div class="cover">
+    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.0</div>
+    <h1 class="font-serif text-5xl lg:text-6xl mb-4">Manual Comercial</h1>
+    <div class="font-serif text-2xl lg:text-3xl italic mb-6" style="color: var(--beige);">NOOK San Isidro</div>
+    <div class="text-sm opacity-90 max-w-2xl leading-relaxed">
+      Manual operativo de ventas para el equipo de Áureo Desarrollos. Procesos, scripts, casos reales documentados, plantillas WhatsApp y hub de materiales centralizado. <strong style="color: var(--beige); font-weight: 600;">Fuente única de verdad</strong> — todos los demás materiales se actualizan desde aquí.
+    </div>
+    <div class="mt-8 pt-6 border-t border-white border-opacity-20 text-xs opacity-70">
+      Áureo Desarrollos · info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="eyebrow mb-2">INICIO</div>
+    <h2 class="title-big mb-4">Cómo usar este manual</h2>
+    <p>Este documento es una <strong>herramienta de consulta operativa</strong>, no un manual para leer de tapa a tapa. Cuando un cliente te tira una objeción específica, abrís la sección de esa objeción y leés el script. Cuando preparás una llamada, repasás las etapas del guion. Cuando aparece una situación nueva, la documentás como caso para que la próxima vez el equipo entero la tenga.</p>
+
+    <h4 class="subsection-title">Tres reglas para que el manual funcione</h4>
+    <ul>
+      <li><strong>Mantenelo vivo.</strong> Cada conversación buena debería sumar al manual. Si descubrís una objeción nueva, una respuesta que funciona, un timing que mejora la tasa de cierre — documentalo en la sección de casos.</li>
+      <li><strong>No memorices, internalizá.</strong> Los scripts son referencias, no líneas para recitar. Hablá natural, con tus palabras.</li>
+      <li><strong>Compartí lo que aprendés.</strong> Si encontraste algo que funciona, decilo al equipo. Si algo del manual no funciona, también. Es de todos.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p class="m-0"><strong>Una nota para todo el equipo:</strong> este manual asume que sos un asesor, no un vendedor desesperado. Tu trabajo no es colocarle el producto a quien sea — es ayudar a que la persona correcta tome la decisión correcta. Si NOOK no le sirve, decilo. La honestidad es tu activo más valioso a largo plazo.</p>
+    </div>
+  </section>
+
+  <!-- DATOS RÁPIDOS -->
+  <section id="data-rapida">
+    <h2 class="part-title">Datos rápidos del proyecto</h2>
+    <p>Los datos críticos del proyecto que tenés que saber de memoria. Si te trabás con un número, perdés credibilidad.</p>
+
+    <div class="quick-stats">
+      <div class="quick-stat">
+        <div class="label">Ubicación</div>
+        <div class="value">Av. Centenario 2430, Beccar</div>
+      </div>
+      <div class="quick-stat">
+        <div class="label">Entrega</div>
+        <div class="value">Marzo 2029</div>
+      </div>
+      <div class="quick-stat">
+        <div class="label">Avance actual</div>
+        <div class="value">Levantamiento de estructura</div>
+      </div>
+      <div class="quick-stat">
+        <div class="label">Total unidades</div>
+        <div class="value">72 · 39 disponibles</div>
+      </div>
+    </div>
+
+    <h4 class="subsection-title">Producto</h4>
+    <table class="manual-table">
+      <tbody>
+        <tr><td><strong>Niveles</strong></td><td>9 pisos</td></tr>
+        <tr><td><strong>Tipologías</strong></td><td>2 amb (50-60 m²) y 3 amb (76-84 m²)</td></tr>
+        <tr><td><strong>Ticket entrada 2 amb</strong></td><td>Desde USD 118.990 (Lista A)</td></tr>
+        <tr><td><strong>Ticket entrada 3 amb</strong></td><td>Desde USD 175.728 (Lista A)</td></tr>
+        <tr><td><strong>USD/m² desde</strong></td><td>USD 2.250</td></tr>
+        <tr><td><strong>Cochera cubierta</strong></td><td>USD 10.000</td></tr>
+        <tr><td><strong>Cochera semi-cubierta</strong></td><td>USD 7.000</td></tr>
+        <tr><td><strong>Yield bruto estimado</strong></td><td>8,0% — 8,3% anual en USD</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection-title">Esquema de financiación</h4>
+    <p>La operación se instrumenta mediante <strong>adhesión a fideicomiso al costo, con precio cerrado en USD</strong>. NO se firma boleto en la operación inicial; se firma adhesión al fideicomiso.</p>
+    <table class="manual-table">
+      <thead><tr><th>Plan</th><th>Anticipo</th><th>Cuotas</th><th>Multiplicador</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lista A</strong></td><td>30% USD</td><td>36 cuotas CAC</td><td>× 0,920</td></tr>
+        <tr><td><strong>Lista B</strong></td><td>30% USD</td><td>48 cuotas CAC</td><td>× 1,180</td></tr>
+        <tr><td><strong>Lista C</strong></td><td>30% USD</td><td>72 cuotas CAC</td><td>× 1,275</td></tr>
+      </tbody>
+    </table>
+
+    <h4 class="subsection-title">Diferenciales del edificio</h4>
+    <ul>
+      <li><strong>Cerraduras electrónicas</strong> con reconocimiento facial — sin llaves físicas</li>
+      <li><strong>Vigilancia por tótem</strong> 24/7</li>
+      <li><strong>Piscina salina</strong> — sin cloro, menor mantenimiento</li>
+      <li><strong>Recupero de lluvia</strong> para riego — expensas más bajas</li>
+      <li><strong>4 cuadras de la Estación Beccar</strong> (Línea Mitre)</li>
+      <li><strong>12 cuadras del Mercado Abasto</strong> Beccar</li>
+    </ul>
+
+    <h4 class="subsection-title">Áureo Desarrollos</h4>
+    <ul>
+      <li><strong>12 años</strong> de trayectoria (desde 2014)</li>
+      <li><strong>10 edificios entregados</strong> — todos en zona norte (San Fernando hasta NOOK)</li>
+      <li><strong>NOOK es el primer desembarco en San Isidro</strong></li>
+      <li><strong>Cero retrasos significativos</strong> en plazos de entrega</li>
+      <li><strong>Constructora ACSA</strong> — mismo grupo, control vertical</li>
+      <li>Fundadores: <strong>Jorge Cettolo</strong> + <strong>Luis Anauch</strong></li>
+      <li>Áureo también comercializa: <strong>Narváez</strong></li>
+    </ul>
+
+    <h4 class="subsection-title">Contacto Áureo</h4>
+    <ul>
+      <li><strong>Principal:</strong> +54 11 7369-7105</li>
+      <li><strong>Secundario:</strong> +54 11 2872-1351</li>
+      <li><strong>Mail:</strong> info@aureo.com.ar</li>
+      <li><strong>Web:</strong> aureo.com.ar · nooksanisidro.com</li>
+    </ul>
+  </section>
+
+  <!-- HUB DE MATERIALES -->
+  <section id="materiales">
+    <h2 class="part-title">Hub de materiales</h2>
+    <p>Todos los artefactos comerciales con sus URLs deployadas. Usalos según el momento del lead, su perfil y la necesidad puntual. Si un material no tiene URL aún, está pendiente de deploy.</p>
+
+    <h4 class="subsection-title">Para mandar al lead</h4>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">LANDING · TESIS DE ZONA</div>
+        <h4>Por qué Beccar</h4>
+        <p>Análisis de Beccar como plaza de inversión. Tesis editorial, comparativa con otras zonas del corredor norte, perfil de inquilino, proyección.</p>
+      </div>
+      <a href="https://por-que-beccar.vercel.app" target="_blank">Abrir</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">LANDING · COMPARATIVA NOOK</div>
+        <h4>NOOK vs competencia</h4>
+        <p>Análisis comparativo de NOOK contra otros proyectos vigentes en San Isidro al mismo m². Para inversor que pide benchmarking.</p>
+      </div>
+      <a href="https://brochurepremium-analisis.vercel.app/" target="_blank">Abrir</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">LANDING · UNIDADES PREMIUM</div>
+        <h4>Unidades destacadas</h4>
+        <p>Selección curada de unidades premium del proyecto con detalle visual.</p>
+      </div>
+      <a href="https://v0-nook-unidades-premium-3y4.vercel.app/" target="_blank">Abrir</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">LANDING · ANÁLISIS INVERSOR</div>
+        <h4>Presentación inversor patrimonial</h4>
+        <p>Análisis para inversor que busca refugio frente a ciclos macro. Tesis, fundamentos, fideicomiso al costo, multi-unidad.</p>
+      </div>
+      <a href="#" class="pending">Pendiente deploy</a>
+    </div>
+
+    <h4 class="subsection-title">Documentos comerciales</h4>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">DOCX · DOSSIER</div>
+        <h4>Dossier de inversión</h4>
+        <p>Documento ejecutivo para inversor cartera amplia. 9 secciones con bonificación 72hs.</p>
+      </div>
+      <a href="#" class="pending">Local: outputs/</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">DOCX · LISTADO F&amp;F</div>
+        <h4>Listado para cliente Friends &amp; Family</h4>
+        <p>Plantilla de listado con cotización F&amp;F destacada antes del inventario público.</p>
+      </div>
+      <a href="#" class="pending">Local: outputs/</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">PPTX · PRESENTACIÓN</div>
+        <h4>Presentación inversor (PowerPoint)</h4>
+        <p>14 slides. Paleta Refugio Urbano. Para reunión presencial con inversor.</p>
+      </div>
+      <a href="#" class="pending">Local: outputs/</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">GOOGLE SLIDES</div>
+        <h4>Presentación vivienda</h4>
+        <p>Paleta terracota/sage. Lenguaje emocional para comprador de vivienda.</p>
+      </div>
+      <a href="#" class="pending">Apps Script</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">GOOGLE SLIDES</div>
+        <h4>Presentación empresarios Mercado Abasto</h4>
+        <p>Paleta NOOK real. Lenguaje patrimonial, cuotas en ARS, proximidad al trabajo.</p>
+      </div>
+      <a href="#" class="pending">Apps Script</a>
+    </div>
+
+    <h4 class="subsection-title">Recursos operativos</h4>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">SITIO OFICIAL</div>
+        <h4>nooksanisidro.com</h4>
+        <p>Sitio web del proyecto.</p>
+      </div>
+      <a href="https://nooksanisidro.com" target="_blank">Abrir</a>
+    </div>
+
+    <div class="material-card">
+      <div class="info">
+        <div class="tag">SITIO OFICIAL</div>
+        <h4>aureo.com.ar</h4>
+        <p>Sitio web de la desarrolladora. Track record completo.</p>
+      </div>
+      <a href="https://aureo.com.ar" target="_blank">Abrir</a>
+    </div>
+  </section>
+
+  <!-- PARTE 1 -->
+  <h2 class="part-title">Parte 1 — Marco general</h2>
+
+  <section id="segmentacion">
+    <h3 class="section-title">Segmentación de leads</h3>
+    <p>No todos los leads tienen el mismo valor ni se trabajan igual. Antes de tocar un teléfono, identificá en qué categoría cae el lead. Eso define ritmo, tono y CTA.</p>
+
+    <table class="manual-table">
+      <thead><tr><th>Tipo</th><th>Características</th><th>Approach</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A · Lead caliente con presupuesto declarado</strong></td><td>Dejó consulta reciente, indicó rango, contestó preguntas básicas.</td><td>Llamada inmediata. Diagnóstico + propuesta + visita.</td></tr>
+        <tr><td><strong>B · Lead tibio en evaluación</strong></td><td>Pidió info general, está comparando, sin urgencia clara.</td><td>Conversación por canal preferido. Calificar antes de presionar.</td></tr>
+        <tr><td><strong>C · Lead frío reactivable</strong></td><td>Consulta vieja (más de 30 días), nunca avanzó.</td><td>Reactivación con novedad concreta. Sin presión.</td></tr>
+        <tr><td><strong>D · Lead recolector</strong></td><td>Pide info por escrito, evade calificación, no se compromete.</td><td>Detectar pronto. No invertir tiempo, derivar a nurturing.</td></tr>
+        <tr><td><strong>E · Lead inversor multi-unidad</strong></td><td>Pregunta por descuentos por compra múltiple, perfil cartera.</td><td>NUNCA mandar números puntuales por escrito. Llamada o reunión presencial.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="producto">
+    <h3 class="section-title">El producto NOOK</h3>
+    <p>Ver sección "Datos rápidos del proyecto" al inicio. Todo lo crítico está ahí centralizado.</p>
+  </section>
+
+  <!-- PARTE 2 -->
+  <h2 class="part-title">Parte 2 — Antes de llamar</h2>
+
+  <section id="speed-lead">
+    <h3 class="section-title">Speed-to-lead: la regla de los 5 minutos</h3>
+    <p>La tasa de conversión de un lead contactado en menos de 5 minutos es <strong>21x mayor</strong> que la del mismo lead contactado a las 24 horas. No es teoría, es lo que muestra cualquier dato de venta consultiva en bienes durables.</p>
+
+    <div class="highlight-box">
+      <p class="m-0"><strong>Regla operativa:</strong> todo lead que entra entre 8:00 y 22:00 debe ser contactado en menos de 15 minutos. Si no podés llamar, mandá un WhatsApp humanizado en menos de 5 minutos avisando que llamás más tarde. Eso ya activa la relación.</p>
+    </div>
+
+    <h4 class="subsection-title">El mensaje puente para los primeros 5 minutos</h4>
+    <div class="script-box">
+      <span class="label">Mensaje WhatsApp inicial</span>
+      Hola [Nombre], te habla [tu nombre] de NOOK San Isidro. Vi tu consulta y te quiero llamar para charlar 10 minutos. ¿Te queda bien ahora o preferís que te llame a las [hora concreta]?
+    </div>
+  </section>
+
+  <section id="cadencia">
+    <h3 class="section-title">Cadencia de 8 toques</h3>
+    <table class="manual-table">
+      <thead><tr><th>Día</th><th>Canal</th><th>Tipo de toque</th></tr></thead>
+      <tbody>
+        <tr><td>0 — 5 min</td><td>WhatsApp</td><td>Mensaje puente</td></tr>
+        <tr><td>0 — 30 min</td><td>Llamada</td><td>Primer intento</td></tr>
+        <tr><td>1</td><td>Llamada</td><td>Segundo intento + WhatsApp</td></tr>
+        <tr><td>3</td><td>Mail</td><td>Material útil + agenda propuesta</td></tr>
+        <tr><td>5</td><td>WhatsApp</td><td>Pregunta abierta</td></tr>
+        <tr><td>8</td><td>Llamada</td><td>Último intento llamada</td></tr>
+        <tr><td>12</td><td>WhatsApp</td><td>Valor agregado (avance obra, novedad)</td></tr>
+        <tr><td>20</td><td>WhatsApp</td><td>Cierre honesto: "¿lo cerramos o dejamos para más adelante?"</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="ventanas">
+    <h3 class="section-title">Ventanas horarias</h3>
+    <ul>
+      <li><strong>11:00 a 12:30</strong> y <strong>17:00 a 19:00</strong>: ventanas calientes para llamadas</li>
+      <li><strong>13:00 a 14:30</strong>: buena ventana para WhatsApps (almuerzo)</li>
+      <li><strong>9:30 a 10:30</strong>: zona aceptable, mejor para profesionales independientes</li>
+      <li><strong>Evitar</strong>: antes de 8:30, 12:30 a 13:00, 14:30 a 16:00, después de 21:00</li>
+    </ul>
+
+    <div class="tip-box">
+      <strong>Para empresarios del Mercado Abasto y comerciantes:</strong> ellos madrugan a las 3-4 AM. Sweet spot para WhatsApps es 11:00 a 14:00. Llamadas después de las 14:00 funcionan mejor que matinales tempranas.
+    </div>
+  </section>
+
+  <!-- PARTE 3 -->
+  <h2 class="part-title">Parte 3 — Guion en 7 etapas</h2>
+
+  <section id="etapa-1">
+    <h3 class="section-title">Etapa 1 · 60 segundos antes de marcar</h3>
+    <p>Antes de tocar el teléfono, asegurate de tener visibles los tres datos mínimos del lead:</p>
+    <ul>
+      <li><strong>Presupuesto declarado</strong> — exacto, en USD o pesos</li>
+      <li><strong>Fecha de la consulta</strong> — para calcular hace cuánto y planear apertura</li>
+      <li><strong>Canal de origen</strong> — Meta, Zonaprop, web, referido</li>
+    </ul>
+  </section>
+
+  <section id="etapa-2">
+    <h3 class="section-title">Etapa 2 · Apertura (15 segundos)</h3>
+    <div class="script-box">
+      <span class="label">Apertura</span>
+      Hola, ¿hablo con [nombre]? Te habla [tu nombre] de NOOK San Isidro, el desarrollo de Áureo en Beccar. ¿Te agarro en buen momento?
+    </div>
+
+    <h4 class="subsection-title">Si dice "ahora no"</h4>
+    <div class="script-box">
+      Dale, no te robo tiempo. ¿Te llamo hoy a las 18 o mañana a las 11?
+    </div>
+
+    <h4 class="subsection-title">Si dice "sí, decime"</h4>
+    <div class="script-box">
+      Te llamo porque dejaste tu consulta por NOOK hace [tiempo] indicando un presupuesto de [USD X]. Quería contactarte personalmente porque con ese rango tenemos opciones interesantes y prefiero contártelas en 3 minutos antes de mandarte info genérica por mail. ¿Tenés un par de minutos?
+    </div>
+  </section>
+
+  <section id="etapa-3">
+    <h3 class="section-title">Etapa 3 · Diagnóstico (4 preguntas)</h3>
+
+    <h4 class="subsection-title">Pregunta 1 — Estado actual</h4>
+    <div class="script-box">¿Seguís buscando, ya compraste algo, o quedó en stand-by?</div>
+
+    <h4 class="subsection-title">Pregunta 2 — Uso</h4>
+    <div class="script-box">¿Lo estás mirando para vivir o como inversión?</div>
+
+    <h4 class="subsection-title">Pregunta 3 — Timing</h4>
+    <div class="script-box">¿Tenés horizonte para tomar la decisión? ¿Este semestre, este año, todavía explorando?</div>
+
+    <h4 class="subsection-title">Pregunta 4 — Forma de pago</h4>
+    <div class="script-box">¿Cómo lo estás pensando: contado, financiado, mix?</div>
+
+    <div class="highlight-box">
+      <strong>Las cuatro respuestas te definen el camino.</strong> Inversor + horizonte largo + financiado = Camino A. Vivienda + decisión este año + mix = Camino B. Stand-by o respuestas vagas = Camino C.
+    </div>
+  </section>
+
+  <section id="etapa-4">
+    <h3 class="section-title">Etapa 4 · Camino según perfil</h3>
+    <p>Detallado en la Parte 4. En este momento de la llamada, vos ya identificaste el camino y avanzás según ese guion específico.</p>
+  </section>
+
+  <section id="etapa-5">
+    <h3 class="section-title">Etapa 5 · Manejo de objeciones</h3>
+    <p>Detallado en la Parte 5. Las 10 objeciones catalogadas cubren el 90% de lo que vas a escuchar.</p>
+  </section>
+
+  <section id="etapa-6">
+    <h3 class="section-title">Etapa 6 · Cierre — opción binaria</h3>
+    <div class="script-box">
+      Bien, [nombre]. Te propongo que vengas a obra el [día A] a las [hora] o el [día B] a las [hora]. 30 minutos, te muestro las unidades para tu rango y forma de pago aplicada. ¿Cuál te queda mejor?
+    </div>
+
+    <div class="highlight-box">
+      <strong>Acotás hasta que te dé un día.</strong> Tres intentos sin día concreto = no es lead activo. Pasalo a nurturing y movete al siguiente.
+    </div>
+  </section>
+
+  <section id="etapa-7">
+    <h3 class="section-title">Etapa 7 · Antes de colgar</h3>
+    <ul>
+      <li><strong>Confirmá día, hora y dirección</strong> en voz alta</li>
+      <li><strong>Mandá WhatsApp inmediato</strong> con dirección y tu contacto</li>
+      <li><strong>Anunciá llamada de confirmación previa</strong> (el día antes o la mañana del día)</li>
+    </ul>
+
+    <div class="warn-box">
+      <strong>Sin confirmación previa, el no-show está entre 30% y 45%.</strong> La llamada de confirmación de 30 segundos al día siguiente reduce el no-show a menos del 10%.
+    </div>
+
+    <h4 class="subsection-title">Lo que NO hacer en la llamada</h4>
+    <ul>
+      <li>Detallar amenities por teléfono (eso va en obra)</li>
+      <li>Dar precio exacto sin contexto de unidad</li>
+      <li>Pelear el precio por teléfono</li>
+      <li>Mandar brochure genérico al recolector</li>
+      <li>Hablar mal de la competencia</li>
+      <li>Aceptar "yo te llamo" sin agendar contigo</li>
+    </ul>
+  </section>
+
+  <!-- PARTE 4 -->
+  <h2 class="part-title">Parte 4 — Caminos según perfil</h2>
+
+  <section id="camino-a">
+    <h3 class="section-title">Camino A · Inversor</h3>
+    <p><strong>Foco</strong>: liquidez, yield, forma de pago. Lenguaje técnico, números concretos.</p>
+
+    <div class="script-box">
+      Para inversor en Beccar, lo más líquido para alquiler son los 2 ambientes de 50-52 m². ¿Te parece si nos juntamos en obra el [día] y te muestro las unidades, yield estimado, y forma de pago concreta? 30 minutos y salís con todo claro.
+    </div>
+
+    <h4 class="subsection-title">Las tres unidades de referencia para inversor</h4>
+    <table class="manual-table">
+      <thead><tr><th>UF</th><th>Tipo</th><th>Precio Lista A</th><th>Yield</th></tr></thead>
+      <tbody>
+        <tr><td><strong>107</strong></td><td>2 amb chico contrafrente, P1</td><td>USD 118.990</td><td>8,07%</td></tr>
+        <tr><td><strong>102</strong></td><td>2 amb grande frente, P1</td><td>USD 130.050</td><td>8,30%</td></tr>
+        <tr><td><strong>106</strong></td><td>3 amb contrafrente, P1</td><td>USD 175.728</td><td>8,02%</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="camino-b">
+    <h3 class="section-title">Camino B · Vivienda</h3>
+    <p><strong>Foco</strong>: lifestyle, ubicación, amenities, forma de pago accesible. Lenguaje cotidiano.</p>
+
+    <div class="script-box">
+      Contame: ¿es para vos solo, en pareja, con hijos? ¿2 ambientes te alcanza o estás mirando 3?
+    </div>
+    <div class="script-box">
+      La mejor manera de entender si NOOK te encaja es viendo la obra. ¿El [día A] o el [día B]?
+    </div>
+
+    <div class="tip-box">
+      <strong>Para vivienda no se vende yield.</strong> Si el cliente es para vivir, hablar de yield bruto le suena a inversionista frío. Hablale de calidad de vida, comodidad, ubicación, qué cerca está de lo que hace todos los días.
+    </div>
+  </section>
+
+  <section id="camino-c">
+    <h3 class="section-title">Camino C · Stand-by</h3>
+    <p><strong>Foco</strong>: obtener objeción real, reactivar. Sin presionar.</p>
+
+    <div class="script-box">
+      ¿Qué fue lo que te frenó la última vez? Pregunto sin compromiso, prefiero saber para no estar atrás tuyo si no es el momento.
+    </div>
+    <div class="script-box">
+      Algunas cosas cambiaron desde tu consulta — [avance, plan de pago, unidades]. ¿Tomamos un café 20 minutos en obra? Si no te cierra te dejo de molestar.
+    </div>
+  </section>
+
+  <!-- PARTE 5 -->
+  <h2 class="part-title">Parte 5 — Manejo de objeciones</h2>
+
+  <section id="obj-1">
+    <h5 class="objection-num">OBJECIÓN 01</h5>
+    <h3 class="section-title">"Mandame info por mail"</h3>
+    <div class="script-box">
+      Te la mando, sin drama. Pero te pregunto: si te interesa lo que te mando, ¿qué hacés? La info por mail es genérica. Lo que cambia la decisión es ver la obra. Te mando algo breve hoy y agendamos visita el jueves. ¿Jueves a las 11 o a las 16?
+    </div>
+    <div class="highlight-box"><strong>Clave:</strong> no rechaces el mail. Negocialo a cambio de la visita.</div>
+  </section>
+
+  <section id="obj-2">
+    <h5 class="objection-num">OBJECIÓN 02</h5>
+    <h3 class="section-title">"Sólo manejame por WhatsApp"</h3>
+    <div class="script-box">
+      Dale, te paso info por WhatsApp. Te propongo: en vez de PDF genérico, contame en dos mensajes qué buscás y te armo propuesta corta y específica. Después agendamos 20 minutos en obra. ¿Jueves o viernes?
+    </div>
+    <div class="warn-box">No mandes brochure genérico. Algo corto, personalizado, con CTA a visita.</div>
+  </section>
+
+  <section id="obj-3">
+    <h5 class="objection-num">OBJECIÓN 03</h5>
+    <h3 class="section-title">"Modo recolector"</h3>
+    <p>El lead trata la conversación como research, no como decisión. Señales: pide formato comparable, evade tu calificación, menciona competencia.</p>
+
+    <div class="script-box">
+      [Nombre], te freno un segundo. Te noto en modo de juntar info de varios proyectos —que está bien, es lo que hace la gente seria—, pero te quiero ser honesto: si te mando un PDF más, te lo voy a sumar a la pila de los otros 4 que ya tenés. Y NOOK no se entiende así.
+    </div>
+    <div class="script-box">
+      Te propongo dos cosas. Una: te mando hoy un audio de 2 minutos por WhatsApp con las 3 cosas que tenés que saber de NOOK para tu rango. Personalizado. Y dos: agendamos visita corta en obra, 20 minutos.
+    </div>
+  </section>
+
+  <section id="obj-4">
+    <h5 class="objection-num">OBJECIÓN 04</h5>
+    <h3 class="section-title">"Fuera de presupuesto"</h3>
+    <div class="script-box">
+      ¿Cuánto te queda corto? Pregunto porque tenemos planes de pago donde el anticipo es bajo y las cuotas se ajustan. Capaz lo que ves publicado no refleja lo que necesitás poner por mes.
+    </div>
+    <div class="highlight-box"><strong>Clave:</strong> casi siempre se resuelve con forma de pago, no con descuento.</div>
+  </section>
+
+  <section id="obj-5">
+    <h5 class="objection-num">OBJECIÓN 05</h5>
+    <h3 class="section-title">"Lo estoy pensando"</h3>
+    <div class="script-box">
+      Dale. Pensándolo, ¿qué te falta resolver? ¿Es el proyecto, el barrio, la forma de pago, o algo puntual? Si me contás capaz puedo ayudarte ahora.
+    </div>
+    <div class="highlight-box"><strong>Clave:</strong> forzá concreción. "Lo estoy pensando" sin contenido es un no disfrazado.</div>
+  </section>
+
+  <section id="obj-6">
+    <h5 class="objection-num">OBJECIÓN 06</h5>
+    <h3 class="section-title">"Mandame todas las opciones"</h3>
+    <div class="script-box">
+      Te puedo mandar todas las disponibles, pero te tiro un dato: con 39 unidades disponibles vas a marearte. ¿Me das 2 minutos para entender qué buscás y te tiro 2 opciones específicas? Es más útil para vos.
+    </div>
+  </section>
+
+  <section id="obj-7">
+    <h5 class="objection-num">OBJECIÓN 07</h5>
+    <h3 class="section-title">"Estoy comparando varias opciones"</h3>
+
+    <div class="script-box">
+      Re entiendo, está bien que mires varias antes de decidir. ¿Cuáles estás mirando? Pregunto en serio: capaz puedo ayudarte a comparar honestamente, te puedo decir dónde NOOK gana y dónde no.
+    </div>
+
+    <h4 class="subsection-title">Si nombra proyectos concretos</h4>
+    <div class="script-box">
+      Conozco bien los dos. Te tiro la verdad. [X] tiene buena ubicación pero el m² real es menor por amenities mal distribuidos. [Z] tiene precio más bajo pero la entrega real está atrasada. NOOK no es el más barato pero entrega antes y el m² real coincide.
+    </div>
+
+    <h4 class="subsection-title">La pregunta del millón</h4>
+    <div class="script-box">
+      De todas las que mirás, si tuvieras que elegir UNO solo entre ubicación, precio, plazo, desarrolladora, forma de pago o amenities, ¿cuál te importa más?
+    </div>
+
+    <div class="warn-box">No hables mal de la competencia. Reconocé fortalezas reales y diferenciá con datos verificables.</div>
+  </section>
+
+  <section id="obj-8">
+    <h5 class="objection-num">OBJECIÓN 08</h5>
+    <h3 class="section-title">"Lo analizo el fin de semana"</h3>
+
+    <h4 class="subsection-title">Estructurar el análisis</h4>
+    <div class="script-box">
+      Bárbaro. Te quiero ayudar a que ese análisis valga la pena. ¿Te tiro las 4 cosas que conviene revisar? Te lleva 20 minutos el sábado y el lunes hablamos con todo claro.
+    </div>
+    <div class="script-box">
+      Una: forma de pago, mirá si anticipo y cuotas entran en tu flujo. Dos: timing de entrega. Tres: si lo charlás con [pareja/contador], qué dudas tienen ellos. Cuatro: comparación con lo otro que mires, en m² reales y forma de pago.
+    </div>
+
+    <h4 class="subsection-title">Cierre crítico</h4>
+    <div class="script-box">
+      Te llamo el lunes a las 10:30 para repasar las 4 cosas. ¿O preferís a las 16?
+    </div>
+
+    <div class="tip-box">
+      <strong>Refuerzo viernes 19-20hs:</strong> WhatsApp con UNA imagen (avance o render): "Te dejo armadito así no te perdés. Buen finde, hablamos el lunes a las [hora]".
+    </div>
+  </section>
+
+  <section id="obj-9">
+    <h5 class="objection-num">OBJECIÓN 09</h5>
+    <h3 class="section-title">"Yo te llamo / agenda complicada"</h3>
+    <p>La versión más educada del "no" argentino. Estadísticamente se cumple en menos del 15% de los casos.</p>
+
+    <h4 class="subsection-title">Movida 1 · Calendario compartido (suave)</h4>
+    <div class="script-box">
+      Buenísimo, [nombre]. Te propongo algo que nos ahorra a los dos andar coordinando: ¿cuál suele ser tu mejor momento de la semana? ¿Lunes a primera hora, jueves al mediodía, viernes a la tarde? Si surge algo, lo movemos, pero al menos tenemos un punto de partida.
+    </div>
+
+    <h4 class="subsection-title">Movida 2 · "Te llamo yo, pero con permiso"</h4>
+    <div class="script-box">
+      Entiendo perfecto. Te propongo algo: yo te llamo el [día concreto] a una hora que vos me digas, y si no podés simplemente no atendés y me lo confirmás por WhatsApp con un emoji. Sin culpas. Reagendamos. ¿Te queda bien martes 13?
+    </div>
+
+    <h4 class="subsection-title">Movida 3 · Valor a entregar (la más potente)</h4>
+    <div class="script-box">
+      Hagámoslo así para no dispersarnos. Yo necesito 15 minutos para mostrarte [algo concreto: propuesta refinada / comparativo de dos unidades / números aplicados]. Es info que te sirve a vos, no es seguimiento. ¿Mañana al mediodía, jueves a primera hora, o viernes a la tarde?
+    </div>
+
+    <h4 class="subsection-title">Pregunta directa si insiste</h4>
+    <div class="script-box">
+      [Nombre], pregunta directa, sin compromiso. Cuando me decís que vos me llamás, ¿es porque genuinamente querés seguir avanzando y los tiempos son lo que te traba, o el proyecto no terminó de cerrarte y estás siendo amable conmigo? Las dos respuestas me sirven y prefiero saber dónde estamos parados.
+    </div>
+  </section>
+
+  <section id="obj-10">
+    <h5 class="objection-num">OBJECIÓN 10</h5>
+    <h3 class="section-title">"Mandame los números puntuales por escrito"</h3>
+    <p><strong>Nueva objeción documentada en mayo 2026.</strong> Típica en perfil inversor sofisticado. Riesgo: usar tu cotización para apalancar con otro vendedor.</p>
+
+    <div class="script-box">
+      [Nombre], te entiendo y te respeto que quieras tener todo por escrito. Pero te quiero ser directo: la experiencia con perfiles como el tuyo me enseñó que cuando mando números puntuales por WhatsApp, terminan comparándose contra cotizaciones que se armaron con criterios distintos, y la decisión sale mal. La llamada de 15 minutos no es para presionarte, es para que vos salgas con criterio aplicado. Si después no avanzás conmigo, al menos te llevás claridad para decidir mejor.
+    </div>
+
+    <h4 class="subsection-title">Si igual insiste con números</h4>
+    <p>Mandá <strong>rango, no precio puntual</strong>. Y siempre con salvedades (ver sección "Salvedades en cotizaciones" al final del manual).</p>
+    <div class="script-box">
+      Te tiro el rango: dentro de tu presupuesto, las unidades van entre USD 118.990 y USD 130.050 en Lista A. Cuotas y planes los repasamos en la llamada porque dependen de tu flujo. ¿Mañana 11 o 14?
+    </div>
+  </section>
+
+  <!-- PARTE 6 -->
+  <h2 class="part-title">Parte 6 — Situaciones especiales</h2>
+
+  <section id="post-cot">
+    <h3 class="section-title">Post-cotización · primeros 7 días</h3>
+    <ul>
+      <li><strong>Día 0</strong>: mandar cotización + confirmar recepción por WhatsApp</li>
+      <li><strong>Día 1-2</strong>: silencio activo. Dar espacio para analizar</li>
+      <li><strong>Día 3</strong>: WhatsApp con valor agregado (no "¿la viste?") — avance obra, novedad zona</li>
+      <li><strong>Día 5</strong>: llamada corta — "¿qué dudas surgieron del análisis?"</li>
+      <li><strong>Día 7</strong>: si no hubo respuesta, mensaje honesto de cierre</li>
+    </ul>
+  </section>
+
+  <section id="recontacto">
+    <h3 class="section-title">Recontacto · las 5 ventanas</h3>
+    <ol>
+      <li><strong>Hito de obra</strong> — losa nueva, fachada, terminaciones</li>
+      <li><strong>Cambio en lista de precios</strong> — antes del próximo ajuste</li>
+      <li><strong>Nueva financiación</strong> — plan extendido, condiciones especiales</li>
+      <li><strong>Unidad similar reservada</strong> — "se reservó una parecida a la tuya"</li>
+      <li><strong>Tema personal del cliente</strong> — si te mencionó algo (mudanza, evento)</li>
+    </ol>
+  </section>
+
+  <section id="baja-precio">
+    <h3 class="section-title">Baja de precios con cotización enviada</h3>
+    <div class="script-box">
+      [Nombre], te llamo por un tema que te quería contar antes de que lo veas por otro lado. Áureo ajustó la lista de precios y la unidad que cotizamos te queda mejor que cuando hablamos. Te paso la cotización nueva. Si tenías dudas con la anterior, capaz esto te ayuda a definir.
+    </div>
+  </section>
+
+  <section id="distancia">
+    <h3 class="section-title">Lead a distancia (exterior / interior)</h3>
+
+    <h4 class="subsection-title">Las 4 reglas</h4>
+    <ol>
+      <li>No forzar visita ni reunión presencial. Quema relación.</li>
+      <li>Reemplazar visita física por experiencia digital de calidad. Video tour, llamada con cámara mostrando avance.</li>
+      <li>Establecer la próxima vez que viene a Buenos Aires y construir hacia ese momento.</li>
+      <li>La conversión se gana ahora aunque cierre después. El que cierra es el vendedor que mantuvo mejor relación durante los meses previos al viaje.</li>
+    </ol>
+  </section>
+
+  <section id="reactivacion">
+    <h3 class="section-title">Reactivación masiva de base histórica</h3>
+    <p><strong>Aprendizaje crítico:</strong> 4 de 4 leads reactivados de campañas recientes ignoraron el CTA "10 minutos llamada" y pidieron material por escrito. El CTA correcto NO es la llamada — es darle opción.</p>
+
+    <h4 class="subsection-title">CTA corregido para reactivación</h4>
+    <div class="script-box">
+      ¿Te paso info actualizada por acá o preferís que te llame 10 minutos? Vos elegís.
+    </div>
+  </section>
+
+  <section id="pareja">
+    <h3 class="section-title">Manejo de pareja / decisión familiar</h3>
+    <div class="script-box">
+      Cuando lo charles con tu familia, lo más útil sería si la conversación es conmigo presente, aunque sea 15 minutos por video llamada o WhatsApp en grupo. Te lo digo por experiencia: cuando yo le explico el proyecto a la familia me preguntan cosas que vos sola no podés contestar, y se quedan más tranquilos.
+    </div>
+
+    <div class="highlight-box">
+      <strong>Estadística:</strong> cuando el material viaja sin el vendedor presente en la conversación familiar, se cae el 70% de las operaciones.
+    </div>
+  </section>
+
+  <section id="pivot">
+    <h3 class="section-title">Pivot a otro proyecto cuando NOOK no calza</h3>
+    <div class="script-box">
+      Te soy honesto: NOOK con entrega en Marzo 2029 no es lo que estás buscando. No te voy a empujar algo que no te calza. Pero te tengo otra opción de Áureo en [zona]: [proyecto X], [estado]. Es otra zona, pero misma desarrolladora, mismo nivel de calidad y de cumplimiento.
+    </div>
+  </section>
+
+  <section id="ff">
+    <h3 class="section-title">Cliente Friends &amp; Family</h3>
+    <ul>
+      <li><strong>Tu unidad destacada antes que el inventario público.</strong></li>
+      <li><strong>Explicar por qué tu precio es distinto al del listado.</strong></li>
+      <li><strong>Comparativa explícita F&amp;F vs Lista A pública.</strong></li>
+      <li><strong>Mencionar disponibilidad limitada</strong> si es real. Sin urgencia fabricada.</li>
+    </ul>
+
+    <div class="script-box">
+      Tu cotización de UF [X] está dentro del programa Friends &amp; Family. Es la última disponible del cupo y permanece reservada para vos mientras avancemos. Si la operación se enfría más de lo razonable, se reserva el derecho de ofrecerla a otro inversor del programa que está a la espera.
+    </div>
+  </section>
+
+  <section id="multi">
+    <h3 class="section-title">Cliente inversor multi-unidad</h3>
+    <p><strong>Nueva situación documentada en mayo 2026.</strong> Cuando un cliente pregunta por "descuentos por compra de más de una unidad", está revelando que ya está pensando en cartera, no en unidad única. Esto cambia su perfil completamente.</p>
+
+    <h4 class="subsection-title">Lo que NO hacer</h4>
+    <ul>
+      <li>Tirarle un descuento general por WhatsApp</li>
+      <li>Mandar números puntuales antes de calificar perfil de cartera</li>
+      <li>Tratarlo como cliente de unidad única</li>
+    </ul>
+
+    <h4 class="subsection-title">Lo que SÍ hacer</h4>
+    <div class="script-box">
+      Para inversor con tu perfil, las condiciones por compra múltiple se definen caso por caso. Necesito conocer ticket disponible, unidades de interés y horizonte de cartera para armar propuesta concreta. Eso lo charlamos en reunión presencial, no por WhatsApp. ¿Te queda mejor [día A] o [día B]?
+    </div>
+
+    <div class="highlight-box">
+      <strong>Tres ejes para conversar multi-unidad:</strong> precio (condiciones diferenciadas), pagos (esquemas mixtos entre Lista A, B y C), unidades (combinaciones que diversifican perfil de inquilino).
+    </div>
+  </section>
+
+  <section id="fideicomiso">
+    <h3 class="section-title">Fideicomiso al costo — cómo explicarlo</h3>
+    <p>La operación de NOOK NO se instrumenta con boleto de compraventa tradicional. Se instrumenta con <strong>adhesión a fideicomiso al costo, con precio cerrado en USD</strong>. Conviene explicarlo bien para que el cliente entienda qué firma.</p>
+
+    <h4 class="subsection-title">Las claves del fideicomiso al costo</h4>
+    <ul>
+      <li><strong>Precio cerrado en USD</strong> — el valor total no se ajusta por costos de obra. Lo que se firma es lo que se paga.</li>
+      <li><strong>Adhesión, no boleto</strong> — el inversor adhiere al fideicomiso como fiduciante-beneficiario. Recibe la unidad al final.</li>
+      <li><strong>Patrimonio separado</strong> — el fideicomiso es patrimonio autónomo, separado del patrimonio del desarrollador. Eso protege al inversor.</li>
+      <li><strong>Fiduciario designado</strong> — escribanía o entidad designada administra el fideicomiso.</li>
+    </ul>
+
+    <div class="script-box">
+      <span class="label">Cómo explicarlo en una llamada</span>
+      Lo que firmás no es un boleto. Es una adhesión a un fideicomiso al costo con precio cerrado en USD. Eso significa dos cosas para vos: una, el precio que firmás hoy es el que pagás, no se ajusta por costos de construcción. Y dos, los aportes que hacés entran a un patrimonio separado del desarrollador, lo que te protege legalmente. Cuando se termina la obra, recibís tu unidad escriturada.
+    </div>
+  </section>
+
+  <section id="ventana-24">
+    <h3 class="section-title">Ventana de 24 horas en WhatsApp Business</h3>
+    <p><strong>Política de Meta:</strong> dentro de las primeras 24 horas desde que el lead te escribió primero, podés mandar cualquier mensaje libre. <strong>Pasadas las 24 horas</strong>, solo podés enviar plantillas pre-aprobadas por Meta. Si querés mandar texto libre, necesitás que el lead te vuelva a escribir primero para reabrir la ventana.</p>
+
+    <h4 class="subsection-title">Soluciones cuando se cerró la ventana</h4>
+    <ol>
+      <li><strong>Llamada telefónica</strong> — no tiene restricción de ventana.</li>
+      <li><strong>Usar plantilla aprobada</strong> — cualquiera disponible, aunque no sea perfecta, reabre la ventana cuando el lead responde.</li>
+      <li><strong>SMS</strong> — sin restricción Meta, pide al lead que te escriba al WhatsApp.</li>
+      <li><strong>Aprobar nuevas plantillas</strong> con anticipación. Ver Parte 8.</li>
+    </ol>
+  </section>
+
+  <section id="riesgo-cruzado">
+    <h3 class="section-title">Riesgo cruzado — operaciones con dependencia</h3>
+    <p><strong>Nueva situación documentada en mayo 2026.</strong> Cuando un cliente firma reserva con Áureo pero su pago depende de una venta paralela (otra propiedad suya) que está en proceso con otra inmobiliaria.</p>
+
+    <h4 class="subsection-title">Protocolo recomendado</h4>
+    <ol>
+      <li><strong>Pedir informe de dominio</strong> de la propiedad cuya venta condiciona el pago.</li>
+      <li><strong>Validar vigencia de reserva</strong> de la otra operación.</li>
+      <li><strong>Escalar a dirección comercial</strong> antes de tomar decisiones de plazos o seña reforzada.</li>
+      <li><strong>Cláusula ad referendum</strong> en la reserva con Áureo, condicionando avance al cierre efectivo de la otra venta.</li>
+      <li><strong>Plazos del boleto</strong> que contemplen tiempo realista para la otra escrituración.</li>
+    </ol>
+
+    <div class="warn-box">
+      <strong>Lo que NO hacer:</strong> pedir seña reforzada como respuesta inmediata al riesgo cruzado. Es contraproducente: castigás la transparencia del cliente. La solución correcta es ajustar estructura del boleto, no aumentar seña.
+    </div>
+  </section>
+
+  <!-- PARTE 7 - CASOS REALES -->
+  <h2 class="part-title">Parte 7 — Casos reales documentados</h2>
+
+  <section id="casos">
+    <p>Casos reales del equipo comercial. Documentados para que el equipo entero aprenda de lo que funcionó y lo que no. Sin nombres reales por confidencialidad.</p>
+
+    <div class="case-box">
+      <div class="case-meta">CASO 01 · CIERRE EN UNA REUNIÓN · MAYO 2026</div>
+      <h4>Comprador joven con padres profesionales (Áureo 880)</h4>
+      <p><strong>Contexto:</strong> abogado de 26 años, hijo de padres con oficio. Vino a ver NOOK pero el producto que terminó comprando fue una unidad usada en Áureo 880.</p>
+      <p><strong>Movida ganadora:</strong></p>
+      <ul>
+        <li>Proceso completo en una sola interacción (mostrar, hablar, cerrar).</li>
+        <li>Cierre inmediato post-presentación, sin esperar.</li>
+        <li>Escasez real comunicada con honestidad: visitas coordinadas por landing + unidad no publicada todavía.</li>
+        <li>Resolución de objeción "depende de otra venta" con instrumento adecuado: reserva ad referendum.</li>
+        <li>Pivot de NOOK a 880: identificación de que el producto pozo no encajaba.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> el botón de "coordinar visita" en la landing genera flujo real de visitas. Esa información puede usarse como escasez legítima con cualquier cliente cercano al cierre, sin fabricar urgencia.</p>
+    </div>
+
+    <div class="case-box">
+      <div class="case-meta">CASO 02 · DOBLE RESERVA CON RIESGO CRUZADO · MAYO 2026</div>
+      <h4>Cliente con dos reservas, una con dependencia externa</h4>
+      <p><strong>Contexto:</strong> cliente firmó dos reservas en un mismo día con Áureo. Una de las dos depende de la venta paralela de otra propiedad suya, con reserva ya firmada pero múltiples prórrogas y escribanía problemática.</p>
+      <p><strong>Movida ganadora:</strong></p>
+      <ul>
+        <li>El cliente proactivamente compartió datos completos de la otra operación (titulares, escribanía, vigencia).</li>
+        <li>En lugar de pedir seña reforzada (que castigaba la transparencia), se le agradeció la claridad y se esperó información concreta antes de decidir.</li>
+        <li>Pedido de informe de dominio como paso siguiente.</li>
+        <li>Escalada a dirección comercial antes de tomar decisiones de plazo o estructura.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> ante riesgo cruzado, la mejor protección es información compartida en tiempo real + compromiso explícito de ambas partes. La seña alta no resuelve el riesgo, solo castiga la honestidad.</p>
+    </div>
+
+    <div class="case-box">
+      <div class="case-meta">CASO 03 · INVERSOR SOFISTICADO CON CARTERA · MAYO 2026</div>
+      <h4>Inversor con cartera mixta (financieros + ladrillo)</h4>
+      <p><strong>Contexto:</strong> inversor de USD 100-120k disponibles, perfil sofisticado, ya con cartera de financieros y ladrillo, busca renta + plusvalía.</p>
+      <p><strong>Movida ganadora:</strong></p>
+      <ul>
+        <li>Tres preguntas calificadoras antes de cualquier propuesta: horizonte de renta, preferencia financiera, composición de cartera.</li>
+        <li>Validación con argumento técnico de cada respuesta, no aplauso ("tu respuesta 1 calza porque X").</li>
+        <li>NO mandar números puntuales por WhatsApp. Mantener munición para la llamada.</li>
+        <li>Posicionar la llamada como servicio ("para que vos salgas con criterio aplicado"), no como necesidad del vendedor.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> para inversor con cartera, el respeto al proceso vale más que la velocidad de cotización. Mostrar criterio y método te diferencia del vendedor desesperado.</p>
+    </div>
+
+    <div class="case-box">
+      <div class="case-meta">CASO 04 · RECOLECTOR DISFRAZADO · MAYO 2026</div>
+      <h4>Inversor que pide valores "para mirar todo junto"</h4>
+      <p><strong>Contexto:</strong> lead que recibió landing con análisis, fue convocado a llamada, contestó las preguntas calificadoras pero pidió "valores" antes de agendar.</p>
+      <p><strong>Movida correcta:</strong></p>
+      <ul>
+        <li>NO ceder ante presión inmediata por números.</li>
+        <li>Validar su decisión de querer llamada sin retroceder.</li>
+        <li>Reposicionar las preguntas calificadoras como servicio, no obstáculo.</li>
+        <li>Si insiste con valores: tirar rango (no precio puntual) con salvedades de vigencia.</li>
+        <li>Si el lead se enoja por mantener el proceso, no es cliente — es comparador que iba a usar la cotización con otro vendedor.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> mantener disciplina del proceso es un acto de respeto profesional, no rigidez. Pierde menos operaciones el vendedor que cuida su proceso que el que cede ante cada pedido.</p>
+    </div>
+
+    <div class="case-box">
+      <div class="case-meta">CASO 05 · INVERSOR MULTI-UNIDAD · MAYO 2026</div>
+      <h4>Compradora que pregunta por descuentos por compra múltiple</h4>
+      <p><strong>Contexto:</strong> potencial compradora con necesidad explícita ("invertir sin salir perjudicada en ciclos macro"), preguntó por descuentos por más de una unidad antes incluso de ver el material.</p>
+      <p><strong>Movida correcta:</strong></p>
+      <ul>
+        <li>La pregunta sobre descuentos múltiples revela perfil multi-unidad, no unidad única.</li>
+        <li>NO revelar precios puntuales en material escrito. Construir tesis y diferenciales.</li>
+        <li>Posicionar la conversación de descuentos como "se arman caso por caso en reunión presencial".</li>
+        <li>Material entregado: landing personalizada con tesis "refugio anticíclico" + sección específica sobre cartera multi-unidad sin números.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> cuando alguien pregunta por descuentos múltiples, está dando señal de cartera. Cambia tu perfil de cliente — no es 100-130k, puede ser 250-400k+. Tratar con respeto técnico y reservar números para la reunión.</p>
+    </div>
+
+    <div class="case-box">
+      <div class="case-meta">PATRÓN OBSERVADO · LEAD COMERCIANTE</div>
+      <h4>Empresarios del Mercado Abasto Beccar</h4>
+      <p><strong>Contexto:</strong> público específico — comerciantes, frutihortícolas, dueños de almacenes / carnicerías / pollerías. Generan efectivo en pesos, ahorran en USD, decisión patrimonial es familiar.</p>
+      <p><strong>Movida correcta:</strong></p>
+      <ul>
+        <li>Lenguaje patrimonial, no lifestyle.</li>
+        <li>Cuotas presentadas en ARS, no en USD escondidos.</li>
+        <li>Referencia a proximidad al trabajo ("12 cuadras del Mercado").</li>
+        <li>Track record de Áureo enfatizado ("nunca falló").</li>
+        <li>Mensajes WhatsApp sin emojis de marketing, formato conversacional entre conocidos.</li>
+      </ul>
+      <p><strong>Aprendizaje clave:</strong> este público huele el chamuyo a 10 kilómetros. Cero presión, cero urgencia fabricada. La cuota en ARS comparada con facturación del negocio resuena más que el yield bruto en USD.</p>
+    </div>
+
+    <div class="highlight-box">
+      <strong>Espacio para nuevos casos:</strong> cuando aparezca una situación nueva o un cierre con aprendizaje, documentarlo acá siguiendo el formato: Contexto → Movida ganadora (o correcta) → Aprendizaje clave.
+    </div>
+  </section>
+
+  <!-- PARTE 8 - WHATSAPP -->
+  <h2 class="part-title">Parte 8 — WhatsApp · plantillas y política</h2>
+
+  <section id="meta-policy">
+    <h3 class="section-title">Política de Meta y categorías de plantillas</h3>
+
+    <h4 class="subsection-title">Categorías obligatorias</h4>
+    <ul>
+      <li><strong>Marketing</strong> — promoción, novedades, reactivación. Más restrictivo, requiere opt-in.</li>
+      <li><strong>Utility</strong> — actualizaciones de estado, recordatorios, confirmaciones. Más permisivo, mejor tasa de aprobación.</li>
+      <li><strong>Authentication</strong> — códigos OTP, login. No aplica a Áureo.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <strong>Regla operativa:</strong> si la plantilla puede armarse como Utility, preferí Utility. Tienen mejor tasa de aprobación y menos restricciones.
+    </div>
+
+    <h4 class="subsection-title">Lo que Meta rechaza</h4>
+    <ul>
+      <li>Lenguaje promocional fuerte ("oferta", "última oportunidad", "urgente")</li>
+      <li>Texto en mayúsculas excesivas</li>
+      <li>Emojis al inicio del mensaje</li>
+      <li>Mensajes muy cortos sin contexto</li>
+      <li>Mensajes con solo link sin explicación</li>
+    </ul>
+
+    <p><strong>Tiempo de aprobación:</strong> entre 1 hora y 48 horas en condiciones normales. Si rechazan, podés editar y reenviar.</p>
+  </section>
+
+  <section id="templates">
+    <h3 class="section-title">15 plantillas pre-aprobadas</h3>
+
+    <h4 class="subsection-title">01 · Bienvenida nuevo lead</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">bienvenida_nuevo_lead</div>
+Hola {{1}}, gracias por tu consulta sobre NOOK San Isidro. Recibimos tu mensaje y un asesor te contactará en horario laboral (lunes a viernes de 9 a 19 hs). Si tu consulta es urgente, podés llamarnos al +54 11 7369-7105.
+    </div>
+
+    <h4 class="subsection-title">02 · Primer contacto post-formulario</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">primer_contacto_post_formulario</div>
+Hola {{1}}, soy {{2}} de NOOK San Isidro. Recibí tu consulta sobre el proyecto. Quería contactarte por teléfono para repasar en pocos minutos las dudas que tengas. ¿Te queda bien que te llame hoy o preferís coordinar otro horario?
+    </div>
+
+    <h4 class="subsection-title">03 · Reactivación de lead frío</h4>
+    <div class="wa-template">
+      <div class="wa-meta">MARKETING</div>
+      <div class="wa-name">reactivacion_lead_frio</div>
+Hola {{1}}, te escribimos desde NOOK San Isidro. Hace un tiempo consultaste por el proyecto y queríamos retomar el contacto. Hubo novedades concretas: nuevo plan de pagos en pesos ajustables, avance significativo de obra y lista de precios vigente hasta el próximo ajuste. ¿Te paso información actualizada por acá o preferís que coordinemos una llamada de 10 minutos? Vos elegís.
+    </div>
+
+    <h4 class="subsection-title">04 · Reactivación con cotización pendiente</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">reactivacion_con_cotizacion</div>
+Hola {{1}}, te escribimos desde NOOK San Isidro para retomar la cotización que te enviamos el {{2}}. ¿Pudiste revisarla? Si surgieron dudas o querés ajustar algún punto del plan de pagos, podemos repasarlo en una llamada breve. ¿Cuándo te queda mejor esta semana?
+    </div>
+
+    <h4 class="subsection-title">05 · Confirmación de visita</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">confirmacion_visita_obra</div>
+Hola {{1}}, te confirmamos la visita a obra agendada para el {{2}} a las {{3}} hs. Dirección: Av. Centenario 2430, Beccar. Te espera {{4}} en la entrada principal. Si necesitás reagendar, avisanos con tiempo.
+    </div>
+
+    <h4 class="subsection-title">06 · Recordatorio 24hs</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">recordatorio_visita_24hs</div>
+Hola {{1}}, te recordamos la visita a obra de NOOK San Isidro mañana {{2}} a las {{3}} hs en Av. Centenario 2430, Beccar. Si surgió algún imprevisto y necesitás reagendar, avisanos. Hasta mañana.
+    </div>
+
+    <h4 class="subsection-title">07 · Post-visita</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">post_visita_seguimiento</div>
+Hola {{1}}, te agradecemos el tiempo de ayer en obra. ¿Qué dudas te quedaron después de ver el proyecto? Si querés repasar algún punto puntual o avanzar con números aplicados a tu caso, estoy disponible.
+    </div>
+
+    <h4 class="subsection-title">08 · Envío de material</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">envio_material_informativo</div>
+Hola {{1}}, te comparto el material informativo de NOOK San Isidro que solicitaste. Cualquier consulta puntual sobre el contenido, respondeme por acá y la repasamos.
+    </div>
+
+    <h4 class="subsection-title">09 · Aviso de hito de obra</h4>
+    <div class="wa-template">
+      <div class="wa-meta">MARKETING</div>
+      <div class="wa-name">aviso_hito_obra</div>
+Hola {{1}}, queríamos compartirte una novedad de NOOK San Isidro: {{2}}. Te dejamos la información actualizada para que la tengas presente. Si surge alguna pregunta sobre el proyecto, estamos disponibles.
+    </div>
+
+    <h4 class="subsection-title">10 · Aviso lista de precios</h4>
+    <div class="wa-template">
+      <div class="wa-meta">MARKETING</div>
+      <div class="wa-name">aviso_lista_precios</div>
+Hola {{1}}, te escribimos desde NOOK San Isidro para anticiparte que el {{2}} se actualiza la lista comercial del proyecto. Si querés repasar tu cotización con los valores actuales antes del ajuste, podemos coordinar esta semana. ¿Te llamo o preferís información por acá?
+    </div>
+
+    <h4 class="subsection-title">11 · Seguimiento post-cotización día 5</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">seguimiento_post_cotizacion_dia5</div>
+Hola {{1}}, te escribo para saber cómo va tu evaluación de la cotización que te enviamos. ¿Surgieron dudas o querés repasar algún punto puntual del plan de pagos? Quedo a disposición para ayudarte a definir.
+    </div>
+
+    <h4 class="subsection-title">12 · Cierre honesto lead inactivo</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">cierre_honesto_lead_inactivo</div>
+Hola {{1}}, no quiero ser insistente. Si NOOK San Isidro no es lo que buscás en este momento, decímelo sin problema y dejo de molestarte. Si todavía estás evaluando y necesitás tiempo, avisame en qué plazo te conviene retomar y respeto eso. Lo que prefieras está bien.
+    </div>
+
+    <h4 class="subsection-title">13 · Cotización F&amp;F</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">cotizacion_friends_family</div>
+Hola {{1}}, te comparto la cotización de la unidad {{2}} dentro del programa Friends and Family de NOOK San Isidro. La cotización es personal y vigente por {{3}} días corridos. Cualquier consulta sobre el detalle del plan de pagos, respondeme por acá.
+    </div>
+
+    <h4 class="subsection-title">14 · Contacto Mercado Abasto</h4>
+    <div class="wa-template">
+      <div class="wa-meta">MARKETING</div>
+      <div class="wa-name">contacto_mercado_abasto</div>
+Hola {{1}}, te habla {{2}} de Áureo Desarrollos. Estamos comercializando NOOK San Isidro, un edificio nuevo en Beccar, sobre Av. Centenario, a 12 cuadras del Mercado. Plan en pesos ajustables hasta 72 cuotas, entrega marzo 2029. Pensé en avisarte porque puede servirte para evaluar. Te paso el material para que lo veas tranquilo.
+    </div>
+
+    <h4 class="subsection-title">15 · Pivot a otro proyecto</h4>
+    <div class="wa-template">
+      <div class="wa-meta">UTILITY</div>
+      <div class="wa-name">pivot_otro_proyecto</div>
+Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2029 no es lo que estás buscando. Tenemos otra opción de Áureo en {{2}}. Es otra zona pero misma desarrolladora. Te paso información si querés revisarla.
+    </div>
+  </section>
+
+  <!-- PARTE 9 -->
+  <h2 class="part-title">Parte 9 — Métricas y diagnóstico</h2>
+
+  <section id="metricas">
+    <h3 class="section-title">Diagnóstico del embudo</h3>
+    <p>Si las ventas no salen, hay 5 causas posibles. Cada una con su métrica y solución.</p>
+
+    <table class="manual-table">
+      <thead><tr><th>Causa</th><th>Métrica</th><th>Solución</th></tr></thead>
+      <tbody>
+        <tr><td><strong>A · Volumen bajo</strong></td><td>Menos de 30 leads/mes</td><td>Marketing: ampliar canales, presupuesto</td></tr>
+        <tr><td><strong>B · Calidad de leads</strong></td><td>+60% fuera de presupuesto</td><td>Refinar mensaje publicitario, agregar filtros</td></tr>
+        <tr><td><strong>C · Speed-to-lead</strong></td><td>+30 min promedio al primer contacto</td><td>Sistema de notificación, guardia operativa</td></tr>
+        <tr><td><strong>D · Tasa de visita</strong></td><td>Menos del 25% llega a obra</td><td>Mejorar manejo de objeciones, ajustar CTA</td></tr>
+        <tr><td><strong>E · Tasa de cierre</strong></td><td>Menos del 15% de visitas firman</td><td>Revisar producto, precio, técnica de cierre</td></tr>
+      </tbody>
+    </table>
+
+    <div class="highlight-box">
+      <strong>Regla:</strong> antes de tocar lo siguiente, optimizar lo anterior. Si tenés problema de volumen, mejorar speed-to-lead no soluciona nada. Si tenés problema de tasa de visita, sumar más leads agrava el problema.
+    </div>
+  </section>
+
+  <!-- SALVEDADES -->
+  <section id="salvedades">
+    <h2 class="part-title">Salvedades en cotizaciones</h2>
+
+    <p>Cuando hay que mandar números puntuales por escrito (cuando ya no queda alternativa), conviene proteger la cotización para evitar que sea usada como benchmark con otros desarrolladores.</p>
+
+    <h4 class="subsection-title">El texto recomendado</h4>
+    <div class="highlight-box">
+      <em>Cotización personalizada · vigente por 7 días corridos · UF [X] reservada temporalmente.</em><br><br>
+      <em>La presente cotización refleja condiciones aplicadas al perfil del comprador y a la unidad funcional específica reservada para esta evaluación. Vigente hasta el [fecha]. Pasada esa fecha o si la unidad fuera asignada a otro comprador, los valores se ajustan a la lista comercial vigente al momento de retomar la evaluación. Para una comparación adecuada con otros desarrollos, consultar las notas técnicas al final del documento.</em>
+    </div>
+
+    <h4 class="subsection-title">Por qué funciona</h4>
+    <ul>
+      <li><strong>Vigencia personal y acotada</strong> — el otro vendedor no puede competir contra cotización que vence en 4 días.</li>
+      <li><strong>Asignación de unidad puntual</strong> — la unidad está reservada, otro vendedor no puede ofrecer esa misma.</li>
+      <li><strong>Condiciones específicas no replicables</strong> — empapela el documento de variables que el otro no puede replicar.</li>
+      <li><strong>Comparabilidad técnica</strong> — arma criterio para que la comparación sea justa.</li>
+    </ul>
+
+    <div class="warn-box">
+      <strong>Importante:</strong> ninguna salvedad legal impide al cliente compartir tu cotización. Lo que hace es <strong>aumentar el costo</strong> de hacerlo. El riesgo cero solo existe si no mandás nada.
+    </div>
+  </section>
+
+  <!-- CHANGELOG -->
+  <section id="changelog">
+    <h3 class="section-title">Changelog del manual</h3>
+
+    <table class="manual-table">
+      <thead><tr><th>Fecha</th><th>Versión</th><th>Cambio</th></tr></thead>
+      <tbody>
+        <tr><td>Mayo 2026</td><td><strong>v2.0</strong></td><td>Reescritura completa. Hub de materiales centralizado. Casos reales documentados. Datos críticos consolidados al inicio.</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Entrega corregida: Marzo 2029 (no 2028)</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Instrumento legal corregido: adhesión a fideicomiso al costo (no boleto)</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Lenguaje corregido: alquiler residencial (no profesional)</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Áureo: 12 años, 10 entregas (track record actualizado)</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Teléfonos: principal +54 11 7369-7105, secundario +54 11 2872-1351</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Objeción 10: "Mandame números por escrito"</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Situación: cliente inversor multi-unidad</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Situación: explicación del fideicomiso al costo</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Situación: ventana de 24hs WhatsApp</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Situación: riesgo cruzado en operaciones</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>6 casos reales documentados</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>15 plantillas WhatsApp con datos actualizados</td></tr>
+        <tr><td>Mayo 2026</td><td>v2.0</td><td>Sección: salvedades en cotizaciones</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <hr class="divider" />
+
+  <footer class="mt-12 pt-8 text-sm" style="color: var(--muted); border-top: 1px solid var(--beige);">
+    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.0</div>
+    <p class="mb-1"><strong>Áureo Desarrollos</strong></p>
+    <p>info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar</p>
+    <p class="mt-4 text-xs">Documento operativo interno. Fuente única de verdad para el equipo comercial.</p>
+  </footer>
+
+</main>
+
+<script>
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+  const toggle = document.getElementById('mobileToggle');
+
+  toggle.addEventListener('click', () => {
+    sidebar.classList.add('open');
+    backdrop.classList.add('show');
+  });
+  backdrop.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    backdrop.classList.remove('show');
+  });
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 1024) {
+        sidebar.classList.remove('open');
+        backdrop.classList.remove('show');
+      }
+    });
+  });
+
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= 120 && rect.bottom >= 120) current = section.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
+
+  const searchInput = document.getElementById('search');
+  searchInput.addEventListener('input', (e) => {
+    const term = e.target.value.toLowerCase().trim();
+    if (!term) {
+      document.querySelectorAll('.hidden-by-search').forEach(el => el.classList.remove('hidden-by-search'));
+      navLinks.forEach(link => link.classList.remove('hidden-by-search'));
+      return;
+    }
+    sections.forEach(section => {
+      const text = section.textContent.toLowerCase();
+      section.classList.toggle('hidden-by-search', !text.includes(term));
+    });
+    navLinks.forEach(link => {
+      const targetId = link.getAttribute('href').replace('#', '');
+      const target = document.getElementById(targetId);
+      if (!target) return;
+      link.classList.toggle('hidden-by-search', target.classList.contains('hidden-by-search'));
+    });
+  });
+</script>
+
+</body>
+</html>
