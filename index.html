@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Manual Comercial · Áureo · NOOK San Isidro · v2.1</title>
+<title>Manual Comercial · Áureo · NOOK San Isidro · v2.2</title>
 <meta name="description" content="Manual operativo de ventas para el equipo comercial de Áureo Desarrollos. NOOK San Isidro. Versión 2.0 — fuente única de verdad." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,7 +237,7 @@
 <aside class="sidebar fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto z-40" id="sidebar">
   <div class="p-5 border-b border-gray-200">
     <div class="font-serif text-2xl text-verde leading-none">Manual</div>
-    <div class="text-xs eyebrow mt-1">Comercial · v2.1</div>
+    <div class="text-xs eyebrow mt-1">Comercial · v2.2</div>
     <div class="text-xs text-gray-500 mt-2">Áureo · NOOK San Isidro</div>
   </div>
 
@@ -258,6 +258,7 @@
     <div class="nav-section">Parte 2 · Antes de llamar</div>
     <a href="#speed-lead" class="nav-link">Speed-to-lead</a>
     <a href="#cadencia" class="nav-link">Cadencia 8 toques</a>
+    <a href="#tareas-kommo" class="nav-link">Tareas en Kommo</a>
     <a href="#ventanas" class="nav-link">Ventanas horarias</a>
 
     <div class="nav-section">Parte 3 · Guion 7 etapas</div>
@@ -603,6 +604,37 @@
         <tr><td>20</td><td>WhatsApp</td><td>Cierre honesto: "¿lo cerramos o dejamos para más adelante?"</td></tr>
       </tbody>
     </table>
+  </section>
+
+  <section id="tareas-kommo">
+    <h3 class="section-title">Tareas en Kommo: cuándo cargar la próxima</h3>
+    <p>Cada llamada termina con un resultado y una tarea nueva. Una tarea tiene tres datos: <strong>tipo</strong> (Llamada, Seguimiento o Reunión), <strong>cuándo</strong> (fecha y hora) y <strong>texto</strong> (qué hacer y por qué).</p>
+
+    <div class="highlight-box">
+      <p class="m-0"><strong>Regla de oro:</strong> ningún lead vivo queda sin tarea. Cerrás una, creás la próxima en el mismo momento. Si el cliente puso fecha, manda la suya; si no, usás la de la tabla.</p>
+    </div>
+
+    <table class="manual-table">
+      <thead><tr><th>Resultado de la llamada</th><th>Tipo</th><th>Cuándo</th><th>Texto de la tarea</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Lista del día</strong> (antes del bloque)</td><td>Llamada</td><td>Hoy, hora de inicio del bloque (todas a la misma hora)</td><td>"Primer contacto – [producto / origen]"</td></tr>
+        <tr><td><strong>No atendió</strong> (intento 1)</td><td>Llamada</td><td>Hoy en la otra franja (mañana → tarde)</td><td>"Intento 2"</td></tr>
+        <tr><td><strong>No atendió</strong> (intento 2)</td><td>Llamada</td><td>Mañana, en otro horario + WhatsApp corto hoy</td><td>"Intento 3"</td></tr>
+        <tr><td><strong>No atendió</strong> (intento 3)</td><td>Seguimiento</td><td>+3 días</td><td>"Intento 4 + WhatsApp"</td></tr>
+        <tr><td><strong>5–6 intentos sin respuesta</strong></td><td>—</td><td>Sin tarea diaria</td><td>Pasa a Contacto Frío / nutrición</td></tr>
+        <tr><td><strong>Atendió y pidió que lo llames</strong></td><td>Llamada</td><td>El día y la hora exactos que dijo</td><td>Lo pendiente: "Llamar como acordamos, quería ver financiación"</td></tr>
+        <tr><td><strong>"Mandame info"</strong></td><td>Seguimiento</td><td>24 a 48 h (la info sale en el momento)</td><td>"¿Pudo ver la info? Preguntar qué le llamó la atención"</td></tr>
+        <tr><td><strong>Conversó, pero no avanza ahora</strong></td><td>Seguimiento</td><td>7 a 15 días según lo que dijo</td><td>El motivo: "Espera cobrar bono en noviembre"</td></tr>
+        <tr><td><strong>Reunión agendada</strong></td><td>Reunión + Llamada</td><td>Reunión: día y hora pactados. Confirmación: el día anterior</td><td>Qué quiere ver: "2 amb, financiación en cuotas"</td></tr>
+        <tr><td><strong>"Ahora no"</strong></td><td>Seguimiento</td><td>60 a 90 días</td><td>"Revisar si cambió su situación"</td></tr>
+        <tr><td><strong>"Nunca" / no le interesa</strong></td><td>—</td><td>Sin tarea</td><td>Cerrar como perdido con el motivo</td></tr>
+        <tr><td><strong>Número equivocado</strong></td><td>—</td><td>Sin tarea</td><td>Cerrar como perdido: "dato inválido"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="tip-box">
+      <strong>Al cerrar cada tarea</strong>, dejá el resultado en una línea ("no atendió – intento 2", "habló, llamar jueves", "reunión martes 11 h"). Si no atendió, no la marques como hecha sin reprogramar: así el conteo de intentos es real y a fin de semana sacás llamadas, conversaciones y reuniones directo de Kommo.
+    </div>
   </section>
 
   <section id="ventanas">
@@ -1406,6 +1438,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
         <tr><td>Mayo 2026</td><td>v2.0</td><td>15 plantillas WhatsApp con datos actualizados</td></tr>
         <tr><td>Mayo 2026</td><td>v2.0</td><td>Sección: salvedades en cotizaciones</td></tr>
         <tr><td>Septiembre 2026</td><td><strong>v2.1</strong></td><td>Metodología SPIN Selling incorporada: sección explicativa del framework, Etapa 3 reescrita con preguntas S-P-I-N específicas para NOOK, refuerzo en objeción "Lo estoy pensando"</td></tr>
+        <tr><td>Octubre 2026</td><td><strong>v2.2</strong></td><td>Nueva sección en Parte 2: "Tareas en Kommo" — tipo de tarea, fecha y texto según el resultado de cada llamada</td></tr>
       </tbody>
     </table>
   </section>
@@ -1413,7 +1446,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
   <hr class="divider" />
 
   <footer class="mt-12 pt-8 text-sm" style="color: var(--muted); border-top: 1px solid var(--beige);">
-    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.1</div>
+    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.2</div>
     <p class="mb-1"><strong>Áureo Desarrollos</strong></p>
     <p>info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar</p>
     <p class="mt-4 text-xs">Documento operativo interno. Fuente única de verdad para el equipo comercial.</p>
