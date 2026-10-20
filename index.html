@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Manual Comercial · Áureo · NOOK San Isidro · v2.2</title>
+<title>Manual Comercial · Áureo · NOOK San Isidro · v2.3</title>
 <meta name="description" content="Manual operativo de ventas para el equipo comercial de Áureo Desarrollos. NOOK San Isidro. Versión 2.0 — fuente única de verdad." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -237,7 +237,7 @@
 <aside class="sidebar fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto z-40" id="sidebar">
   <div class="p-5 border-b border-gray-200">
     <div class="font-serif text-2xl text-verde leading-none">Manual</div>
-    <div class="text-xs eyebrow mt-1">Comercial · v2.2</div>
+    <div class="text-xs eyebrow mt-1">Comercial · v2.3</div>
     <div class="text-xs text-gray-500 mt-2">Áureo · NOOK San Isidro</div>
   </div>
 
@@ -261,15 +261,17 @@
     <a href="#tareas-kommo" class="nav-link">Tareas en Kommo</a>
     <a href="#ventanas" class="nav-link">Ventanas horarias</a>
 
-    <div class="nav-section">Parte 3 · Guion 7 etapas</div>
+    <div class="nav-section">Parte 3 · Guion de llamada</div>
     <a href="#spin-framework" class="nav-link">SPIN · Por qué preguntamos así</a>
-    <a href="#etapa-1" class="nav-link">1 · Prep 60s</a>
+    <a href="#etapa-1" class="nav-link">1 · Antes de marcar</a>
     <a href="#etapa-2" class="nav-link">2 · Apertura</a>
-    <a href="#etapa-3" class="nav-link">3 · Diagnóstico</a>
+    <a href="#etapa-3" class="nav-link">3 · Diagnóstico corto</a>
     <a href="#etapa-4" class="nav-link">4 · Caminos</a>
     <a href="#etapa-5" class="nav-link">5 · Objeciones</a>
-    <a href="#etapa-6" class="nav-link">6 · Cierre</a>
+    <a href="#etapa-6" class="nav-link">6 · Exacto y pedido</a>
     <a href="#etapa-7" class="nav-link">7 · Antes de colgar</a>
+    <a href="#etapa-8" class="nav-link">8 · Si no atiende</a>
+    <a href="#etapa-9" class="nav-link">9 · Autoevaluación</a>
 
     <div class="nav-section">Parte 4 · Caminos</div>
     <a href="#camino-a" class="nav-link">A · Inversor</a>
@@ -328,7 +330,7 @@
 
   <!-- COVER -->
   <div class="cover">
-    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.1</div>
+    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.3</div>
     <h1 class="font-serif text-5xl lg:text-6xl mb-4">Manual Comercial</h1>
     <div class="font-serif text-2xl lg:text-3xl italic mb-6" style="color: var(--beige);">NOOK San Isidro</div>
     <div class="text-sm opacity-90 max-w-2xl leading-relaxed">
@@ -386,25 +388,23 @@
       <tbody>
         <tr><td><strong>Niveles</strong></td><td>9 pisos</td></tr>
         <tr><td><strong>Tipologías</strong></td><td>2 amb (50-60 m²) y 3 amb (76-84 m²)</td></tr>
-        <tr><td><strong>Ticket entrada 2 amb</strong></td><td>Desde USD 118.990 (Lista A)</td></tr>
-        <tr><td><strong>Ticket entrada 3 amb</strong></td><td>Desde USD 175.728 (Lista A)</td></tr>
-        <tr><td><strong>USD/m² desde</strong></td><td>USD 2.250</td></tr>
-        <tr><td><strong>Cochera cubierta</strong></td><td>USD 10.000</td></tr>
-        <tr><td><strong>Cochera semi-cubierta</strong></td><td>USD 7.000</td></tr>
-        <tr><td><strong>Yield bruto estimado</strong></td><td>8,0% — 8,3% anual en USD</td></tr>
+        <tr><td><strong>USD/m² (octubre 2026)</strong></td><td>USD 2.400 en el plan "Al ritmo de obra" · USD 2.200 en el "Plan corto"</td></tr>
+        <tr><td><strong>Friends &amp; Family</strong></td><td>Queda una sola unidad a USD 2.200/m²</td></tr>
+        <tr><td><strong>Cochera</strong></td><td>USD 15.000, aparte (financiarla suma unos USD 200 por mes a la cuota)</td></tr>
+        <tr><td><strong>Ticket por unidad</strong></td><td>Siempre desde el cotizador con la lista vigente, nunca de memoria</td></tr>
       </tbody>
     </table>
 
     <h4 class="subsection-title">Esquema de financiación</h4>
     <p>La operación se instrumenta mediante <strong>adhesión a fideicomiso al costo, con precio cerrado en USD</strong>. NO se firma boleto en la operación inicial; se firma adhesión al fideicomiso.</p>
     <table class="manual-table">
-      <thead><tr><th>Plan</th><th>Anticipo</th><th>Cuotas</th><th>Multiplicador</th></tr></thead>
+      <thead><tr><th>Plan</th><th>Precio</th><th>Cuotas</th><th>Ajuste</th></tr></thead>
       <tbody>
-        <tr><td><strong>Lista A</strong></td><td>30% USD</td><td>36 cuotas CAC</td><td>× 0,920</td></tr>
-        <tr><td><strong>Lista B</strong></td><td>30% USD</td><td>48 cuotas CAC</td><td>× 1,180</td></tr>
-        <tr><td><strong>Lista C</strong></td><td>30% USD</td><td>72 cuotas CAC</td><td>× 1,275</td></tr>
+        <tr><td><strong>Plan corto</strong></td><td>USD 2.200/m²</td><td>12 cuotas fijas</td><td>Sin ajuste CAC</td></tr>
+        <tr><td><strong>Al ritmo de obra</strong></td><td>USD 2.400/m²</td><td>Hasta 42 cuotas (en pauta se comunica "hasta 72 cuotas")</td><td>CAC</td></tr>
       </tbody>
     </table>
+    <p>Ningún plan incluye cochera. El anticipo del 30% es una recomendación, no un requisito: se puede dar menos anticipo (la cuota sube) o tomar más plazo (la cuota baja).</p>
 
     <h4 class="subsection-title">Diferenciales del edificio</h4>
     <ul>
@@ -658,7 +658,8 @@
   </section>
 
   <!-- PARTE 3 -->
-  <h2 class="part-title">Parte 3 — Guion en 7 etapas</h2>
+  <h2 class="part-title">Parte 3 — Guion de llamada · Prospección + Voss</h2>
+  <p>El guion combina tres métodos: <strong>Fanatical Prospecting</strong> (Jeb Blount) para el cuándo, el cuánto y los primeros 10 segundos; <strong>SPIN</strong> para el diagnóstico; y <strong>Rompe la barrera del no</strong> (Chris Voss) para destrabar objeciones con etiquetas, espejos y preguntas orientadas al no. Objetivo único de cada llamada: fijar la reunión.</p>
 
   <section id="spin-framework">
     <h3 class="section-title">La lógica detrás del guion: SPIN Selling</h3>
@@ -684,106 +685,245 @@
   </section>
 
   <section id="etapa-1">
-    <h3 class="section-title">Etapa 1 · 60 segundos antes de marcar</h3>
-    <p>Antes de tocar el teléfono, asegurate de tener visibles los tres datos mínimos del lead:</p>
+    <h3 class="section-title">Etapa 1 · Antes de marcar</h3>
+    <div class="highlight-box">
+      <strong>La llamada tiene un solo objetivo: fijar la reunión.</strong> No se vende por teléfono, no se cotiza, no se explican amenities. Cada reunión con lead de pauta terminó en venta: el cuello de botella es lead → reunión, y ahí va todo el esfuerzo.
+    </div>
+    <p>El bloque de llamadas se arma el día anterior y se ejecuta sin interrupciones: notificaciones apagadas, lista lista, cero armado de cotizaciones o pauta dentro del bloque. Meta diaria: <strong>20 llamadas</strong> a leads medianamente calificados.</p>
+
+    <h4 class="subsection-title">Orden de la lista (pirámide), siempre de arriba hacia abajo</h4>
+    <ol>
+      <li>Formularios de pauta de menos de 24 h (llamar en minutos, no en horas)</li>
+      <li>Calientes: pidieron cotización, quedaron en "lo pienso", reunión pendiente</li>
+      <li>Referidos</li>
+      <li>Tibios en recontacto (Incoming leads, Contacto Frío con menos de 30 días)</li>
+      <li>Base fría y ex leads viejos</li>
+    </ol>
+
+    <h4 class="subsection-title">Por lead, 30 segundos de prep (no más)</h4>
     <ul>
-      <li><strong>Presupuesto declarado</strong> — exacto, en USD o pesos</li>
-      <li><strong>Fecha de la consulta</strong> — para calcular hace cuánto y planear apertura</li>
-      <li><strong>Canal de origen</strong> — Meta, Zonaprop, web, referido</li>
+      <li><strong>Nombre</strong> y cómo lo pronuncia</li>
+      <li><strong>Origen y fecha</strong> de la consulta (qué anuncio, qué producto, presupuesto declarado si lo hay)</li>
+      <li><strong>Última nota de Kommo</strong>: qué dijo, qué quedó pendiente</li>
+      <li><strong>Objetivo de este toque</strong>, decidido antes de marcar: fijar reunión (default) · calificar · cerrar (solo si está maduro) · familiaridad</li>
     </ul>
+    <div class="tip-box">
+      Si no sabés para qué llamás, todavía no llamás. Pero investigar de más es la otra trampa: más de 30 segundos de prep es procrastinar. <strong>Tono:</strong> voz tranquila, ritmo un poco más lento que el natural, frases que bajan al final. Sonreí antes de marcar: se escucha.
+    </div>
   </section>
 
   <section id="etapa-2">
-    <h3 class="section-title">Etapa 2 · Apertura (15 segundos)</h3>
+    <h3 class="section-title">Etapa 2 · Apertura: el pedido antes de los 10 segundos</h3>
+    <p><strong>Cinco pasos, en este orden:</strong> nombre · quién sos · para qué llamás · un "porque" que le importe a él · pedido con dos horarios. Después del pedido, <strong>silencio</strong>. El que habla primero, pierde.</p>
+
+    <h4 class="subsection-title">Lead de pauta nuevo (menos de 48 h)</h4>
     <div class="script-box">
       <span class="label">Apertura</span>
-      Hola, ¿hablo con [nombre]? Te habla [tu nombre] de NOOK San Isidro, el desarrollo de Áureo en Beccar. ¿Te agarro en buen momento?
+      Hola, ¿Martín? Soy [tu nombre], de Áureo, por NOOK en San Isidro. ¿Te agarro en mal momento?
+    </div>
+    <div class="script-box">
+      <span class="label">Si dice "no, decime"</span>
+      Te llamo porque dejaste tus datos por NOOK y prefiero mostrarte bien unidades y forma de pago antes que mandarte un PDF suelto. Son 30 minutos con el tour virtual del proyecto. ¿Te queda mejor el jueves a las 11 o el viernes a las 18?
+    </div>
+    <div class="tip-box">
+      <strong>Por qué "¿mal momento?":</strong> es una pregunta orientada al no (Voss). Le da el control, puede decir que no sin sentirse acorralado, y casi siempre responde "no, decime". El "porque" es para él (no perder tiempo con PDFs), no para vos.
     </div>
 
-    <h4 class="subsection-title">Si dice "ahora no"</h4>
+    <h4 class="subsection-title">Si dice "sí, mal momento"</h4>
     <div class="script-box">
-      Dale, no te robo tiempo. ¿Te llamo hoy a las 18 o mañana a las 11?
+      Me imaginaba. Te lo corto acá. ¿Te llamo hoy a las 18:30 o mañana a las 11?
     </div>
+    <p>Hora concreta, tarea en Kommo, y cumplís. No preguntes "¿cuándo te queda cómodo?": abre la puerta al "yo te aviso".</p>
 
-    <h4 class="subsection-title">Si dice "sí, decime"</h4>
+    <h4 class="subsection-title">Recontacto (habló hace semanas o meses)</h4>
     <div class="script-box">
-      Te llamo porque dejaste tu consulta por NOOK hace [tiempo] indicando un presupuesto de [USD X]. Quería contactarte personalmente porque con ese rango tenemos opciones interesantes y prefiero contártelas en 3 minutos antes de mandarte info genérica por mail. ¿Tenés un par de minutos?
+      Hola, Laura. Soy [tu nombre], de NOOK San Isidro. Hablamos en [mes]. ¿Sería muy inoportuno si te robo un minuto? … Te llamo porque desde que hablamos [novedad real: avance de obra / cambio en la lista / nuevo plan de pago] y me acordé de lo que me dijiste de [lo que dijo]. Me gustaría mostrártelo en 30 minutos. ¿Martes o miércoles?
+    </div>
+    <p>Sin novedad real no hay recontacto: la novedad es el "porque".</p>
+
+    <h4 class="subsection-title">Lead que desconfía o lead frío · auditoría de acusaciones</h4>
+    <div class="script-box">
+      Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable. Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. 30 minutos. ¿Jueves o viernes?
+    </div>
+    <p>Una vez por llamada y solo si hay señal de desconfianza: en un lead tibio y amable sobra.</p>
+
+    <div class="warn-box">
+      <strong>Lo que ya no se dice:</strong> "¿Tenés un par de minutos?" / "¿Te agarro en buen momento?" (orientadas al sí) · "Te llamo para ver si te interesa…" · "Te entiendo" (suena a vendedor) · explicar el proyecto antes del pedido.
     </div>
   </section>
 
   <section id="etapa-3">
-    <h3 class="section-title">Etapa 3 · Diagnóstico</h3>
-    <p>Ver <a href="#spin-framework">metodología SPIN</a> arriba. En una llamada de calificación estándar alcanza con las cuatro de Situación. Si el lead titubea o queda en Camino C, sumá Problema/Implicación/Necesidad-beneficio antes de proponer día en obra.</p>
+    <h3 class="section-title">Etapa 3 · Diagnóstico corto (2-3 minutos)</h3>
+    <p><strong>Entra en dos casos:</strong> el lead no acepta la reunión de una y empieza a preguntar, o la acepta y necesitás datos para preparar el plan de pago. Máximo tres de Situación, una de Problema y un cisne negro. Preguntas de <em>qué</em> y <em>cómo</em>, nunca de <em>por qué</em>. Base: <a href="#spin-framework">SPIN</a>.</p>
 
-    <h4 class="subsection-title">S · Situación (siempre)</h4>
-    <div class="script-box"><span class="label">S1 — Estado actual</span>¿Seguís buscando, ya compraste algo, o quedó en stand-by?</div>
-    <div class="script-box"><span class="label">S2 — Uso</span>¿Lo estás mirando para vivir o como inversión?</div>
-    <div class="script-box"><span class="label">S3 — Timing</span>¿Tenés horizonte para tomar la decisión? ¿Este semestre, este año, todavía explorando?</div>
-    <div class="script-box"><span class="label">S4 — Forma de pago</span>¿Cómo lo estás pensando: contado, financiado, mix?</div>
+    <h4 class="subsection-title">S · Situación (elegir 3)</h4>
+    <div class="script-box"><span class="label">S1 — Uso</span>¿Lo estás mirando para vivir o como inversión?</div>
+    <div class="script-box"><span class="label">S2 — Anticipo</span>¿Con cuánto de anticipo te sentirías cómodo arrancando?</div>
+    <div class="script-box"><span class="label">S3 — Cuota</span>¿Qué cuota mensual no te mueve el piso?</div>
+    <div class="script-box"><span class="label">S4 — Timing</span>¿Esto es para este año o estás explorando?</div>
+
+    <h4 class="subsection-title">P · Problema (una)</h4>
+    <div class="script-box"><span class="label">P — Inversor</span>¿Qué te frenó hasta ahora de mover esa plata?</div>
+    <div class="script-box"><span class="label">P — Vivienda</span>¿Qué es lo que más te pesa de dónde estás hoy: el alquiler, el espacio, la zona?</div>
+
+    <h4 class="subsection-title">Cisne negro (la pregunta que más rinde)</h4>
+    <div class="script-box"><span class="label">Cisne negro</span>¿Qué te hizo empezar a mirar justo ahora?</div>
+    <p>La respuesta suele traer el dato que cambia todo: vende otra propiedad, cobra una herencia, se casa, el alquiler le sube en marzo. Anotalo en Kommo palabra por palabra.</p>
+
+    <h4 class="subsection-title">Decisor oculto</h4>
+    <div class="script-box"><span class="label">Decisor</span>¿Cómo se toma esta decisión en tu casa?</div>
+    <p>Si aparece pareja, socio o contador, la reunión se pide con esa persona presente: "¿Sería una locura que vengan los dos?"</p>
+
+    <h4 class="subsection-title">I · Implicación (solo si duda o va a Camino C)</h4>
+    <div class="script-box"><span class="label">I — Inversor</span>Si esa plata sigue sin moverse seis meses más, ¿qué pasa con el poder de compra que tenías pensado?</div>
+    <div class="script-box"><span class="label">I — Vivienda</span>Si seguís pagando alquiler un año más, ¿cuánto es eso comparado con haber adelantado la decisión?</div>
 
     <div class="highlight-box">
-      <strong>Las cuatro respuestas te definen el camino.</strong> Inversor + horizonte largo + financiado = Camino A. Vivienda + decisión este año + mix = Camino B. Stand-by o respuestas vagas = Camino C.
-    </div>
-
-    <h4 class="subsection-title">P · Problema (si hay titubeo o va a Camino C)</h4>
-    <div class="script-box"><span class="label">P — Inversor</span>¿Qué te frena hoy de mover esa plata: precio, momento, o todavía no encontraste el proyecto que te cierre?</div>
-    <div class="script-box"><span class="label">P — Vivienda</span>¿Qué es lo que más te está pesando de tu situación actual: el alquiler, el espacio, la zona?</div>
-
-    <h4 class="subsection-title">I · Implicación (para leads dudosos o Camino C)</h4>
-    <div class="script-box"><span class="label">I — Inversor</span>Si esa plata sigue sin moverse seis meses más, con la inflación como está, ¿qué pasa con el poder de compra que tenías pensado?</div>
-    <div class="script-box"><span class="label">I — Vivienda</span>Si seguís pagando alquiler un año más al valor que está subiendo, ¿cuánto es eso comparado con haber adelantado la decisión?</div>
-
-    <h4 class="subsection-title">N · Necesidad-beneficio (antes de proponer visita)</h4>
-    <div class="script-box"><span class="label">N — Inversor</span>Si encontrás una unidad con yield validado y una financiación que te cierre el flujo, ¿eso te resuelve el tema?</div>
-    <div class="script-box"><span class="label">N — Vivienda</span>Si encontrás algo en la zona que buscás con un plan de pago accesible, ¿eso te saca de la incertidumbre?</div>
-
-    <div class="tip-box">
-      <strong>La pregunta de Necesidad-beneficio es la bisagra al cierre.</strong> Cuando el lead contesta que sí, la propuesta de Etapa 6 ("te propongo que vengas a obra...") deja de ser una oferta tuya — es la consecuencia lógica de lo que él mismo acaba de decir.
+      <strong>Mientras escuchás: espejo y etiqueta.</strong><br>
+      <strong>Espejo:</strong> repetí sus últimas 2-3 palabras en tono de pregunta y callate. Lead: "Lo quiero para renta, pero me asusta el pozo." Vos: "¿Te asusta el pozo?"<br>
+      <strong>Etiqueta:</strong> nombrá lo que parece sentir. "Parece que ya te pasó algo con una obra." Después, silencio.<br>
+      Las etiquetas tienen que ser sinceras: se nombra lo que de verdad parece sentir, no lo que te conviene. Una o dos técnicas por llamada; apiladas suenan a guion.
     </div>
   </section>
 
   <section id="etapa-4">
     <h3 class="section-title">Etapa 4 · Camino según perfil</h3>
-    <p>Detallado en la Parte 4. En este momento de la llamada, vos ya identificaste el camino y avanzás según ese guion específico.</p>
+    <p>Detallado en la <a href="#camino-a">Parte 4</a>. Con las respuestas de la Etapa 3 ya sabés si es Inversor (A), Vivienda (B) o Stand-by (C), y adaptás el lenguaje: para inversor, números y forma de pago; para vivienda, calidad de vida y cuota.</p>
   </section>
 
   <section id="etapa-5">
-    <h3 class="section-title">Etapa 5 · Manejo de objeciones</h3>
-    <p>Detallado en la Parte 5. Las 10 objeciones catalogadas cubren el 90% de lo que vas a escuchar.</p>
+    <h3 class="section-title">Etapa 5 · Objeciones: ancla → disrupción → pedido</h3>
+    <p><strong>El primer "no" casi nunca es una objeción real: es un reflejo.</strong> No se rebate. Se ancla (frase corta para no reaccionar), se desarma con algo que no espera de un vendedor (etiqueta, espejo o quitar la pelea) y se vuelve a pedir la reunión. Si al segundo intento sigue en no, soltás con respeto y agendás recontacto. Versiones largas en la <a href="#obj-1">Parte 5</a>.</p>
+
+    <div class="script-box"><span class="label">"No me interesa"</span>Tiene sentido, la mayoría no está buscando cuando la llaman. ¿Desististe de la idea de invertir en ladrillo, o es que no es el momento? … [escuchar] … Entonces no te quiero vender nada hoy. Solo ver si el pozo tiene lugar en lo que estás planeando. ¿15 minutos el jueves?</div>
+
+    <div class="script-box"><span class="label">"Mandame info" / "Pasame todo por WhatsApp"</span>Te la mando. Para no llenarte de PDFs, ¿qué querés ver primero: precio, forma de pago o tiempos de obra? … Eso se entiende mucho mejor visto que leído. ¿Te lo muestro mañana a las 11 o a las 18?</div>
+    <p>La info sale igual, en el momento (nooksanisidro.com). Tarea en Kommo a 24-48 h: "¿Qué te llamó la atención?"</p>
+
+    <div class="script-box"><span class="label">"Estoy ocupado"</span>Me imaginaba. Te lo corto acá. ¿Te llamo mañana a las 9:30 o a las 13?</div>
+
+    <div class="script-box"><span class="label">"Lo tengo que pensar" · etiqueta + silencio</span>Parece que hay algo que todavía no te termina de cerrar. … [dejá que hable] … ¿Qué es lo que más te hace ruido: el proyecto, la zona, la forma de pago u otra cosa?</div>
+    <p>Si no suelta nada: "Si esto queda sin resolver unos meses más, ¿qué cambia para vos?"</p>
+
+    <div class="script-box"><span class="label">"Es caro" · espejo</span>¿Caro? … [silencio: te va a decir contra qué compara; esa es la objeción real] … Puede ser, y si no da, no da. Lo que sí vale es ver la cuota antes de descartarlo: casi siempre se resuelve con forma de pago, no con precio. ¿Lo miramos el martes?</div>
+
+    <div class="script-box"><span class="label">"No me alcanza"</span>¿Cuánto te queda corto? … Pregunto porque el anticipo y la cantidad de cuotas se pueden mover: lo publicado no siempre refleja lo que tenés que poner por mes. ¿Lo armamos juntos el jueves?</div>
+    <p>Si de verdad no llega a ninguna unidad de NOOK, no forzar: ofrecer el producto que esté dentro de su presupuesto.</p>
+
+    <div class="script-box"><span class="label">"Estoy viendo otros proyectos"</span>Buenísimo, es lo que hay que hacer. ¿Cuáles estás mirando? … Comparar bien es lo que más sirve. Te muestro NOOK en 30 minutos y lo ponés al lado de los otros con los mismos criterios: m² reales, forma de pago y quién construye. ¿Viernes?</div>
+
+    <div class="script-box"><span class="label">"Yo te llamo" / "Llamame más adelante"</span>Dale. ¿Qué tendría que pasar de acá a ese momento para que tenga sentido que hablemos? … Perfecto, te llamo el [fecha] a las [hora]. Si no podés, no atendés y lo movemos.</div>
+
+    <div class="script-box"><span class="label">"Pasame los números por escrito"</span>Te paso un rango. El número puntual depende de tu anticipo y la cuota que te sirve, y mandado suelto se termina comparando contra cotizaciones armadas con otros criterios. ¿Lo armamos en 30 minutos con tus números?</div>
+
+    <div class="script-box"><span class="label">"¿Me hacés un descuento?"</span>¿Cómo hago para llevarle ese número a la desarrolladora?</div>
+    <div class="warn-box">
+      Es un no sin decir no. Las condiciones las define Áureo: no ofrecer nada que no esté autorizado. Si hay margen, se cede en tramos cada vez más chicos y se cierra con algo no monetario (plan de pago, cochera).
+    </div>
   </section>
 
   <section id="etapa-6">
-    <h3 class="section-title">Etapa 6 · Cierre — opción binaria</h3>
+    <h3 class="section-title">Etapa 6 · Resumen hasta el "exacto" y pedido</h3>
+    <p><strong>No pidas la reunión hasta que el lead diga "exacto".</strong> "Tenés razón" o "sí, sí" suele significar "dejame tranquilo"; "exacto" significa que se sintió entendido.</p>
     <div class="script-box">
-      Bien, [nombre]. Te propongo que vengas a obra el [día A] a las [hora] o el [día B] a las [hora]. 30 minutos, te muestro las unidades para tu rango y forma de pago aplicada. ¿Cuál te queda mejor?
+      <span class="label">Resumen con sus palabras</span>
+      A ver si entendí bien: tenés ahorros en dólares quietos, querés que generen renta, y lo que te frena no es el proyecto sino el miedo a que la obra se atrase. ¿Es así?
     </div>
-
+    <p>Si corrige algo, ajustás y volvés a resumir. Cuando dice "exacto", va el puente de Necesidad-beneficio:</p>
+    <div class="script-box">
+      <span class="label">N · Necesidad-beneficio</span>
+      Si ves cómo está armado el fideicomiso y un plan de pago con ese anticipo y esa cuota, ¿eso te ayudaría a decidir?
+    </div>
+    <div class="script-box">
+      <span class="label">Pedido · dos opciones, día y hora</span>
+      Entonces hagamos esto: 30 minutos, te muestro el proyecto con el tour virtual y te llevás el plan armado con tus números. ¿Jueves a las 11 o viernes a las 18?
+    </div>
+    <div class="script-box">
+      <span class="label">Variante orientada al no</span>
+      ¿Sería una locura que nos veamos 30 minutos el jueves y lo armamos con tus números?
+    </div>
     <div class="highlight-box">
-      <strong>Acotás hasta que te dé un día.</strong> Tres intentos sin día concreto = no es lead activo. Pasalo a nurturing y movete al siguiente.
+      <strong>Acotás hasta que te dé un día.</strong> Hasta tres intentos con horarios distintos. Al tercero sin día concreto no es lead activo: tarea de seguimiento y al siguiente de la lista.
     </div>
   </section>
 
   <section id="etapa-7">
-    <h3 class="section-title">Etapa 7 · Antes de colgar</h3>
-    <ul>
-      <li><strong>Confirmá día, hora y dirección</strong> en voz alta</li>
-      <li><strong>Mandá WhatsApp inmediato</strong> con dirección y tu contacto</li>
-      <li><strong>Anunciá llamada de confirmación previa</strong> (el día antes o la mañana del día)</li>
-    </ul>
-
+    <h3 class="section-title">Etapa 7 · Antes de colgar y registro</h3>
+    <h4 class="subsection-title">Con reunión fijada</h4>
+    <ol>
+      <li><strong>Confirmá en voz alta</strong> día, hora y lugar.</li>
+      <li><strong>Blindala con una pregunta orientada al no:</strong> "¿Hay algo que te pueda impedir venir el jueves?" Si aparece algo, se resuelve ahora.</li>
+      <li><strong>Si hay otro decisor:</strong> "¿Viene [pareja / socio] también?"</li>
+      <li><strong>Pedí los dos datos para armar el plan</strong>, si no salieron: anticipo disponible y cuota cómoda.</li>
+      <li><strong>WhatsApp de confirmación en el momento</strong>, con dirección y tu contacto.</li>
+      <li><strong>Confirmación el día anterior</strong> (llamada de 30 segundos o mensaje).</li>
+    </ol>
     <div class="warn-box">
-      <strong>Sin confirmación previa, el no-show está entre 30% y 45%.</strong> La llamada de confirmación de 30 segundos al día siguiente reduce el no-show a menos del 10%.
+      <strong>Sin confirmación previa, el no-show está entre 30% y 45%.</strong> La confirmación del día anterior lo baja a menos del 10%.
     </div>
+
+    <h4 class="subsection-title">En Kommo, antes de marcar al siguiente (30 segundos)</h4>
+    <ul>
+      <li><strong>Resultado en una línea:</strong> "habló, reunión jue 11 h" / "no atendió, intento 2"</li>
+      <li><strong>El cisne negro</strong> y las palabras exactas del lead ("vende el depto de su vieja en marzo")</li>
+      <li><strong>Tipo de negociador:</strong> analítico (quiere datos y tiempo), asertivo (al grano) o acomodador (dice a todo que sí: bajar a tierra con "¿cómo seguimos?")</li>
+      <li><strong>Próxima tarea</strong> con tipo, fecha y texto según la <a href="#tareas-kommo">tabla de tareas</a>. Ningún lead vivo queda sin tarea.</li>
+    </ul>
 
     <h4 class="subsection-title">Lo que NO hacer en la llamada</h4>
     <ul>
-      <li>Detallar amenities por teléfono (eso va en obra)</li>
+      <li>Detallar amenities por teléfono (eso va en la reunión)</li>
       <li>Dar precio exacto sin contexto de unidad</li>
       <li>Pelear el precio por teléfono</li>
       <li>Mandar brochure genérico al recolector</li>
       <li>Hablar mal de la competencia</li>
-      <li>Aceptar "yo te llamo" sin agendar contigo</li>
+      <li>Aceptar "yo te llamo" sin fecha</li>
+      <li>Urgencia o escasez que no puedas mostrar con un dato real</li>
     </ul>
+  </section>
+
+  <section id="etapa-8">
+    <h3 class="section-title">Etapa 8 · Si no atiende</h3>
+    <p><strong>Cada llamada no atendida se convierte en un toque por otro canal en el momento.</strong> Así se construye familiaridad: la segunda vez que ve tu nombre, atiende más fácil.</p>
+    <div class="script-box">
+      <span class="label">Audio de WhatsApp (máx. 30 s, voz tranquila)</span>
+      Hola, Martín, soy [tu nombre] de NOOK San Isidro. Te acabo de llamar por tu consulta del proyecto. Quería coordinar una charla corta para mostrarte disponibilidad y forma de pago. Te dejo una pregunta: ¿lo estás mirando para vivir o como inversión? Respondeme por acá cuando puedas.
+    </div>
+    <div class="script-box">
+      <span class="label">Texto (segundo toque, al día siguiente)</span>
+      Martín, soy [tu nombre] de NOOK. Te llamé ayer por tu consulta. ¿Lo estás pensando para vivir o para invertir?
+    </div>
+    <div class="script-box">
+      <span class="label">Cuando dejó de responder (un solo mensaje, sin reproche)</span>
+      Martín, ¿desististe de la idea de invertir en pozo?
+    </div>
+    <div class="tip-box">
+      Si no contesta, se respeta el silencio y pasa a Contacto Frío. Cadencia: intentos 1 y 2 el mismo día en franjas distintas, intento 3 al día siguiente en otro horario, intento 4 a los 3 días; con 5-6 sin respuesta, a nutrición. Pasada la <a href="#ventana-24">ventana de 24 h</a> de WhatsApp, solo plantillas aprobadas o llamada.
+    </div>
+  </section>
+
+  <section id="etapa-9">
+    <h3 class="section-title">Etapa 9 · Autoevaluación y números</h3>
+    <p>Después de cada conversación (no de cada discado), cinco preguntas de sí o no. Las que dan no te dicen qué entrenar.</p>
+    <ol>
+      <li>¿Pedí la reunión antes de los 10 segundos?</li>
+      <li>¿Hice silencio después del pedido?</li>
+      <li>¿Etiqueté o espejé antes de responder la objeción?</li>
+      <li>¿Escuché un "exacto" antes de pedir de nuevo?</li>
+      <li>¿Terminé con día y hora, o con tarea fechada?</li>
+    </ol>
+    <table class="manual-table">
+      <thead><tr><th>Etapa del embudo semanal</th><th>Meta</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Llamadas discadas</strong></td><td>100 (20 por día)</td></tr>
+        <tr><td><strong>Conversaciones de venta</strong></td><td>100</td></tr>
+        <tr><td><strong>Reuniones fijadas</strong></td><td>5</td></tr>
+        <tr><td><strong>Reservas</strong></td><td>2 por mes</td></tr>
+      </tbody>
+    </table>
+    <div class="highlight-box">
+      La métrica que manda es <strong>reuniones fijadas por cada 10 conversaciones</strong>. Si está baja, el problema está en apertura u objeciones (Etapas 2 y 5); si faltan conversaciones, el problema es volumen de discados. <strong>La regla final:</strong> antes de cerrar el bloque, una llamada más.
+    </div>
   </section>
 
   <!-- PARTE 4 -->
@@ -799,11 +939,11 @@
 
     <h4 class="subsection-title">Las tres unidades de referencia para inversor</h4>
     <table class="manual-table">
-      <thead><tr><th>UF</th><th>Tipo</th><th>Precio Lista A</th><th>Yield</th></tr></thead>
+      <thead><tr><th>UF</th><th>Tipo</th><th>Precio y yield</th></tr></thead>
       <tbody>
-        <tr><td><strong>107</strong></td><td>2 amb chico contrafrente, P1</td><td>USD 118.990</td><td>8,07%</td></tr>
-        <tr><td><strong>102</strong></td><td>2 amb grande frente, P1</td><td>USD 130.050</td><td>8,30%</td></tr>
-        <tr><td><strong>106</strong></td><td>3 amb contrafrente, P1</td><td>USD 175.728</td><td>8,02%</td></tr>
+        <tr><td><strong>107</strong></td><td>2 amb chico contrafrente, P1</td><td>Cotizador con lista vigente</td></tr>
+        <tr><td><strong>102</strong></td><td>2 amb grande frente, P1</td><td>Cotizador con lista vigente</td></tr>
+        <tr><td><strong>106</strong></td><td>3 amb contrafrente, P1</td><td>Cotizador con lista vigente</td></tr>
       </tbody>
     </table>
   </section>
@@ -816,7 +956,7 @@
       Contame: ¿es para vos solo, en pareja, con hijos? ¿2 ambientes te alcanza o estás mirando 3?
     </div>
     <div class="script-box">
-      La mejor manera de entender si NOOK te encaja es viendo la obra. ¿El [día A] o el [día B]?
+      La mejor manera de saber si NOOK es para vos es verlo con tus ojos. ¿El [día A] o el [día B]?
     </div>
 
     <div class="tip-box">
@@ -978,7 +1118,7 @@
     <h4 class="subsection-title">Si igual insiste con números</h4>
     <p>Mandá <strong>rango, no precio puntual</strong>. Y siempre con salvedades (ver sección "Salvedades en cotizaciones" al final del manual).</p>
     <div class="script-box">
-      Te tiro el rango: dentro de tu presupuesto, las unidades van entre USD 118.990 y USD 130.050 en Lista A. Cuotas y planes los repasamos en la llamada porque dependen de tu flujo. ¿Mañana 11 o 14?
+      Te tiro el rango: dentro de tu presupuesto, las unidades van entre USD [desde] y USD [hasta] según el plan (sacalo del cotizador con la lista vigente). Cuotas y planes los repasamos en la llamada porque dependen de tu flujo. ¿Mañana 11 o 14?
     </div>
   </section>
 
@@ -1059,7 +1199,7 @@
     <ul>
       <li><strong>Tu unidad destacada antes que el inventario público.</strong></li>
       <li><strong>Explicar por qué tu precio es distinto al del listado.</strong></li>
-      <li><strong>Comparativa explícita F&amp;F vs Lista A pública.</strong></li>
+      <li><strong>Comparativa explícita F&amp;F vs lista pública vigente.</strong></li>
       <li><strong>Mencionar disponibilidad limitada</strong> si es real. Sin urgencia fabricada.</li>
     </ul>
 
@@ -1085,7 +1225,7 @@
     </div>
 
     <div class="highlight-box">
-      <strong>Tres ejes para conversar multi-unidad:</strong> precio (condiciones diferenciadas), pagos (esquemas mixtos entre Lista A, B y C), unidades (combinaciones que diversifican perfil de inquilino).
+      <strong>Tres ejes para conversar multi-unidad:</strong> precio (condiciones diferenciadas), pagos (esquemas mixtos entre Plan corto y Al ritmo de obra), unidades (combinaciones que diversifican perfil de inquilino).
     </div>
   </section>
 
@@ -1228,7 +1368,7 @@
         <li>Track record de Áureo enfatizado ("nunca falló").</li>
         <li>Mensajes WhatsApp sin emojis de marketing, formato conversacional entre conocidos.</li>
       </ul>
-      <p><strong>Aprendizaje clave:</strong> este público huele el chamuyo a 10 kilómetros. Cero presión, cero urgencia fabricada. La cuota en ARS comparada con facturación del negocio resuena más que el yield bruto en USD.</p>
+      <p><strong>Aprendizaje clave:</strong> este público detecta a 10 kilómetros a quien le quiere vender humo. Cero presión, cero urgencia fabricada. La cuota en ARS comparada con facturación del negocio resuena más que el yield bruto en USD.</p>
     </div>
 
     <div class="highlight-box">
@@ -1446,6 +1586,8 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
         <tr><td>Septiembre 2026</td><td><strong>v2.1</strong></td><td>Metodología SPIN Selling incorporada: sección explicativa del framework, Etapa 3 reescrita con preguntas S-P-I-N específicas para NOOK, refuerzo en objeción "Lo estoy pensando"</td></tr>
         <tr><td>Octubre 2026</td><td><strong>v2.2</strong></td><td>Nueva sección en Parte 2: "Tareas en Kommo" — tipo de tarea, fecha y texto según el resultado de cada llamada</td></tr>
         <tr><td>Octubre 2026</td><td>v2.2</td><td>Tareas en Kommo: se agrega la etapa del pipeline Captación y Cierre para cada resultado y el criterio para pasar a Calificado</td></tr>
+        <tr><td>Octubre 2026</td><td><strong>v2.3</strong></td><td>Parte 3 reescrita como guion de llamada con Fanatical Prospecting + Voss: pedido de reunión en 10 segundos, pregunta orientada al no, cisne negro, resumen hasta el "exacto", objeciones con ancla-disrupción-pedido, etapas nuevas "Si no atiende" y "Autoevaluación"</td></tr>
+        <tr><td>Octubre 2026</td><td>v2.3</td><td>Precios actualizados: USD 2.400/m² (Al ritmo de obra, hasta 42 cuotas CAC) y USD 2.200/m² (Plan corto, 12 cuotas fijas); cochera USD 15.000. Se retiran Listas A/B/C y tickets fijos</td></tr>
       </tbody>
     </table>
   </section>
@@ -1453,7 +1595,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
   <hr class="divider" />
 
   <footer class="mt-12 pt-8 text-sm" style="color: var(--muted); border-top: 1px solid var(--beige);">
-    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.2</div>
+    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.3</div>
     <p class="mb-1"><strong>Áureo Desarrollos</strong></p>
     <p>info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar</p>
     <p class="mt-4 text-xs">Documento operativo interno. Fuente única de verdad para el equipo comercial.</p>
