@@ -327,10 +327,15 @@ async function buscarLead() {
     out.innerHTML = d.leads.map((l, i) => `<button class="opt" data-k="${i}">${esc(l.contacto || l.nombre)}<small>${esc(l.nombre)} · ${esc(l.etapa)}${l.formas ? ' · ' + esc(l.formas) : ''}</small></button>`).join('');
     out.querySelectorAll('[data-k]').forEach(b => b.onclick = () => {
       const l = d.leads[+b.dataset.k];
+      // Lead distinto: se borra todo lo del anterior para no mezclar ni guardar datos ajenos en Kommo
+      if (st.lead_id !== l.id) { KEYS.filter(k => !CFG.includes(k) && k !== 'tel').forEach(k => delete st[k]); hist = ['inicio']; }
       st.lead_id = l.id; st.lead_txt = (l.contacto || l.nombre) + ' · ' + l.etapa;
       const nom = (l.contacto || '').trim();
-      if (!st.nombre && nom && !/facebook|lead\s*#|^\d/i.test(nom)) st.nombre = nom.split(' ')[0];
-      if (!st.perfil && l.perfil) st.perfil = l.perfil === 'Inversor' ? 'Inversión' : 'Vivir';
+      if (nom && !/facebook|lead\s*#|^\d/i.test(nom)) st.nombre = nom.split(' ')[0];
+      if (l.perfil) st.perfil = l.perfil === 'Inversor' ? 'Inversión' : 'Vivir';
+      // Lo que ya guardó el guion antes: "Anticipo USD X · cuota USD Y/mes"
+      const ma = /Anticipo USD ([^·]+)/.exec(l.formas || ''), mc = /cuota USD ([^/]+)\/mes/.exec(l.formas || '');
+      if (ma) st.anticipo = ma[1].trim(); if (mc) st.cuota = mc[1].trim();
       render();
     });
   } catch (e) {
