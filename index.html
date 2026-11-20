@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Manual Comercial · Áureo · NOOK San Isidro · v2.6</title>
+<title>Manual Comercial · Áureo · NOOK San Isidro · v2.7</title>
 <meta name="description" content="Manual operativo de ventas para el equipo comercial de Áureo Desarrollos. NOOK San Isidro. Versión 2.0 — fuente única de verdad." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -205,6 +205,7 @@
   table.manual-table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 0.875rem; }
   table.manual-table th { background: var(--verde-nook); color: white; padding: 0.625rem 0.875rem; text-align: left; font-weight: 500; }
   table.manual-table td { padding: 0.625rem 0.875rem; border-bottom: 1px solid #eee; }
+  @media (max-width: 767px) { table.manual-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; } }
   table.manual-table tr:nth-child(even) td { background: rgba(201, 184, 154, 0.05); }
 
   /* WhatsApp template */
@@ -225,6 +226,49 @@
     font-family: monospace;
   }
 
+  /* Objeción rápida */
+  .qo-fab {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 45;
+    background: var(--acento); color: white; border: none; cursor: pointer;
+    padding: 0.85rem 1.2rem; border-radius: 999px; font-weight: 600; font-size: 0.9rem;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 0.5rem;
+  }
+  .qo-fab kbd { background: rgba(255,255,255,0.2); border-radius: 4px; padding: 0 0.4rem; font-size: 0.75rem; font-family: inherit; }
+  @media (max-width: 1023px) { .qo-fab { right: auto; left: 1.25rem; } .qo-fab kbd { display: none; } }
+  .qo-overlay { position: fixed; inset: 0; background: rgba(15,26,20,0.55); z-index: 60; display: none; }
+  .qo-overlay.show { display: block; }
+  .qo-panel {
+    position: absolute; top: 4vh; left: 50%; transform: translateX(-50%);
+    width: min(760px, 94vw); max-height: 92vh; background: var(--crema-light);
+    border-radius: 10px; display: flex; flex-direction: column; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .qo-head { background: var(--verde-nook); color: white; padding: 1rem 1.25rem; }
+  .qo-head .qo-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; }
+  .qo-head .qo-sub { font-size: 0.78rem; opacity: 0.75; margin-top: 0.15rem; }
+  .qo-search {
+    width: 100%; margin-top: 0.75rem; padding: 0.7rem 0.9rem; border-radius: 6px; border: none;
+    font-size: 1rem; color: var(--negro);
+  }
+  .qo-search:focus { outline: 3px solid var(--beige); }
+  .qo-close { position: absolute; top: 0.7rem; right: 0.9rem; background: none; border: none; color: white; font-size: 1.6rem; cursor: pointer; line-height: 1; }
+  .qo-list { overflow-y: auto; padding: 0.75rem 1rem 1.25rem; }
+  .qo-card { background: white; border-left: 4px solid var(--beige-dark); border-radius: 6px; margin: 0.6rem 0; padding: 0.85rem 1rem; }
+  .qo-card .qo-dice { font-weight: 600; color: var(--verde-nook); font-size: 1rem; }
+  .qo-card .qo-tag { display: inline-block; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--beige-dark); font-weight: 600; margin-bottom: 0.2rem; }
+  .qo-card .qo-deci { background: var(--verde-nook); color: white; font-style: italic; padding: 0.7rem 0.9rem; border-radius: 4px; margin: 0.55rem 0; line-height: 1.55; }
+  .qo-card .qo-clave { font-size: 0.85rem; color: var(--muted); }
+  .qo-card .qo-clave b { color: var(--acento); }
+  .qo-card a.qo-more { font-size: 0.8rem; color: var(--acento); font-weight: 600; text-decoration: none; display: inline-block; margin-top: 0.35rem; }
+  .qo-empty { padding: 1.5rem; text-align: center; color: var(--muted); }
+  .qo-banner {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
+    background: white; border-left: 4px solid var(--acento); border-radius: 4px;
+    padding: 0.9rem 1.2rem; margin: 0 0 2rem;
+  }
+  .qo-banner button { background: var(--verde-nook); color: white; border: none; border-radius: 4px; padding: 0.55rem 1rem; font-weight: 600; cursor: pointer; }
+  @media print { .qo-fab, .qo-overlay, .qo-banner { display: none !important; } }
+
   html { scroll-behavior: smooth; }
   hr.divider { border: 0; border-top: 1px solid var(--beige); opacity: 0.4; margin: 2rem 0; }
 </style>
@@ -237,7 +281,7 @@
 <aside class="sidebar fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto z-40" id="sidebar">
   <div class="p-5 border-b border-gray-200">
     <div class="font-serif text-2xl text-verde leading-none">Manual</div>
-    <div class="text-xs eyebrow mt-1">Comercial · v2.6</div>
+    <div class="text-xs eyebrow mt-1">Comercial · v2.7</div>
     <div class="text-xs text-gray-500 mt-2">Áureo · NOOK San Isidro</div>
   </div>
 
@@ -246,6 +290,7 @@
   </div>
 
   <nav class="py-3">
+    <a href="#" class="nav-link" data-qo-open style="color: var(--acento); font-weight: 600;">⚡ Objeción rápida (tecla O)</a>
     <div class="nav-section">Inicio</div>
     <a href="#intro" class="nav-link">Cómo usar este manual</a>
     <a href="#data-rapida" class="nav-link">Datos rápidos del proyecto</a>
@@ -331,7 +376,7 @@
 
   <!-- COVER -->
   <div class="cover">
-    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.6</div>
+    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.7</div>
     <h1 class="font-serif text-5xl lg:text-6xl mb-4">Manual Comercial</h1>
     <div class="font-serif text-2xl lg:text-3xl italic mb-6" style="color: var(--beige);">NOOK San Isidro</div>
     <div class="text-sm opacity-90 max-w-2xl leading-relaxed">
@@ -340,6 +385,11 @@
     <div class="mt-8 pt-6 border-t border-white border-opacity-20 text-xs opacity-70">
       Áureo Desarrollos · info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar
     </div>
+  </div>
+
+  <div class="qo-banner">
+    <div><strong>¿Te tiraron una objeción en plena llamada?</strong><br><span class="text-sm" style="color: var(--muted);">Escribí lo que te dijo con sus palabras ("contame vos", "caro", "mi marido") y tenés la frase lista para decir.</span></div>
+    <button type="button" data-qo-open>⚡ Objeción rápida</button>
   </div>
 
   <!-- INTRO -->
@@ -768,13 +818,35 @@
       <span class="label">Si el formulario dice "para invertir" · un solo dolor</span>
       … La mayoría de los que consultan para invertir tienen dólares ahorrados que no les están rindiendo nada. ¿Te pasa algo parecido o ya los tenés trabajando?
     </div>
-    <div class="script-box">
+    <div class="script-box" id="obj-no-recuerda">
       <span class="label">Si no se acuerda del proyecto</span>
       Es normal, en esta época llegan muchos anuncios. Te robo un minuto y, si no te sirve, cortamos. [y seguís con el paso 2]
     </div>
     <div class="tip-box">
       <strong>Por qué funciona:</strong> "seguro estás mirando varios" nombra lo que está pensando y le baja la guardia (etiqueta de Voss). El dolor puesto en "casi todo el que consulta" no lo acusa de nada: él elige si se identifica. "¿O es otra cosa?" le da la salida, y con esa salida casi siempre cuenta lo suyo con sus palabras. Esas palabras se anotan en Kommo tal cual.
     </div>
+
+    <h4 class="subsection-title" id="obj-contame">Si te dice "contame vos qué tienen, no que te cuente yo"</h4>
+    <p>Documentado en noviembre de 2026 (Marianela, lead de pauta). Es el cliente argentino en modo "primero mostrame": no está rechazando la llamada, está pidiendo el orden inverso. No se discute ni se justifica la pregunta. Se le da lo que pidió, corto, y la pregunta vuelve al final como un filtro <em>a su favor</em>.</p>
+    <div class="script-box">
+      <span class="label">1 · Etiqueta + concesión (sin "te entiendo")</span>
+      Dale, Marianela, parece que primero querés ver qué hay, y me parece bien. Te cuento.
+    </div>
+    <div class="script-box">
+      <span class="label">2 · Lo que pidió, en 20 segundos</span>
+      NOOK es un edificio de 2 y 3 ambientes sobre Centenario, en San Isidro. Lo construye Áureo, que ya entregó diez obras, y se entrega en 2029. Se paga en cuotas mientras se construye, con dos planes: uno corto, de 12 cuotas fijas y a mejor valor, y otro largo que acompaña el ritmo de la obra.
+    </div>
+    <div class="script-box">
+      <span class="label">3 · La pregunta como filtro a su favor (elección, no interrogatorio)</span>
+      Hay seis tipos de 2 ambientes y también de 3, y no todos sirven para lo mismo: el que se muda busca una cosa y el que compra para alquilar busca otra. Para mostrarte los dos o tres que te sirven y no hacerte perder tiempo con el resto, ¿lo estás mirando más para vivir o como inversión?
+    </div>
+    <div class="tip-box">
+      <strong>Por qué funciona:</strong> la etiqueta ("parece que primero querés ver qué hay") le muestra que la escuchaste sin ponerte a la defensiva. Darle la información primero cumple con lo que pidió y respeta cómo compra el público argentino: desconfía de quien pregunta antes de mostrar. La pregunta queda al final como pregunta de Situación de SPIN, de opción cerrada (vivir o invertir), y con un "porque" que es para ella: ver menos opciones y mejores. Si contesta, seguís con el dolor de ese camino (paso "para vivir" o "para invertir") y con la <a href="#etapa-3">Etapa 3</a>.
+    </div>
+    <div class="warn-box">
+      <strong>Evitá:</strong> "Entiendo perfectamente" (es el "te entiendo" de vendedor) · "No es por curiosidad" (niega una sospecha que ella no dijo y la instala) · "Solo… solo…" (achica tu pregunta y suena a disculpa) · el tú ("quieres"): con el cliente, siempre voseo ("querés").
+    </div>
+    <p>Si después de la información vuelve a esquivar ("vos mandame todo y yo veo"), no insistas con la pregunta: mandá la info del camino más probable según el formulario y cerrá con una sola pregunta orientada al no: "¿Sería un disparate que te muestre las dos que mejor van con eso en el tour virtual?"</p>
 
     <h4 class="subsection-title">Base fría o lista sin datos · llamada en frío</h4>
     <div class="script-box">
@@ -859,7 +931,7 @@
     </div>
     <p>Sin novedad real no hay recontacto: la novedad es el "porque" y el dolor es lo que le da sentido. Si de aquella charla no te quedaron anticipo y cuota, no es un calificado: usá la apertura de pauta.</p>
 
-    <h4 class="subsection-title">Lead que desconfía · auditoría de acusaciones</h4>
+    <h4 class="subsection-title" id="obj-desconfia">Lead que desconfía · auditoría de acusaciones</h4>
     <div class="script-box">
       Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable. Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. Pero antes contame: ¿qué te gustaría resolver con esto?
     </div>
@@ -1721,6 +1793,8 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
         <tr><td>Octubre 2026</td><td><strong>v2.4</strong></td><td>Parte 3 ajustada: con leads de pauta (y base sin datos) se califica antes de pedir la reunión (uso, anticipo, cuota, timing); la reunión se pide solo si califica. El pedido en 10 segundos queda para leads ya calificados. Tabla de objetivo por origen, criterio califica / no ahora / no califica, y métricas de calificados en la Etapa 9</td></tr>
         <tr><td>Noviembre 2026</td><td><strong>v2.5</strong></td><td>Parte 3 reorientada al dolor: el lead de pauta se trata como frío. Nueva sección "Mapa de dolores" (alquiler, dólares quietos, no llega al total, dejar algo armado) con preguntas de Problema e Implicación y cómo lo resuelve NOOK. Apertura por el dolor para pauta y para llamada en frío; calificación dentro del dolor; Etapa 3 "Profundizar el dolor"; Etapa 4 con frases puente de solución; objeciones que vuelven al dolor; resumen, audio de WhatsApp y autoevaluación ajustados</td></tr>
         <tr><td>Noviembre 2026</td><td><strong>v2.6</strong></td><td>Etapa 2: "Calificar dentro del dolor" pasa a "Calificar desde la solución". Antes de anticipo y cuota se cuenta NOOK en 20-30 segundos con los datos que resuelven el dolor del lead, se pide su reacción y los números se preguntan como diseño de su plan, con referencia (30% recomendado, plan corto o largo). Guiones por dolor</td></tr>
+        <tr><td>Noviembre 2026</td><td><strong>v2.7</strong></td><td>Etapa 2: nueva respuesta para "contame vos qué tienen, no que te cuente yo" (caso Marianela). Etiqueta + concesión, la info de NOOK en 20 segundos y la pregunta vivir/invertir al final como filtro a favor del lead. Frases a evitar: "entiendo perfectamente", "no es por curiosidad", tuteo</td></tr>
+        <tr><td>Noviembre 2026</td><td>v2.7</td><td>Nuevo buscador "Objeción rápida": botón fijo, tecla O y acceso desde el menú. Se escribe lo que dijo el lead con sus palabras y aparece la frase lista para decir, la clave y el link a la versión completa. Reúne las 18 objeciones de la Etapa 2, la Etapa 5, la Parte 5 y la decisión familiar</td></tr>
       </tbody>
     </table>
   </section>
@@ -1728,7 +1802,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
   <hr class="divider" />
 
   <footer class="mt-12 pt-8 text-sm" style="color: var(--muted); border-top: 1px solid var(--beige);">
-    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.6</div>
+    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.7</div>
     <p class="mb-1"><strong>Áureo Desarrollos</strong></p>
     <p>info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar</p>
     <p class="mt-4 text-xs">Documento operativo interno. Fuente única de verdad para el equipo comercial.</p>
@@ -1793,6 +1867,148 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
       link.classList.toggle('hidden-by-search', target.classList.contains('hidden-by-search'));
     });
   });
+</script>
+
+<!-- OBJECIÓN RÁPIDA -->
+<button class="qo-fab" type="button" data-qo-open aria-label="Buscar objeción">⚡ Objeción <kbd>O</kbd></button>
+<div class="qo-overlay" id="qoOverlay" role="dialog" aria-modal="true" aria-label="Objeción rápida">
+  <div class="qo-panel">
+    <div class="qo-head" style="position: relative;">
+      <button class="qo-close" type="button" id="qoClose" aria-label="Cerrar">×</button>
+      <div class="qo-title">Objeción rápida</div>
+      <div class="qo-sub">Escribí lo que te dijo. Leé la caja verde. Esc para cerrar.</div>
+      <input type="text" class="qo-search" id="qoSearch" placeholder="Ej.: contame vos, caro, pensarlo, WhatsApp, marido…" autocomplete="off" />
+    </div>
+    <div class="qo-list" id="qoList"></div>
+  </div>
+</div>
+
+<script>
+  // Cada objeción: lo que dice el lead, la frase para decir, la clave y el link a la versión completa.
+  // Para sumar una nueva, agregá un objeto acá y su versión larga en el manual.
+  const OBJECIONES = [
+    { dice: '"Contame vos qué tienen, no que te cuente yo"', momento: 'Apertura',
+      claves: 'contame vos cuentame ustedes ofrecen que tienen no que yo te cuente decime vos planes departamentos informacion primero mostrame',
+      deci: 'Dale, parece que primero querés ver qué hay, y me parece bien. [NOOK en 20 segundos: 2 y 3 amb. sobre Centenario, Áureo, entrega 2029, plan corto 12 cuotas fijas o largo al ritmo de obra.] Para mostrarte los dos o tres que te sirven, ¿lo mirás más para vivir o como inversión?',
+      clave: 'Le das primero lo que pidió. La pregunta va al final y es para ella.', link: '#obj-contame' },
+    { dice: '"No me acuerdo" / "¿De qué proyecto?"', momento: 'Apertura',
+      claves: 'no me acuerdo que proyecto quien sos de donde no se de que me hablas anuncio',
+      deci: 'Es normal, en esta época llegan muchos anuncios. Te robo un minuto y, si no te sirve, cortamos.',
+      clave: 'Después seguís con el dolor puesto en "casi todo el que consulta".', link: '#obj-no-recuerda' },
+    { dice: '"No me interesa"', momento: 'Apertura',
+      claves: 'no me interesa no gracias no estoy buscando no quiero',
+      deci: 'Tiene sentido, la mayoría no está buscando cuando la llaman. Una sola cosa antes de cortar: lo de [alquiler / ahorros quietos], ¿ya lo tenés resuelto por otro lado?',
+      clave: 'No rebatís: volvés al dolor. Si no lo tiene resuelto, pedís 15 minutos.', link: '#etapa-5' },
+    { dice: '"Estoy ocupado" / "Mal momento"', momento: 'Apertura',
+      claves: 'ocupado ocupada mal momento trabajando manejando no puedo ahora reunion',
+      deci: 'Me imaginaba. Te lo corto acá. ¿Te llamo hoy a las 18:30 o mañana a las 11?',
+      clave: 'Hora concreta, tarea en Kommo, y cumplís.', link: '#etapa-5' },
+    { dice: 'Desconfía: "me vas a vender humo" / "el pozo es un riesgo"', momento: 'Apertura',
+      claves: 'desconfio humo estafa riesgo pozo no existe vendedor color de rosa garantia seguro confianza',
+      deci: 'Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable. Por eso prefiero que lo veas: el fideicomiso, la obra y quién la construye. Antes contame: ¿qué te gustaría resolver con esto?',
+      clave: 'Una sola vez por llamada, y solo si hay señal de desconfianza.', link: '#obj-desconfia' },
+    { dice: '"Mandame info" / "Pasame todo por WhatsApp"', momento: 'Cualquier momento',
+      claves: 'mandame info informacion whatsapp wsp pasame todo brochure pdf escribime',
+      deci: 'Te la mando. Para mandarte lo que sirve y no llenarte de PDFs: ¿qué querés resolver, dejar de alquilar o que esos ahorros rindan?',
+      clave: 'La info sale igual. Lo que negociás es una pregunta a cambio. Tarea a 24-48 h.', link: '#obj-2' },
+    { dice: '"Mandame info por mail"', momento: 'Cualquier momento',
+      claves: 'mail email correo mandame por mail',
+      deci: 'Te la mando. La info por mail es genérica; lo que cambia la decisión es ver la obra. Te mando algo breve hoy y lo vemos el jueves. ¿A las 11 o a las 16?',
+      clave: 'No rechazás el mail: lo negociás a cambio de la reunión.', link: '#obj-1' },
+    { dice: '"Mandame todas las opciones"', momento: 'Cualquier momento',
+      claves: 'todas las opciones todo lo disponible lista unidades disponibles',
+      deci: 'Te puedo mandar todas, pero con tantas unidades te vas a marear. ¿Me das 2 minutos para entender qué buscás y te paso 2 opciones específicas?',
+      clave: 'Menos opciones, más precisas.', link: '#obj-6' },
+    { dice: '"Mandame los números por escrito"', momento: 'Cualquier momento',
+      claves: 'numeros por escrito precio cotizacion cuanto sale cuanto cuesta cuotas escrito',
+      deci: 'Te paso un rango. El número puntual depende de tu anticipo y de la cuota que te sirve, y suelto se termina comparando con cotizaciones armadas con otros criterios. ¿Lo armamos en 30 minutos con tus números?',
+      clave: 'Rango, nunca precio puntual. Siempre con salvedades.', link: '#obj-10' },
+    { dice: 'Modo recolector: junta info de varios y esquiva tus preguntas', momento: 'Cualquier momento',
+      claves: 'recolector research junta info evade compara pila pdf',
+      deci: 'Te noto juntando info de varios proyectos, que está bien. Si te mando un PDF más, se suma a la pila. Te propongo un audio de 2 minutos con las 3 cosas de NOOK para tu rango, y 20 minutos de tour.',
+      clave: 'Nombrar lo que hace (etiqueta) y ofrecer algo personalizado.', link: '#obj-3' },
+    { dice: '"Estoy viendo otros proyectos" / "Comparando"', momento: 'Cualquier momento',
+      claves: 'otros proyectos comparando varias opciones competencia mirando otros',
+      deci: 'Buenísimo, es lo que hay que hacer. ¿Cuáles estás mirando? … ¿Y cuál te resuelve mejor lo de [su dolor]? Te muestro NOOK en 30 minutos y lo ponés al lado con los mismos criterios: m² reales, forma de pago y quién construye.',
+      clave: 'No hablar mal de la competencia. Comparar con datos.', link: '#obj-7' },
+    { dice: '"Es caro"', momento: 'Precio',
+      claves: 'caro carisimo muy caro precio alto sale mucho',
+      deci: '¿Caro? … [silencio] … Puede ser, y si no da, no da. Comparalo también con lo que te cuesta seguir como estás. Casi siempre se resuelve con forma de pago, no con precio.',
+      clave: 'Espejo y silencio: te va a decir contra qué compara.', link: '#etapa-5' },
+    { dice: '"No me alcanza" / "Fuera de presupuesto"', momento: 'Precio',
+      claves: 'no me alcanza presupuesto no llego no tengo plata anticipo cuota alta',
+      deci: '¿Cuánto te queda corto? Pregunto porque el anticipo y la cantidad de cuotas se pueden mover: lo publicado no siempre es lo que tenés que poner por mes.',
+      clave: 'Si de verdad no llega, no forzar: pivot a otro producto.', link: '#obj-4' },
+    { dice: '"¿Me hacés un descuento?"', momento: 'Precio',
+      claves: 'descuento rebaja mejor precio bajar precio contado',
+      deci: '¿Cómo hago para llevarle ese número a la desarrolladora?',
+      clave: 'Un no sin decir no. Nada que Áureo no haya autorizado.', link: '#etapa-5' },
+    { dice: '"Lo tengo que pensar"', momento: 'Cierre',
+      claves: 'pensar pensarlo lo pienso lo estoy pensando dejame pensar',
+      deci: 'Parece que hay algo que todavía no te termina de cerrar. … [silencio] … ¿Qué es lo que más te hace ruido: el proyecto, la zona, la forma de pago u otra cosa?',
+      clave: 'Si no suelta nada: "Si esto queda sin resolver unos meses más, ¿qué cambia para vos?"', link: '#obj-5' },
+    { dice: '"Lo analizo el fin de semana"', momento: 'Cierre',
+      claves: 'fin de semana finde lo analizo lo reviso lo miro',
+      deci: 'Bárbaro. ¿Te paso las 4 cosas que conviene revisar? Forma de pago, entrega, dudas de quien lo charles y comparación en m² reales. Te llamo el lunes a las 10:30 para repasarlas, ¿o preferís a las 16?',
+      clave: 'Estructurar su análisis y dejar fecha.', link: '#obj-8' },
+    { dice: '"Lo tengo que hablar con mi pareja / familia"', momento: 'Cierre',
+      claves: 'pareja marido esposa mujer familia hijos socio consultarlo hablarlo contador',
+      deci: 'Cuando lo charles, lo más útil es que yo esté, aunque sea 15 minutos por videollamada. Siempre aparecen preguntas que te conviene que conteste yo, y quedan más tranquilos. ¿Cuándo les queda bien a los dos?',
+      clave: 'Si el material viaja sin vos, la operación se suele caer.', link: '#pareja' },
+    { dice: '"Yo te llamo" / "Llamame más adelante"', momento: 'Cierre',
+      claves: 'yo te llamo te aviso llamame mas adelante agenda complicada despues hablamos',
+      deci: 'Dale. ¿Qué tendría que pasar de acá a ese momento para que tenga sentido que hablemos? … Perfecto, te llamo el [fecha] a las [hora]. Si no podés, no atendés y lo movemos.',
+      clave: 'Es el "no" educado argentino. Siempre vos con fecha y hora.', link: '#obj-9' }
+  ];
+
+  (function () {
+    const overlay = document.getElementById('qoOverlay');
+    const input = document.getElementById('qoSearch');
+    const list = document.getElementById('qoList');
+    const norm = t => t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9ñ ]/g, ' ');
+    const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+    function render(term) {
+      const words = norm(term).split(/\s+/).filter(w => w.length > 1);
+      const items = OBJECIONES.map(o => {
+        const hay = norm(o.dice + ' ' + o.claves + ' ' + o.momento);
+        const score = words.reduce((s, w) => s + (hay.includes(w) ? 1 : 0), 0);
+        return { o, score };
+      }).filter(x => !words.length || x.score > 0)
+        .sort((a, b) => b.score - a.score);
+      if (!items.length) {
+        list.innerHTML = '<div class="qo-empty">No la encuentro. Probá con otra palabra, o usá la regla general: anclá, volvé a su dolor y volvé a pedir (<a href="#etapa-5" data-qo-go>Etapa 5</a>).</div>';
+        return;
+      }
+      list.innerHTML = items.map(({ o }) =>
+        '<div class="qo-card"><span class="qo-tag">' + esc(o.momento) + '</span>' +
+        '<div class="qo-dice">' + esc(o.dice) + '</div>' +
+        '<div class="qo-deci">' + esc(o.deci) + '</div>' +
+        '<div class="qo-clave"><b>Clave:</b> ' + esc(o.clave) + '</div>' +
+        '<a class="qo-more" href="' + o.link + '" data-qo-go>Ver versión completa →</a></div>'
+      ).join('');
+    }
+
+    function open(e) {
+      if (e) e.preventDefault();
+      overlay.classList.add('show');
+      input.value = '';
+      render('');
+      setTimeout(() => input.focus(), 30);
+    }
+    function close() { overlay.classList.remove('show'); }
+
+    document.querySelectorAll('[data-qo-open]').forEach(b => b.addEventListener('click', open));
+    document.getElementById('qoClose').addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    list.addEventListener('click', e => { if (e.target.closest('[data-qo-go]')) close(); });
+    input.addEventListener('input', () => render(input.value));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('show')) return close();
+      const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+      if (!typing && !overlay.classList.contains('show') && (e.key === 'o' || e.key === 'O' || e.key === '/')) open(e);
+    });
+  })();
 </script>
 
 </body>
