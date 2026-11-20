@@ -114,7 +114,7 @@
    ⏸ pausa · {S} silencio · ↘ baja · ↗ sube · ☺ sonrisa · ~texto~ lento · **texto** acento
    [acotación] · {nombre} {anticipoMin} … variables del panel */
 const N = {
-  inicio: { et: 'Antes de marcar', t: '¿Qué tipo de llamada es?',
+  inicio: { et: 'Antes de marcar', t: '¿Qué tipo de llamada es?', kommo: true,
     tip: 'Kommo y el cotizador abiertos. Completá arriba el anticipo y la cuota mínimos del cotizador (quedan guardados). Voz cálida, tono que baja.',
     o: [['Lead de pauta', 'p1', 'Dejó sus datos por un anuncio'], ['Base fría', 'f1', 'Lista sin datos'], ['Recontacto ya calificado', 'r1', 'Ya tenés anticipo y cuota']] },
 
@@ -212,7 +212,7 @@ const N = {
     tip: 'Si aparece pareja o socio: "¿Sería una locura que vengan los dos?"',
     ask: ['decisor', 'Decisor'],
     o: [['Sigue', 'cal']] },
-  cal: { et: 'Calificar', t: '¿Califica?', summary: true,
+  cal: { et: 'Calificar', t: '¿Califica?', summary: true, need: ['perfil','dolor','anticipo','cuota','decisor'],
     o: [['Califica', 'res', 'Anticipo y cuota llegan a alguna unidad y quiere resolverlo en meses'], ['Califica, pero no ahora', 'cn', 'Tiene con qué, espera un ingreso o no le pesa todavía'], ['No califica para NOOK', 'nc', 'No llega a ninguna unidad, aun moviendo plazo']] },
   cn: { et: 'Calificar', t: 'Cisne negro',
     s: [['', '¿Qué tendría que pasar para que esto tenga sentido?{S}']],
@@ -239,7 +239,7 @@ const N = {
     s: [['Orientada al no', '¿Sería una locura que nos veamos 30 minutos el jueves y lo armamos con tus números?{S}']],
     tip: 'Hasta tres intentos con horarios distintos. Al tercero sin día concreto: tarea de seguimiento y al siguiente.',
     o: [['Dio día', 'ok'], ['Sigue sin día', 'fin', '', { resultado: 'Sin reunión: seguimiento' }]] },
-  ok: { et: 'Antes de colgar', t: 'Blindar la reunión',
+  ok: { et: 'Antes de colgar', t: 'Blindar la reunión', need: ['dia'],
     ask: ['dia', 'Día, hora y lugar'],
     s: [['1 · Confirmá en voz alta', 'Entonces quedamos:⏸ {dia}.↘'],
         ['2 · Orientada al no', '¿Hay algo que te pueda impedir venir?{S}'],
@@ -287,7 +287,60 @@ const N = {
 };
 const OBJ = Object.keys(N).filter(k => N[k].obj);
 
-const KEYS = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','notas','dia','resultado','anticipoMin','cuotaMin'];
+/* Datos obligatorios: sin ellos el guion no deja calificar ni pedir la reunión.
+   Si falta alguno, aparece la pregunta exacta para sacarlo. */
+const REQ = ['perfil','dolor','anticipo','cuota','decisor'];
+const PREG = {
+  perfil: () => 'Para mostrarte lo que te sirve:⏸ ¿lo estás mirando más para **vivir** o como **inversión**?↘{S}',
+  dolor: () => /inver/i.test(st.perfil || '')
+    ? 'Esa plata para el anticipo,⏸ ¿hoy te rinde algo o está parada?{S} [anotá sus palabras]'
+    : '¿Qué es lo que más te pesa de dónde estás hoy:⏸ el alquiler,⏸ el espacio,⏸ la zona?{S} [anotá sus palabras]',
+  anticipo: () => 'Para arrancar se recomienda alrededor de un 30%, pero se puede menos y se compensa con la cuota.⏸ ¿Con cuánto podrías entrar:⏸ más cerca de 20, de 40 o de 60 mil dólares?{S}',
+  cuota: () => 'Y por mes,⏸ ¿cuánto podrías poner ~sin que te cambie la vida~?{S}',
+  decisor: () => '¿Cómo se toma esta decisión en tu casa?{S}',
+  dia: () => '¿Te queda mejor a la mañana o a la tarde?{S} … ¿A las 10 o a las 11?↘{S}',
+};
+
+/* Puente local con Kommo (~/Claude/Kommo/guion_puente.py, corre en la compu de Enma) */
+const API = 'http://127.0.0.1:8787';
+let kommoOk = null, syncT = null;
+async function api(path, body) {
+  const r = await fetch(API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {});
+  const d = await r.json(); if (!r.ok) throw new Error(d.error || r.status); return d;
+}
+function sync(extra) {
+  if (!st.lead_id) return;
+  clearTimeout(syncT);
+  syncT = setTimeout(async () => {
+    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, ...(extra || {}) }); kommoOk = true; }
+    catch (e) { kommoOk = false; }
+    chips();
+  }, extra ? 0 : 1200);
+}
+async function buscarLead() {
+  const out = document.getElementById('kres'); out.innerHTML = 'Buscando…';
+  try {
+    const d = await api('/buscar?tel=' + encodeURIComponent(st.tel || ''));
+    kommoOk = true;
+    if (d.error) { out.textContent = d.error; return; }
+    if (!d.leads.length) { out.textContent = 'No hay ningún lead con ese teléfono en Kommo.'; return; }
+    out.innerHTML = d.leads.map((l, i) => `<button class="opt" data-k="${i}">${esc(l.contacto || l.nombre)}<small>${esc(l.nombre)} · ${esc(l.etapa)}${l.formas ? ' · ' + esc(l.formas) : ''}</small></button>`).join('');
+    out.querySelectorAll('[data-k]').forEach(b => b.onclick = () => {
+      const l = d.leads[+b.dataset.k];
+      st.lead_id = l.id; st.lead_txt = (l.contacto || l.nombre) + ' · ' + l.etapa;
+      const nom = (l.contacto || '').trim();
+      if (!st.nombre && nom && !/facebook|lead\s*#|^\d/i.test(nom)) st.nombre = nom.split(' ')[0];
+      if (!st.perfil && l.perfil) st.perfil = l.perfil === 'Inversor' ? 'Inversión' : 'Vivir';
+      render();
+    });
+  } catch (e) {
+    kommoOk = false;
+    out.innerHTML = 'No me pude conectar con el puente de Kommo. Tiene que estar corriendo en tu compu (en el celular no funciona). Podés seguir igual y copiar la nota al final.';
+  }
+  chips();
+}
+
+const KEYS = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','notas','dia','resultado','tel','lead_id','lead_txt','anticipoMin','cuotaMin'];
 const CFG = ['anticipoMin','cuotaMin'];
 const LABEL = { nombre:'Lead', perfil:'Perfil', situacion:'Situación', dolor:'Dolor', anticipo:'Anticipo', cuota:'Cuota', decisor:'Decisor', dia:'Reunión', anticipoMin:'Ant. mín', cuotaMin:'Cuota mín' };
 let st = {}, hist = [];
@@ -317,6 +370,7 @@ function chips() {
   const open = document.getElementById('panel').classList.contains('open');
   document.getElementById('chips').innerHTML =
     `<button class="chip toggle" id="tog">${open ? '▲ Cerrar' : '✎ Datos'}</button>` +
+    (st.lead_id ? `<span class="chip" title="Lead de Kommo"><b>Kommo</b>${esc(st.lead_txt || '#' + st.lead_id)} ${kommoOk === false ? '⚠︎ sin conexión' : '✓'}</span>` : '') +
     show.map(k => `<button class="chip" data-edit="${k}"><b>${LABEL[k]}</b>${esc(st[k])}</button>`).join('');
   document.querySelectorAll('#panel [data-v]').forEach(i => { if (document.activeElement !== i) i.value = st[i.dataset.v] || ''; });
 }
@@ -325,6 +379,8 @@ function note() {
   const L = [`${d} · ${st.resultado || 'Llamada'}${st.dia ? ' · ' + st.dia : ''}`];
   [['Perfil','perfil'],['Situación','situacion'],['Dolor','dolor'],['Anticipo','anticipo'],['Cuota','cuota'],['Decisor','decisor'],['Notas','notas']]
     .forEach(([l,k]) => st[k] && L.push(`${l}: ${st[k]}`));
+  const falta = REQ.filter(k => !st[k]).map(k => LABEL[k]);
+  if (falta.length) L.push(`Faltó preguntar: ${falta.join(', ')}`);
   return L.join('\n');
 }
 function go(id, set) {
@@ -332,10 +388,19 @@ function go(id, set) {
   if (set) for (const [k, v] of Object.entries(set)) {
     if (v.startsWith('__keep__')) { if (!st[k]) st[k] = v.slice(8); } else st[k] = v;
   }
-  hist.push(id); render(); window.scrollTo(0, 0);
+  if (set && 'perfil' in set) sync();
+  if (hist[hist.length - 1] !== id) hist.push(id);
+  render(); window.scrollTo(0, 0);
 }
 function render() {
-  const id = hist[hist.length - 1], n = N[id];
+  const id = hist[hist.length - 1];
+  let n = N[id];
+  const falta = (n.need || []).filter(k => !st[k]);
+  if (falta.length) n = { et: 'Falta información', t: 'No se sigue sin esto',
+    s: falta.map(k => [LABEL[k], PREG[k]()]),
+    ask: falta.flatMap(k => [k, LABEL[k]]),
+    tip: 'Hacé estas preguntas antes de seguir, una por vez y con un dato en el medio. Si el lead corta antes, registrá la llamada igual: la nota marca lo que faltó.',
+    o: [['Seguir', id, 'Se habilita cuando completás todo']] };
   document.getElementById('crumbs').innerHTML = hist.slice(-6).map(h => `<span>${esc(N[h].t)}</span>`).join('');
   document.getElementById('title').textContent = (n.et ? n.et + ' · ' : '') + n.t;
   let h = '';
@@ -343,7 +408,10 @@ function render() {
   if (n.ask) for (let i = 0; i < n.ask.length; i += 2)
     h += `<div class="ask"><label>${esc(n.ask[i+1])}</label><input data-v="${n.ask[i]}" value="${esc(st[n.ask[i]] || '')}"></div>`;
   if (n.summary) h += `<div class="tip">${['perfil','dolor','anticipo','cuota','decisor'].map(k => `<b>${LABEL[k]}:</b> ${st[k] ? esc(st[k]) : '<em>falta</em>'}`).join('<br>')}<br><br>Falta anticipo o cuota → volvé y preguntalo antes de pedir la reunión.</div>`;
-  if (n.note) h += `<pre class="note" id="note">${esc(note())}</pre><button class="opt" id="copy">Copiar nota</button>`;
+  if (n.kommo) h += `<div class="ask"><label>Teléfono del lead (para traerlo de Kommo)</label><input data-v="tel" inputmode="tel" placeholder="11 5555 6666" value="${esc(st.tel || '')}"></div><button class="opt" id="kbtn">Buscar en Kommo</button><div class="opts" id="kres">${st.lead_id ? 'Lead elegido: ' + esc(st.lead_txt || '#' + st.lead_id) : ''}</div>`;
+  if (n.note) h += `<pre class="note" id="note">${esc(note())}</pre>` +
+    (st.lead_id ? `<button class="opt" id="ksave">Guardar nota en Kommo</button>` : `<div class="tip">Sin lead de Kommo elegido: copiá la nota a mano.</div>`) +
+    `<button class="opt" id="copy">Copiar nota</button>`;
   if (n.tip) h += `<div class="tip">${fmt(n.tip)}</div>`;
   document.getElementById('body').innerHTML = h;
   const o = n.o || (n.obj ? [['Volver a donde estaba', '__back']] : []);
@@ -354,6 +422,15 @@ function render() {
     if (to === '__back') return back();
     go(to, set);
   });
+  const kb = document.getElementById('kbtn'); if (kb) kb.onclick = buscarLead;
+  const ks = document.getElementById('ksave');
+  if (ks) ks.onclick = async () => {
+    ks.textContent = 'Guardando…';
+    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, nota: note() }); kommoOk = true; ks.textContent = 'Guardada en Kommo ✓'; ks.disabled = true; }
+    catch (e) { kommoOk = false; ks.textContent = 'No se pudo guardar (¿está corriendo el puente?). Copiala a mano.'; }
+    chips();
+  };
+  if (falta.length) { const s = document.querySelector('#opts .opt'); s.disabled = true; s.style.opacity = .4; }
   const c = document.getElementById('copy');
   if (c) c.onclick = () => navigator.clipboard.writeText(note()).then(() => c.textContent = 'Copiada ✓', () => c.textContent = 'No se pudo copiar: seleccioná el texto');
   chips(); save();
@@ -373,6 +450,11 @@ function reset() {
 document.addEventListener('input', e => {
   const k = e.target.dataset && e.target.dataset.v; if (!k) return;
   st[k] = e.target.value; save(); chips();
+  if (['perfil','anticipo','cuota'].includes(k)) sync();
+  const n = N[hist[hist.length - 1]], s = document.querySelector('#opts .opt');
+  if (n.need && s && document.getElementById('title').textContent.startsWith('Falta')) {
+    const ok = n.need.every(x => st[x]); s.disabled = !ok; s.style.opacity = ok ? 1 : .4;
+  }
   document.querySelectorAll(`[data-v="${k}"]`).forEach(i => { if (i !== e.target) i.value = e.target.value; });
 });
 document.addEventListener('change', e => { if (e.target.dataset && e.target.dataset.v) render(); });
