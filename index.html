@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Manual Comercial · Áureo · NOOK San Isidro · v2.8</title>
+<title>Manual Comercial · Áureo · NOOK San Isidro · v2.9</title>
 <meta name="description" content="Manual operativo de ventas para el equipo comercial de Áureo Desarrollos. NOOK San Isidro. Versión 2.0 — fuente única de verdad." />
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -41,6 +41,17 @@
     letter-spacing: 0.08em; font-weight: 600; font-style: normal;
     display: block; margin-bottom: 0.5rem;
   }
+  .mk { display:inline-block; font-style:normal; font-size:.66rem; font-weight:600; letter-spacing:.05em;
+    line-height:1.35; padding:.05rem .45rem; margin:0 .2rem; border-radius:999px; vertical-align:.12em;
+    white-space:nowrap; text-transform:uppercase; }
+  .mk-p { background:rgba(201,184,154,.22); color:var(--beige); }
+  .mk-s { background:var(--beige); color:var(--verde-dark); }
+  .mk-b, .mk-u { border:1px solid var(--beige); color:var(--beige); font-size:.8rem; padding:0 .35rem; }
+  .mk-sm { background:rgba(255,255,255,.14); color:#fff; }
+  .lento { text-decoration:underline dotted var(--beige); text-decoration-thickness:2px; text-underline-offset:5px; letter-spacing:.03em; }
+  .script-box .enf { font-weight:700; color:#fff; }
+  .mk-legend { font-style:normal; }
+  .mk-legend li { margin:.35rem 0; }
   .highlight-box {
     background: var(--crema); border-left: 4px solid var(--beige-dark);
     padding: 1rem 1.25rem; border-radius: 4px; margin: 1rem 0;
@@ -281,7 +292,7 @@
 <aside class="sidebar fixed top-0 left-0 w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto z-40" id="sidebar">
   <div class="p-5 border-b border-gray-200">
     <div class="font-serif text-2xl text-verde leading-none">Manual</div>
-    <div class="text-xs eyebrow mt-1">Comercial · v2.8</div>
+    <div class="text-xs eyebrow mt-1">Comercial · v2.9</div>
     <div class="text-xs text-gray-500 mt-2">Áureo · NOOK San Isidro</div>
   </div>
 
@@ -376,7 +387,7 @@
 
   <!-- COVER -->
   <div class="cover">
-    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.8</div>
+    <div class="eyebrow text-white opacity-80 mb-3">DOSSIER OPERATIVO · V2.9</div>
     <h1 class="font-serif text-5xl lg:text-6xl mb-4">Manual Comercial</h1>
     <div class="font-serif text-2xl lg:text-3xl italic mb-6" style="color: var(--beige);">NOOK San Isidro</div>
     <div class="text-sm opacity-90 max-w-2xl leading-relaxed">
@@ -793,39 +804,52 @@
       <li><strong>Objetivo de este toque</strong>, según la tabla de arriba</li>
     </ul>
     <div class="tip-box">
-      Si no sabés para qué llamás, todavía no llamás. Pero investigar de más es la otra trampa: más de 30 segundos de prep es procrastinar. <strong>Tono:</strong> voz tranquila, ritmo un poco más lento que el natural, frases que bajan al final. Sonreí antes de marcar: se escucha.
+      Si no sabés para qué llamás, todavía no llamás. Pero investigar de más es la otra trampa: más de 30 segundos de prep es procrastinar. <strong>Tono:</strong> voz tranquila, ritmo un poco más lento que el natural, frases que bajan al final. Sonreí antes de marcar: se escucha. Dónde pausar, callar, bajar el tono o ir más lento está marcado en cada guion (ver <a href="#marcas">cómo leer las marcas</a>).
     </div>
   </section>
 
   <section id="etapa-2">
     <h3 class="section-title">Etapa 2 · Apertura por el dolor</h3>
+    <div class="script-box mk-legend" id="marcas">
+      <span class="label">Cómo leer las marcas de tono y tiempo</span>
+      <ul>
+        <li><span class="mk mk-p" title="Pausa de un segundo">⏸</span> <strong>Pausa de un segundo.</strong> Deja que la frase anterior aterrice. Va antes de un número y antes de la pregunta.</li>
+        <li><span class="mk mk-s" title="Callate hasta que hable">silencio</span> <strong>Callate hasta que hable.</strong> Aunque pasen cinco segundos. El que llena el silencio cede: si hablás vos, le sacás la respuesta.</li>
+        <li><span class="mk mk-b" title="Tono que baja: afirmás">↘</span> <strong>Tono que baja al final.</strong> Afirma y transmite calma y control (la voz de radio de noche de Voss). Va en todo lo que afirmás y siempre en el pedido.</li>
+        <li><span class="mk mk-u" title="Tono que sube: curiosidad">↗</span> <strong>Tono que sube.</strong> Solo en el espejo y en la curiosidad genuina. En el pedido nunca: suena a pedir permiso.</li>
+        <li><span class="lento" title="Más lento">Subrayado punteado</span> <strong>Más lento,</strong> separando las palabras: los números y la frase que tiene que recordar.</li>
+        <li><b class="enf">Negrita</b> <strong>Acento</strong> en esa palabra.</li>
+        <li><span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span> <strong>Sonreí al decirlo:</strong> se escucha. Tono cálido y relajado, sin presión.</li>
+      </ul>
+      <strong>Para empujar:</strong> después del número, pausa. Después de la pregunta, silencio. El pedido, con tono que baja y sin muletillas al final ("¿no?", "¿te parece?", "¿dale?").
+    </div>
     <p><strong>Regla de la apertura: dar antes de preguntar.</strong> El lead de pauta dejó sus datos para ver qué hay y cuánto sale. Si la segunda cosa que escucha es una pregunta sobre su plata, siente un interrogatorio y corta (documentado en noviembre de 2026: varias llamadas cortadas justo en "¿tenés dólares que no te rinden?"). Por eso, en los primeros 30 segundos: quién sos, <strong>NOOK en una frase con un número real</strong>, y recién ahí <strong>una sola pregunta de elección que no toca su bolsillo</strong>. Después, silencio.</p>
 
     <h4 class="subsection-title">Lead de pauta · situar, dar y preguntar una vez</h4>
     <div class="script-box">
       <span class="label">1 · Quién sos y qué proyecto</span>
-      Hola, ¿Martín? Soy [tu nombre], de Áureo. Dejaste tus datos por NOOK, el edificio que estamos construyendo sobre Centenario, en San Isidro. Te robo 30 segundos y, si no te sirve, cortamos.
+      <span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>Hola, ¿Martín? <span class="mk mk-p" title="Pausa de un segundo">⏸</span> Soy [tu nombre], de Áureo.<span class="mk mk-p" title="Pausa de un segundo">⏸</span> Dejaste tus datos por NOOK, el edificio que estamos construyendo sobre Centenario, en San Isidro. <span class="lento" title="Más lento">Te robo 30 segundos</span> y, si no te sirve, cortamos.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span>
     </div>
     <p>Sin pausa, seguís con el paso 2. Ya no se pregunta "¿te agarro en mal momento?": la mayoría contesta "sí" aunque no sea verdad, solo para cortar, y te quedás sin llamada. Si de verdad está ocupado te lo va a decir igual, y ahí usás <a href="#obj-mal-momento">"sí, mal momento"</a>.</p>
     <div class="script-box">
       <span class="label">2 · Etiqueta + lo que vino a buscar, con un número</span>
-      Seguro estás mirando varios proyectos, así que te lo cuento corto: son 2 y 3 ambientes, lo construye Áureo, que ya entregó diez obras, y se paga en cuotas mientras se construye. Hoy se entra con un anticipo desde USD [anticipo mínimo del cotizador] y cuotas desde [cuota mínima], y se entrega en 2029.
+      Seguro estás mirando varios proyectos,<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> así que te lo cuento corto: son 2 y 3 ambientes, lo construye Áureo, que ya entregó <b class="enf">diez obras</b>, y se paga en cuotas mientras se construye.<span class="mk mk-p" title="Pausa de un segundo">⏸</span> Hoy se entra con <span class="lento" title="Más lento">un anticipo desde USD [anticipo mínimo del cotizador]</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> y cuotas desde [cuota mínima], y se entrega en 2029.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span>
     </div>
     <div class="script-box">
       <span class="label">3 · Una pregunta de elección (si el formulario no lo dice)</span>
-      Para mostrarte las dos o tres unidades que te sirven y no hacerte perder tiempo con el resto: ¿lo estás mirando más para vivir o como inversión?
+      Para mostrarte las dos o tres unidades que te sirven y no hacerte perder tiempo con el resto:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿lo estás mirando más para <b class="enf">vivir</b> o como <b class="enf">inversión</b>?<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Si es "para vivir" · dar y preguntar fácil</span>
-      … Para vivir, lo que más cuida la gente es que la cuota se pueda sostener junto con el alquiler mientras dura la obra, y el plan se arma desde ahí. ¿Hoy estás alquilando?
+      … Para vivir, lo que más cuida la gente es que la cuota se pueda sostener junto con el alquiler mientras dura la obra, y el plan se arma desde ahí.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Hoy estás alquilando?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Si es "para invertir" · dar y preguntar fácil</span>
-      … Para inversión, la gracia es que entrás a precio de pozo y pagás en cuotas, sin poner todo junto. ¿Lo pensás más para alquilarlo cuando esté terminado o para venderlo?
+      … Para inversión, la gracia es que entrás <b class="enf">a precio de pozo</b> y pagás en cuotas, sin poner todo junto.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Lo pensás más para alquilarlo cuando esté terminado o para venderlo?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box" id="obj-no-recuerda">
       <span class="label">Si no se acuerda del proyecto</span>
-      Es normal, en esta época llegan muchos anuncios. Te robo un minuto y, si no te sirve, cortamos. [y seguís con el paso 2]
+      <span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>Es normal, en esta época llegan muchos anuncios.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> Te robo un minuto y, si no te sirve, cortamos. [y seguís con el paso 2]
     </div>
     <div class="tip-box">
       <strong>Por qué funciona:</strong> "seguro estás mirando varios" nombra lo que está pensando y le baja la guardia (etiqueta de Voss). El número va antes que cualquier pregunta: el público argentino desconfía del que pregunta antes de mostrar, y con un número en la mano ya sabe si le interesa seguir hablando. La pregunta es de opción cerrada y sobre <em>el proyecto</em> (vivir o invertir, alquilar o vender), no sobre <em>él</em>: se contesta en una palabra y no expone su plata. Sus palabras se anotan en Kommo tal cual.
@@ -838,7 +862,7 @@
     <p>Documentado en noviembre de 2026 (Marianela, lead de pauta). Es el cliente argentino en modo "primero mostrame": no está rechazando la llamada, está pidiendo el orden inverso. No se discute ni se justifica la pregunta. Se le da lo que pidió, corto, y la pregunta vuelve al final como un filtro <em>a su favor</em>.</p>
     <div class="script-box">
       <span class="label">1 · Etiqueta + concesión (sin "te entiendo")</span>
-      Dale, Marianela, parece que primero querés ver qué hay, y me parece bien. Te cuento.
+      <span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>Dale, Marianela,<span class="mk mk-p" title="Pausa de un segundo">⏸</span> parece que primero querés ver qué hay, y me parece bien.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> Te cuento.
     </div>
     <div class="script-box">
       <span class="label">2 · Lo que pidió, en 20 segundos</span>
@@ -846,7 +870,7 @@
     </div>
     <div class="script-box">
       <span class="label">3 · La pregunta como filtro a su favor (elección, no interrogatorio)</span>
-      Hay seis tipos de 2 ambientes y también de 3, y no todos sirven para lo mismo: el que se muda busca una cosa y el que compra para alquilar busca otra. Para mostrarte los dos o tres que te sirven y no hacerte perder tiempo con el resto, ¿lo estás mirando más para vivir o como inversión?
+      Hay seis tipos de 2 ambientes y también de 3, y no todos sirven para lo mismo: el que se muda busca una cosa y el que compra para alquilar busca otra. Para mostrarte los dos o tres que te sirven y no hacerte perder tiempo con el resto,<span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿lo estás mirando más para <b class="enf">vivir</b> o como <b class="enf">inversión</b>?<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="tip-box">
       <strong>Por qué funciona:</strong> la etiqueta ("parece que primero querés ver qué hay") le muestra que la escuchaste sin ponerte a la defensiva. Darle la información primero cumple con lo que pidió y respeta cómo compra el público argentino: desconfía de quien pregunta antes de mostrar. La pregunta queda al final como pregunta de Situación de SPIN, de opción cerrada (vivir o invertir), y con un "porque" que es para ella: ver menos opciones y mejores. Si contesta, seguís con el dolor de ese camino (paso "para vivir" o "para invertir") y con la <a href="#etapa-3">Etapa 3</a>.
@@ -859,15 +883,15 @@
     <h4 class="subsection-title">Base fría o lista sin datos · llamada en frío</h4>
     <div class="script-box">
       <span class="label">Dólares quietos</span>
-      Hola, Marcelo, soy [tu nombre], de Áureo, el desarrollador de NOOK, un edificio en construcción en San Isidro. Te llamo porque hablo con mucha gente que tiene dólares ahorrados y quietos, y que siente que no le rinden. ¿Te pasa algo parecido o ya los tenés invertidos?
+      Hola, Marcelo, soy [tu nombre], de Áureo, el desarrollador de NOOK, un edificio en construcción en San Isidro. Te llamo porque hablo con mucha gente que tiene dólares ahorrados y quietos, y que siente que no le rinden. ¿Te pasa algo parecido o ya los tenés invertidos?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Alquiler</span>
-      … Te llamo porque mucha gente de San Fernando y Victoria me cuenta que en cada renovación paga más y sigue sin nada propio. ¿Es tu situación, o ya tenés vivienda propia?
+      … Te llamo porque mucha gente de San Fernando y Victoria me cuenta que en cada renovación paga más y sigue sin nada propio. ¿Es tu situación, o ya tenés vivienda propia?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Dejar algo armado</span>
-      … Te llamo porque muchas personas me dicen que quieren dejarles algo armado a los hijos, pero no tienen el monto entero para comprar un terminado. ¿Te lo planteaste alguna vez o todavía no?
+      … Te llamo porque muchas personas me dicen que quieren dejarles algo armado a los hijos, pero no tienen el monto entero para comprar un terminado. ¿Te lo planteaste alguna vez o todavía no?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <p>Un solo dolor por llamada. Si dice "no, ya lo tengo resuelto": "Bárbaro, entonces no te quito más tiempo. ¿Te puedo escribir si sale algo que te pueda servir?" Y tarea de nutrición en Kommo.</p>
 
@@ -885,15 +909,15 @@
 
     <div class="script-box">
       <span class="label">Dolor: alquiler</span>
-      NOOK es un edificio de 2 y 3 ambientes en San Isidro, lo construye Áureo, que ya entregó diez obras, y se entrega en 2029. La idea es que mientras se construye pagues una cuota y que cuando te mudes ya sea tuyo. Lo importante: durante la obra vas a pagar cuota y alquiler a la vez. Por eso el plan se arma al revés: primero vemos cuánto podés sostener por mes sin ahogarte, y de ahí sale la unidad. Con lo que pagás hoy de alquiler, ¿cuánto más podrías poner por mes sin que te cambie la vida?
+      NOOK es un edificio de 2 y 3 ambientes en San Isidro, lo construye Áureo, que ya entregó diez obras, y se entrega en 2029. La idea es que mientras se construye pagues una cuota y que cuando te mudes ya sea tuyo. Lo importante: durante la obra vas a pagar cuota y alquiler a la vez. Por eso el plan se arma al revés: primero vemos cuánto podés sostener por mes sin ahogarte, y de ahí sale la unidad. Con lo que pagás hoy de alquiler,<span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿cuánto más podrías poner por mes <span class="lento" title="Más lento">sin que te cambie la vida</span>?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Alquiler · después, el anticipo</span>
-      Para arrancar se recomienda alrededor de un 30%, pero se puede menos y se compensa con la cuota. ¿Tenés algo ahorrado para eso, o lo armamos con más cuotas?
+      Para arrancar se recomienda alrededor de un 30%, pero se puede menos y se compensa con la cuota. ¿Tenés algo ahorrado para eso, o lo armamos con más cuotas?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Dolor: dólares quietos</span>
-      NOOK es un fideicomiso al costo, así que no comprás a precio de terminado. Entrás con un anticipo y el resto en cuotas hasta 2029, en un activo real que ves avanzar. Hay dos formas: un plan corto en 12 cuotas fijas, a mejor valor, o uno largo que acompaña el ritmo de la obra. Para saber cuál te conviene: de lo que tenés quieto, ¿cuánto pondrías de entrada y cuánto preferís ir sumando por mes?
+      NOOK es un fideicomiso al costo, así que no comprás a precio de terminado. Entrás con un anticipo y el resto en cuotas hasta 2029, en un activo real que ves avanzar. Hay dos formas: un plan corto en 12 cuotas fijas, a mejor valor, o uno largo que acompaña el ritmo de la obra. Para saber cuál te conviene:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> de lo que tenés quieto, ¿cuánto pondrías de entrada y cuánto preferís ir sumando por mes?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Dolor: no llega al total</span>
@@ -901,9 +925,9 @@
     </div>
     <div class="script-box">
       <span class="label">Dolor: dejar algo armado</span>
-      Se arma en cuotas, sin desprenderte de todo junto, y a la entrega queda a nombre de quien vos decidas. Para que no te descapitalice, ¿qué parte pondrías de entrada y qué cuota podrías sostener sin resignar nada importante?
+      Se arma en cuotas, sin desprenderte de todo junto, y a la entrega queda a nombre de quien vos decidas. Para que no te descapitalice, ¿qué parte pondrías de entrada y qué cuota podrías sostener sin resignar nada importante?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
-    <div class="script-box"><span class="label">Timing, en clave de dolor (si no salió solo)</span>¿Para cuándo te gustaría tener esto resuelto?</div>
+    <div class="script-box"><span class="label">Timing, en clave de dolor (si no salió solo)</span>¿Para cuándo te gustaría tener esto resuelto?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
 
     <div class="tip-box">
       <strong>Por qué funciona:</strong> le diste lo que quería saber antes de pedirle algo. La pregunta de plata sale como cuidado ("sin ahogarte", "sin descapitalizarte"), no como evaluación. La referencia del 30% y los dos planes le dan un marco: sin marco, la gente dice "no sé" o tira un número para salir del paso. "Te digo con sinceridad si llega o no" baja la desconfianza porque muestra que lo podés dejar ir.
@@ -924,13 +948,13 @@
     </table>
     <div class="script-box">
       <span class="label">Si no califica para NOOK · sin cerrar la puerta</span>
-      Te agradezco que me lo digas así de claro. Con esos números, NOOK hoy te obligaría a estirarte de más y no te lo quiero recomendar. ¿Sería una locura que te muestre otra opción de Áureo que sí entra en lo que me contaste?
+      Te agradezco que me lo digas así de claro. Con esos números, NOOK hoy te obligaría a estirarte de más y no te lo quiero recomendar.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Sería una locura que te muestre otra opción de Áureo que sí entra en lo que me contaste?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
 
     <h4 class="subsection-title" id="obj-mal-momento">Si dice "estoy ocupado" / "mal momento"</h4>
     <p>Muchas veces no es verdad: no quiere estar al teléfono. Por eso, antes de cortar le dejás el número en una línea y le das <strong>dos salidas: otra llamada o WhatsApp</strong>. Cualquiera de las dos sirve.</p>
     <div class="script-box">
-      Me imaginaba, te lo hago en una línea: se entra con un anticipo desde USD [anticipo mínimo del cotizador] y el resto en cuotas durante la obra, con entrega en 2029. ¿Te llamo mañana a las 11 o preferís que te lo mande por WhatsApp a este número?
+      <span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>Me imaginaba,<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> te lo hago en una línea:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> se entra con <span class="lento" title="Más lento">un anticipo desde USD [anticipo mínimo del cotizador]</span> y el resto en cuotas durante la obra, con entrega en 2029.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Te llamo mañana a las 11 o preferís que te lo mande por WhatsApp a este número?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <ul>
       <li><strong>Elige hora:</strong> estaba ocupado de verdad. Tarea en Kommo con esa hora, y cumplís.</li>
@@ -940,13 +964,13 @@
 
     <h4 class="subsection-title">Recontacto ya calificado · pedido en 10 segundos, atado a su dolor</h4>
     <div class="script-box">
-      Hola, Laura. Soy [tu nombre], de NOOK San Isidro. Hablamos en [mes]. ¿Sería muy inoportuno si te robo un minuto? … Me quedó dando vueltas lo que me dijiste de [su dolor, en sus palabras: "no querés seguir tirando plata en alquiler"]. Desde que hablamos [novedad real: avance de obra / nuevo plan de pago] y creo que te acerca a resolverlo. Te lo muestro en 30 minutos. ¿Martes o miércoles?
+      Hola, Laura. Soy [tu nombre], de NOOK San Isidro. Hablamos en [mes]. ¿Sería muy inoportuno si te robo un minuto? … Me quedó dando vueltas lo que me dijiste de [su dolor, en sus palabras: "no querés seguir tirando plata en alquiler"]. Desde que hablamos [novedad real: avance de obra / nuevo plan de pago] y creo que te acerca a resolverlo. Te lo muestro en 30 minutos. ¿Martes o miércoles?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <p>Sin novedad real no hay recontacto: la novedad es el "porque" y el dolor es lo que le da sentido. Si de aquella charla no te quedaron anticipo y cuota, no es un calificado: usá la apertura de pauta.</p>
 
     <h4 class="subsection-title" id="obj-desconfia">Lead que desconfía · auditoría de acusaciones</h4>
     <div class="script-box">
-      Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable. Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. Pero antes contame: ¿qué te gustaría resolver con esto?
+      Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. Pero antes contame:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿qué te gustaría resolver con esto?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <p>Una vez por llamada y solo si hay señal de desconfianza: en un lead tibio y amable sobra.</p>
 
@@ -958,34 +982,34 @@
   <section id="etapa-3">
     <h3 class="section-title">Etapa 3 · Profundizar el dolor (2-3 minutos)</h3>
     <p><strong>Acá se gana o se pierde la llamada.</strong> Si el lead no siente lo que le cuesta quedarse como está, la reunión no tiene sentido para él y el "lo pienso" está asegurado. Secuencia corta: <strong>una de Problema, una de Implicación, decisor</strong>. Tres preguntas en total, y entre una y otra le devolvés algo (un dato, un caso, una etiqueta): si encadenás dos preguntas sin dar nada, suena a formulario y corta. Preguntas de <em>qué</em>, <em>cuánto</em> y <em>cómo</em>, nunca de <em>por qué</em>. Las preguntas exactas por dolor están en el <a href="#mapa-dolores">mapa</a>.</p>
-    <div class="script-box"><span class="label">Ejemplo · pregunta, dato, pregunta</span>Lead: "Para alquilarlo." Vos: "Tiene sentido, en San Isidro los 2 ambientes nuevos se alquilan rápido. Y la plata para el anticipo, ¿hoy la tenés en algo que te rinda o está parada?"</div>
+    <div class="script-box"><span class="label">Ejemplo · pregunta, dato, pregunta</span>Lead: "Para alquilarlo." Vos: "Tiene sentido,<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> en San Isidro los 2 ambientes nuevos se alquilan rápido.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> Y la plata para el anticipo, ¿hoy la tenés en algo que te rinda o está parada?"</div>
 
     <h4 class="subsection-title">P · Problema (una, para que lo cuente)</h4>
-    <div class="script-box"><span class="label">P — Vivienda</span>¿Qué es lo que más te pesa de dónde estás hoy: el alquiler, el espacio, la zona?</div>
-    <div class="script-box"><span class="label">P — Inversor</span>Esos ahorros hoy, ¿te están generando algo? … ¿Qué te frenó hasta ahora de moverlos?</div>
+    <div class="script-box"><span class="label">P — Vivienda</span>¿Qué es lo que más te pesa de dónde estás hoy:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> el alquiler,<span class="mk mk-p" title="Pausa de un segundo">⏸</span> el espacio,<span class="mk mk-p" title="Pausa de un segundo">⏸</span> la zona?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
+    <div class="script-box"><span class="label">P — Inversor</span>Esos ahorros hoy, ¿te están generando algo?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> ¿Qué te frenó hasta ahora de moverlos?</div>
 
     <h4 class="subsection-title">I · Implicación (una, con sus números)</h4>
     <p>Elegí <strong>una</strong> de las dos de cada línea: la segunda solo si viene conversando suelto.</p>
-    <div class="script-box"><span class="label">I — Vivienda</span>¿Cuánto te subió desde que empezó el contrato? … Y si seguís así hasta 2029, ¿cuánto se te fue en alquiler en total?</div>
-    <div class="script-box"><span class="label">I — Inversor</span>¿Hace cuánto que esa plata está quieta? … Si dentro de dos años sigue igual, ¿qué sentís que perdiste?</div>
-    <div class="script-box"><span class="label">I — No llega al total</span>Si esperás a juntar el total, ¿cuántos años calculás? … ¿Y qué pasó en ese tiempo con lo que venías mirando?</div>
-    <div class="script-box"><span class="label">I — Dejar algo armado</span>¿Para cuándo te gustaría que esté? … Si lo seguís postergando, ¿qué cambia para ellos?</div>
+    <div class="script-box"><span class="label">I — Vivienda</span>¿Cuánto te subió desde que empezó el contrato?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> <span class="lento" title="Más lento">Y si seguís así hasta 2029,</span> ¿cuánto se te fue en alquiler en total?</div>
+    <div class="script-box"><span class="label">I — Inversor</span>¿Hace cuánto que esa plata está quieta?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> <span class="lento" title="Más lento">Si dentro de dos años sigue igual,</span> ¿qué sentís que perdiste?</div>
+    <div class="script-box"><span class="label">I — No llega al total</span>Si esperás a juntar el total, ¿cuántos años calculás?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> ¿Y qué pasó en ese tiempo con lo que venías mirando?</div>
+    <div class="script-box"><span class="label">I — Dejar algo armado</span>¿Para cuándo te gustaría que esté?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> Si lo seguís postergando, ¿qué cambia para ellos?</div>
     <div class="tip-box">
       <strong>Si viene conversando, que haga la cuenta él;</strong> un número que dice él pesa más que uno que le decís vos. <strong>Si contesta corto, la cuenta la hacés vos y se la decís como dato:</strong> "Con lo que pagás de alquiler, en tres años se van unos USD 25 mil, más que el anticipo." Pedirle que calcule a alguien que ya está incómodo es la pregunta que corta la llamada. Después del número, silencio.
     </div>
 
     <h4 class="subsection-title">Cisne negro (si se da, si no en la reunión)</h4>
-    <div class="script-box"><span class="label">Cisne negro</span>¿Qué te hizo empezar a mirar justo ahora?</div>
+    <div class="script-box"><span class="label">Cisne negro</span>¿Qué te hizo empezar a mirar justo ahora?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
     <p>La respuesta suele traer el dato que cambia todo: vende otra propiedad, cobra una herencia, se casa, el contrato vence en marzo. Anotalo en Kommo palabra por palabra. No cuenta como una de las tres preguntas: hacela solo si la charla ya fluye; si no, guardala para la reunión.</p>
 
     <h4 class="subsection-title">Decisor oculto</h4>
-    <div class="script-box"><span class="label">Decisor</span>¿Cómo se toma esta decisión en tu casa?</div>
+    <div class="script-box"><span class="label">Decisor</span>¿Cómo se toma esta decisión en tu casa?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
     <p>Si aparece pareja, socio o contador, la reunión se pide con esa persona presente: "¿Sería una locura que vengan los dos?"</p>
 
     <div class="highlight-box">
       <strong>Mientras escuchás: espejo y etiqueta.</strong><br>
-      <strong>Espejo:</strong> repetí sus últimas 2-3 palabras en tono de pregunta y callate. Lead: "Estoy cansado de tirar plata en alquiler." Vos: "¿Tirar plata?"<br>
-      <strong>Etiqueta:</strong> nombrá lo que parece sentir. "Parece que te pesa más la sensación de no tener nada propio que la plata en sí." Después, silencio.<br>
+      <strong>Espejo:</strong> repetí sus últimas 2-3 palabras en tono de pregunta y callate. Lead: "Estoy cansado de tirar plata en alquiler." Vos: "¿Tirar plata?"<span class="mk mk-u" title="Tono que sube: curiosidad">↗</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span><br>
+      <strong>Etiqueta:</strong> nombrá lo que parece sentir. "Parece que te pesa más la sensación de no tener nada propio que la plata en sí."<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span> Después, silencio.<br>
       Las etiquetas tienen que ser sinceras: se nombra lo que de verdad parece sentir, no lo que te conviene. Una o dos técnicas por llamada; apiladas suenan a guion.
     </div>
   </section>
@@ -1009,28 +1033,28 @@
     <h3 class="section-title">Etapa 5 · Objeciones: ancla → vuelta al dolor → pedido</h3>
     <p><strong>El primer "no" casi nunca es una objeción real: es un reflejo.</strong> No se rebate. Se ancla (frase corta para no reaccionar), se desarma con algo que no espera de un vendedor (etiqueta, espejo, quitar la pelea) y, siempre que se pueda, <strong>se vuelve al dolor que te contó</strong>: la objeción pierde fuerza cuando el lead recuerda lo que quiere resolver. Después se vuelve a pedir. Si al segundo intento sigue en no, soltás con respeto y agendás recontacto. Versiones largas en la <a href="#obj-1">Parte 5</a>.</p>
 
-    <div class="script-box"><span class="label">"No me interesa"</span>Tiene sentido, la mayoría no está buscando cuando la llaman. Una sola cosa antes de cortar: lo de [alquiler / los ahorros quietos], ¿ya lo tenés resuelto por otro lado? … [si dice que no] … Entonces no te quiero vender nada hoy. Solo ver si esto te sirve para resolverlo. ¿15 minutos el jueves?</div>
+    <div class="script-box"><span class="label">"No me interesa"</span>Tiene sentido,<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> la mayoría no está buscando cuando la llaman.<span class="mk mk-p" title="Pausa de un segundo">⏸</span> Una sola cosa antes de cortar: lo de [alquiler / los ahorros quietos], ¿ya lo tenés resuelto por otro lado?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> [si dice que no]<span class="mk mk-p" title="Pausa de un segundo">⏸</span> Entonces <span class="lento" title="Más lento">no te quiero vender nada hoy</span>.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> Solo ver si esto te sirve para resolverlo. ¿15 minutos el jueves?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
 
-    <div class="script-box"><span class="label">"Mandame info" / "Pasame todo por WhatsApp"</span>Te la mando. Para mandarte lo que sirve y no llenarte de PDFs: ¿qué querés resolver, dejar de alquilar o que esos ahorros rindan? … [escuchar, y una implicación] … Eso se entiende mucho mejor con tus números delante. ¿Te lo muestro mañana a las 11 o a las 18?</div>
+    <div class="script-box"><span class="label">"Mandame info" / "Pasame todo por WhatsApp"</span>Te la mando. Para mandarte lo que sirve y no llenarte de PDFs: ¿qué querés resolver, dejar de alquilar o que esos ahorros rindan?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> [escuchar, y una implicación]<span class="mk mk-p" title="Pausa de un segundo">⏸</span> Eso se entiende mucho mejor con tus números delante. ¿Te lo muestro mañana a las 11 o a las 18?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
     <p>La info sale igual, en el momento (nooksanisidro.com). Tarea en Kommo a 24-48 h: "¿Qué te llamó la atención?"</p>
 
-    <div class="script-box"><span class="label">"Estoy ocupado"</span>Me imaginaba. Te lo corto acá. ¿Te llamo mañana a las 9:30 o a las 13?</div>
+    <div class="script-box"><span class="label">"Estoy ocupado"</span><span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>Me imaginaba,<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> te lo hago en una línea:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> se entra con <span class="lento" title="Más lento">un anticipo desde USD [X]</span> y el resto en cuotas durante la obra.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Te llamo mañana a las 11 o preferís que te lo mande por WhatsApp? <a href="#obj-mal-momento" style="color:var(--beige)">(versión completa)</a></div>
 
-    <div class="script-box"><span class="label">"Lo tengo que pensar" · etiqueta + silencio</span>Parece que hay algo que todavía no te termina de cerrar. … [dejá que hable] … ¿Qué es lo que más te hace ruido: el proyecto, la zona, la forma de pago u otra cosa?</div>
+    <div class="script-box"><span class="label">"Lo tengo que pensar" · etiqueta + silencio</span>Parece que hay algo que todavía no te termina de cerrar.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span> ¿Qué es lo que más te hace ruido: el proyecto, la zona, la forma de pago u otra cosa?</div>
     <p>Si no suelta nada, volvé al dolor con sus palabras: "Me dijiste que [no querés seguir pagando alquiler]. Si esto queda sin resolver unos meses más, ¿qué cambia para vos?"</p>
 
-    <div class="script-box"><span class="label">"Es caro" · espejo</span>¿Caro? … [silencio: te va a decir contra qué compara; esa es la objeción real] … Puede ser, y si no da, no da. Comparalo también con lo que te cuesta seguir como estás: [lo que pagás de alquiler / lo que no rinden esos ahorros]. Casi siempre se resuelve con forma de pago, no con precio. ¿Lo miramos el martes?</div>
+    <div class="script-box"><span class="label">"Es caro" · espejo</span>¿Caro?<span class="mk mk-u" title="Tono que sube: curiosidad">↗</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span> [te va a decir contra qué compara: esa es la objeción real] Puede ser, y si no da, no da.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> Comparalo también con lo que te cuesta seguir como estás: [lo que pagás de alquiler / lo que no rinden esos ahorros]. Casi siempre se resuelve con forma de pago, no con precio. ¿Lo miramos el martes?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
 
-    <div class="script-box"><span class="label">"No me alcanza"</span>¿Cuánto te queda corto? … Pregunto porque el anticipo y la cantidad de cuotas se pueden mover: lo publicado no siempre refleja lo que tenés que poner por mes. ¿Lo armamos juntos el jueves?</div>
+    <div class="script-box"><span class="label">"No me alcanza"</span>¿Cuánto te queda corto?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> Pregunto porque el anticipo y la cantidad de cuotas se pueden mover: lo publicado no siempre refleja lo que tenés que poner por mes. ¿Lo armamos juntos el jueves?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
     <p>Si de verdad no llega a ninguna unidad de NOOK, no forzar: ofrecer el producto que esté dentro de su presupuesto.</p>
 
-    <div class="script-box"><span class="label">"Estoy viendo otros proyectos"</span>Buenísimo, es lo que hay que hacer. ¿Cuáles estás mirando? … ¿Y cuál te resuelve mejor lo de [su dolor]? … Te muestro NOOK en 30 minutos y lo ponés al lado de los otros con los mismos criterios: m² reales, forma de pago y quién construye. ¿Viernes?</div>
+    <div class="script-box"><span class="label">"Estoy viendo otros proyectos"</span>Buenísimo, es lo que hay que hacer.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span> ¿Cuáles estás mirando?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> ¿Y cuál te resuelve mejor lo de [su dolor]?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> Te muestro NOOK en 30 minutos y lo ponés al lado de los otros con los mismos criterios: m² reales, forma de pago y quién construye. ¿Viernes?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
 
-    <div class="script-box"><span class="label">"Yo te llamo" / "Llamame más adelante"</span>Dale. ¿Qué tendría que pasar de acá a ese momento para que tenga sentido que hablemos? … Perfecto, te llamo el [fecha] a las [hora]. Si no podés, no atendés y lo movemos.</div>
+    <div class="script-box"><span class="label">"Yo te llamo" / "Llamame más adelante"</span>Dale. ¿Qué tendría que pasar de acá a ese momento para que tenga sentido que hablemos?<span class="mk mk-s" title="Callate hasta que hable">silencio</span> Perfecto, te llamo el [fecha] a las [hora]. Si no podés, no atendés y lo movemos.</div>
 
-    <div class="script-box"><span class="label">"Pasame los números por escrito"</span>Te paso un rango. El número puntual depende de tu anticipo y la cuota que te sirve, y mandado suelto se termina comparando contra cotizaciones armadas con otros criterios. ¿Lo armamos en 30 minutos con tus números?</div>
+    <div class="script-box"><span class="label">"Pasame los números por escrito"</span>Te paso un rango. El número puntual depende de tu anticipo y la cuota que te sirve, y mandado suelto se termina comparando contra cotizaciones armadas con otros criterios. ¿Lo armamos en 30 minutos con tus números?<span class="mk mk-s" title="Callate hasta que hable">silencio</span></div>
 
-    <div class="script-box"><span class="label">"¿Me hacés un descuento?"</span>¿Cómo hago para llevarle ese número a la desarrolladora?</div>
+    <div class="script-box"><span class="label">"¿Me hacés un descuento?"</span><span class="lento" title="Más lento">¿Cómo hago para llevarle ese número a la desarrolladora?</span><span class="mk mk-b" title="Tono que baja: afirmás">↘</span></div>
     <div class="warn-box">
       Es un no sin decir no. Las condiciones las define Áureo: no ofrecer nada que no esté autorizado. Si hay margen, se cede en tramos cada vez más chicos y se cierra con algo no monetario (plan de pago, cochera).
     </div>
@@ -1041,20 +1065,20 @@
     <p><strong>Dos condiciones para pedir la reunión: que califique y que diga "exacto".</strong> "Tenés razón" o "sí, sí" suele significar "dejame tranquilo"; "exacto" significa que se sintió entendido. El resumen tiene que incluir su dolor y lo que le cuesta, con sus palabras.</p>
     <div class="script-box">
       <span class="label">Resumen con sus palabras</span>
-      A ver si entendí bien: hace cuatro años que alquilás, en cada ajuste te sube, y en total ya se te fue más de lo que tenías ahorrado para el anticipo. Lo que querés es dejar de pagarle a otro y tener algo tuyo para cuando se entregue. ¿Es así?
+      A ver si entendí bien:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> hace cuatro años que alquilás, en cada ajuste te sube, y en total ya se te fue más de lo que tenías ahorrado para el anticipo. Lo que querés es dejar de pagarle a otro y tener algo tuyo para cuando se entregue.<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Es así?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <p>Si corrige algo, ajustás y volvés a resumir. Cuando dice "exacto", va el puente de Necesidad-beneficio:</p>
     <div class="script-box">
       <span class="label">N · Necesidad-beneficio</span>
-      Si ves un plan que te permita dejar de [su dolor] con ese anticipo y esa cuota, ¿eso te ayudaría a decidir?
+      Si ves un plan que te permita dejar de [su dolor] con ese anticipo y esa cuota, ¿eso te ayudaría a decidir?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Pedido · dos opciones, día y hora</span>
-      Entonces hagamos esto: 30 minutos, te muestro el proyecto con el tour virtual y te llevás el plan armado con tus números para resolver lo del [alquiler / los ahorros]. ¿Jueves a las 11 o viernes a las 18?
+      Entonces hagamos esto:<span class="mk mk-p" title="Pausa de un segundo">⏸</span> 30 minutos, te muestro el proyecto con el tour virtual y te llevás el plan armado con tus números para resolver lo del [alquiler / los ahorros].<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-p" title="Pausa de un segundo">⏸</span> ¿Jueves a las 11 o viernes a las 18?<span class="mk mk-b" title="Tono que baja: afirmás">↘</span><span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="script-box">
       <span class="label">Variante orientada al no</span>
-      ¿Sería una locura que nos veamos 30 minutos el jueves y lo armamos con tus números?
+      ¿Sería una locura que nos veamos 30 minutos el jueves y lo armamos con tus números?<span class="mk mk-s" title="Callate hasta que hable">silencio</span>
     </div>
     <div class="highlight-box">
       <strong>Acotás hasta que te dé un día.</strong> Hasta tres intentos con horarios distintos. Al tercero sin día concreto no es lead activo: tarea de seguimiento y al siguiente de la lista.
@@ -1810,6 +1834,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
         <tr><td>Noviembre 2026</td><td><strong>v2.6</strong></td><td>Etapa 2: "Calificar dentro del dolor" pasa a "Calificar desde la solución". Antes de anticipo y cuota se cuenta NOOK en 20-30 segundos con los datos que resuelven el dolor del lead, se pide su reacción y los números se preguntan como diseño de su plan, con referencia (30% recomendado, plan corto o largo). Guiones por dolor</td></tr>
         <tr><td>Noviembre 2026</td><td><strong>v2.7</strong></td><td>Etapa 2: nueva respuesta para "contame vos qué tienen, no que te cuente yo" (caso Marianela). Etiqueta + concesión, la info de NOOK en 20 segundos y la pregunta vivir/invertir al final como filtro a favor del lead. Frases a evitar: "entiendo perfectamente", "no es por curiosidad", tuteo</td></tr>
         <tr><td>Noviembre 2026</td><td>v2.7</td><td>Nuevo buscador "Objeción rápida": botón fijo, tecla O y acceso desde el menú. Se escribe lo que dijo el lead con sus palabras y aparece la frase lista para decir, la clave y el link a la versión completa. Reúne las 18 objeciones de la Etapa 2, la Etapa 5, la Parte 5 y la decisión familiar</td></tr>
+        <tr><td>Noviembre 2026</td><td><strong>v2.9</strong></td><td>Marcas de tono y tiempo en los guiones de las Etapas 2, 3, 5 y 6: pausa, silencio, tono que baja o sube, más lento, acento y sonrisa. Leyenda al inicio de la Etapa 2 y regla para empujar: pausa después del número, silencio después de la pregunta, pedido con tono que baja</td></tr>
         <tr><td>Noviembre 2026</td><td><strong>v2.8</strong></td><td>Apertura "dar antes de preguntar": llamadas que se cortaban en la pregunta de los dólares quietos. La pauta abre con NOOK y un número real (anticipo y cuota desde, del cotizador) y una sola pregunta de elección que no toca su plata. Etapa 3 se achica a tres preguntas (Problema, una Implicación, decisor) con un dato entre cada una; cisne negro opcional; si el lead contesta corto, la cuenta de la implicación la hace el vendedor. Apertura sin "¿te agarro en mal momento?" (el "sí" suele ser excusa); "estoy ocupado" ahora deja el número en una línea y ofrece llamada u otro canal (WhatsApp)</td></tr>
       </tbody>
     </table>
@@ -1818,7 +1843,7 @@ Hola {{1}}, después de lo que charlamos, NOOK San Isidro con entrega en marzo 2
   <hr class="divider" />
 
   <footer class="mt-12 pt-8 text-sm" style="color: var(--muted); border-top: 1px solid var(--beige);">
-    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.8</div>
+    <div class="font-serif text-xl mb-2" style="color: var(--verde-nook);">Manual Comercial · v2.9</div>
     <p class="mb-1"><strong>Áureo Desarrollos</strong></p>
     <p>info@aureo.com.ar · +54 11 7369-7105 (principal) · +54 11 2872-1351 (secundario) · aureo.com.ar</p>
     <p class="mt-4 text-xs">Documento operativo interno. Fuente única de verdad para el equipo comercial.</p>
