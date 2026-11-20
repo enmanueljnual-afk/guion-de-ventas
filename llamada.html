@@ -290,6 +290,9 @@ const N = {
   o_descuento: { et: 'Objeción', t: '"¿Me hacés un descuento?"', obj: true,
     s: [['', '~¿Cómo hago para llevarle ese número a la desarrolladora?~↘']],
     tip: 'Las condiciones las define Áureo: no ofrecer nada que no esté autorizado.' },
+  corto: { et: 'Fin', t: 'Cortó / no quiso seguir', obj: true,
+    tip: 'Registralo igual: el tablero usa estas llamadas para ver en qué paso se cortan.',
+    o: [['Registrar la llamada', 'fin', '', { resultado: 'Cortó la llamada' }], ['Volver a donde estaba', '__back']] },
   o_desconfia: { et: 'Objeción', t: 'Desconfía', obj: true,
     s: [['Auditoría de acusaciones', 'Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable.↘⏸ Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. Pero antes contame:⏸ ¿qué te gustaría resolver con esto?{S}']],
     tip: 'Una vez por llamada y solo si hay señal de desconfianza.' },
@@ -396,6 +399,15 @@ function note() {
     .forEach(([l,k]) => st[k] && L.push(`${l}: ${st[k]}`));
   const falta = REQ.filter(k => !st[k]).map(k => LABEL[k]);
   if (falta.length) L.push(`Faltó preguntar: ${falta.join(', ')}`);
+  // Líneas para el tablero de llamadas (las lee el puente desde Kommo)
+  const TIPO = { p1: 'Pauta', f1: 'Base fría', r1: 'Recontacto' };
+  const tipo = hist.map(x => TIPO[x]).find(Boolean);
+  if (tipo) L.push(`Tipo: ${tipo}`);
+  const objs = [...new Set(hist.filter(x => N[x] && N[x].obj && x !== 'corto').map(x => N[x].t))];
+  if (objs.length) L.push(`Objeciones: ${objs.join('; ')}`);
+  const pasos = hist.filter(x => N[x] && !N[x].obj && x !== 'fin' && x !== 'inicio');
+  if (pasos.length) L.push(`Último paso: ${N[pasos[pasos.length - 1]].et} · ${N[pasos[pasos.length - 1]].t}`);
+  L.push(`Ruta: ${hist.filter(x => x !== 'fin').join(' > ')}`);
   return L.join('\n');
 }
 function go(id, set) {
