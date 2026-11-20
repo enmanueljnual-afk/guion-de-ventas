@@ -140,7 +140,7 @@ const N = {
     s: [['Una sola pregunta', '¿Qué es lo que más te pesa de dónde estás hoy:⏸ el alquiler,⏸ el espacio,⏸ la zona?{S}']],
     tip: 'Mientras habla: espejo ("¿Tirar plata?"↗ y callate). Anotá el dolor con sus palabras.',
     ask: ['dolor', 'Dolor, con sus palabras'],
-    o: [['El alquiler', 'v3'], ['El espacio o la zona', 'v3e', 'Se agrandó la familia, quiere mudarse']] },
+    o: [['El alquiler', 'v3', '', { dolor: '__keep__el alquiler' }], ['El espacio o la zona', 'v3e', 'Se agrandó la familia, quiere mudarse', { dolor: '__keep__el espacio / la zona' }]] },
   v3: { et: 'Vivir', t: 'I · Implicación (una)',
     s: [['', 'Tiene sentido.↘⏸ ¿Cuánto te subió desde que empezó el contrato?{S}'], ['Solo si viene conversando suelto', '~Y si seguís así hasta 2029,~ ¿cuánto se te fue en alquiler en total?{S}']],
     tip: 'Si contesta corto, la cuenta la hacés vos y se la decís como dato: "Con lo que pagás, en tres años se van unos USD 25 mil, más que el anticipo." Después, silencio.',
