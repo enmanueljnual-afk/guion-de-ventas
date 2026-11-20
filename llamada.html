@@ -82,6 +82,7 @@
       <div><label>Anticipo disponible</label><input data-v="anticipo" placeholder="USD"></div>
       <div><label>Cuota cómoda</label><input data-v="cuota" placeholder="USD por mes"></div>
       <div><label>Decisor</label><input data-v="decisor" placeholder="Pareja, socio…"></div>
+      <div><label>Presupuesto máximo</label><input data-v="tope" placeholder="USD precio total"></div>
       <div class="full"><label>Dolor, con sus palabras</label><input data-v="dolor" placeholder='"no quiero seguir tirando plata en alquiler"'></div>
       <div class="full"><label>Cisne negro / notas</label><textarea data-v="notas" rows="2"></textarea></div>
       <div class="cfg"><label>Anticipo mínimo (cotizador)</label><input data-v="anticipoMin" placeholder="ej. 30.000"></div>
@@ -161,7 +162,11 @@ const N = {
   /* ── Inversión ── */
   i1: { et: 'Inversión', t: 'Dar y preguntar fácil',
     s: [['', 'Para inversión, la gracia es que entrás **a precio de pozo** y pagás en cuotas, sin poner todo junto.↘⏸ ¿Lo pensás más para alquilarlo cuando esté terminado o para venderlo?{S}']],
-    o: [['Para alquilarlo', 'i2', '', { situacion: 'Para alquilar' }], ['Para venderlo', 'i2', '', { situacion: 'Para vender' }]] },
+    o: [['Para alquilarlo', 'i2', '', { situacion: 'Para alquilar' }], ['Para venderlo', 'i2', '', { situacion: 'Para vender' }], ['"No lo sé todavía"', 'i1n']] },
+  i1n: { et: 'Inversión', t: 'No sabe si alquilar o vender',
+    s: [['Probado en llamada real', 'Tiene sentido,↘ es lo que la mayoría decide cerca de la entrega.⏸ Te doy las dos puntas: si lo vendés al terminar, lo compraste a precio de pozo y lo vendés a precio de terminado;⏸ si lo alquilás, te queda una renta en dólares todos los meses.↘⏸ Hoy, ¿qué te importa más: ~una renta todos los meses~ o ~que el capital crezca~?{S}']],
+    tip: 'El "no sé" es el motivo de la reunión: "eso es justo lo que vemos en 30 minutos, los dos números lado a lado". No cierres con "te mando la info y te llamo la semana que viene" sin día y hora.',
+    o: [['Renta mensual', 'i2', '', { situacion: 'Inversión: renta mensual' }], ['Que crezca el capital', 'i2', '', { situacion: 'Inversión: capital (vender)' }], ['Sigue sin saber', 'i2', '', { situacion: 'Inversión: no sabe si alquilar o vender' }]] },
   i2: { et: 'Inversión', t: '¿Ya compró en pozo?',
     s: [['', '¿Ya invertiste en pozo alguna vez?{S}']],
     o: [['Nunca', 'i100'], ['Sí', 'i3']] },
@@ -262,6 +267,10 @@ const N = {
     o: [['Sigue', 'p3']] },
   o_nointeresa: { et: 'Objeción', t: '"No me interesa"', obj: true,
     s: [['', 'Tiene sentido,↘ la mayoría no está buscando cuando la llaman.⏸ Una sola cosa antes de cortar: lo de {dolor}, ¿ya lo tenés resuelto por otro lado?{S}'], ['Si dice que no', 'Entonces ~no te quiero vender nada hoy~.↘ Solo ver si esto te sirve para resolverlo. ¿15 minutos el jueves?{S}']] },
+  o_precio: { et: 'Objeción', t: 'Pregunta el precio final o los metros', obj: true,
+    s: [['Responder directo y cerrar el rango', 'Te digo:⏸ los 2 ambientes, de 50 a 60 m², arrancan en ~USD 122.000~;⏸ los 3 ambientes, de 76 a 90 m², en ~USD 167.000~.↘⏸ Para mostrarte los que te sirven:⏸ ¿te movés más cerca de 120 o de 150?{S}']],
+    ask: ['tope', 'Presupuesto máximo (precio total)'],
+    tip: 'No preguntes "¿en qué rango te querés mover?": no se entiende. Dos números para elegir. Precios de nov 2026: confirmalos con la lista vigente.' },
   o_info: { et: 'Objeción', t: '"Mandame info" / "por WhatsApp"', obj: true,
     s: [['', 'Te la mando. Para mandarte lo que sirve y no llenarte de PDFs:⏸ ¿qué querés resolver, dejar de alquilar o que esos ahorros rindan?{S}'], ['Después de una implicación', 'Eso se entiende mucho mejor con tus números delante.⏸ ¿Te lo muestro mañana a las 11 o a las 18?{S}']],
     tip: 'La info sale igual, en el momento (nooksanisidro.com). Tarea a 24-48 h: "¿Qué te llamó la atención?"' },
@@ -312,7 +321,7 @@ function sync(extra) {
   if (!st.lead_id) return;
   clearTimeout(syncT);
   syncT = setTimeout(async () => {
-    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, ...(extra || {}) }); kommoOk = true; }
+    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, tope: st.tope, ...(extra || {}) }); kommoOk = true; }
     catch (e) { kommoOk = false; }
     chips();
   }, extra ? 0 : 1200);
@@ -336,6 +345,7 @@ async function buscarLead() {
       // Lo que ya guardó el guion antes: "Anticipo USD X · cuota USD Y/mes"
       const ma = /Anticipo USD ([^·]+)/.exec(l.formas || ''), mc = /cuota USD ([^/]+)\/mes/.exec(l.formas || '');
       if (ma) st.anticipo = ma[1].trim(); if (mc) st.cuota = mc[1].trim();
+      const mt = /Hasta USD (.+)/.exec(l.rango || ''); if (mt) st.tope = mt[1].trim();
       render();
     });
   } catch (e) {
@@ -345,9 +355,9 @@ async function buscarLead() {
   chips();
 }
 
-const KEYS = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','notas','dia','resultado','tel','lead_id','lead_txt','anticipoMin','cuotaMin'];
+const KEYS = ['tope','nombre','perfil','situacion','dolor','anticipo','cuota','decisor','notas','dia','resultado','tel','lead_id','lead_txt','anticipoMin','cuotaMin'];
 const CFG = ['anticipoMin','cuotaMin'];
-const LABEL = { nombre:'Lead', perfil:'Perfil', situacion:'Situación', dolor:'Dolor', anticipo:'Anticipo', cuota:'Cuota', decisor:'Decisor', dia:'Reunión', anticipoMin:'Ant. mín', cuotaMin:'Cuota mín' };
+const LABEL = { tope:'Tope', nombre:'Lead', perfil:'Perfil', situacion:'Situación', dolor:'Dolor', anticipo:'Anticipo', cuota:'Cuota', decisor:'Decisor', dia:'Reunión', anticipoMin:'Ant. mín', cuotaMin:'Cuota mín' };
 let st = {}, hist = [];
 const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
 try { st = JSON.parse(store.get('llamada') || '{}') || {}; hist = st._hist || []; } catch(e) { st = {}; }
@@ -371,7 +381,7 @@ function save() {
 }
 function chips() {
   // ponytail: solo lo ya completado; lo vacío se carga desde ✎ Datos
-  const show = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','dia'].filter(k => st[k]);
+  const show = ['nombre','perfil','situacion','dolor','tope','anticipo','cuota','decisor','dia'].filter(k => st[k]);
   const open = document.getElementById('panel').classList.contains('open');
   document.getElementById('chips').innerHTML =
     `<button class="chip toggle" id="tog">${open ? '▲ Cerrar' : '✎ Datos'}</button>` +
@@ -382,7 +392,7 @@ function chips() {
 function note() {
   const d = new Date().toLocaleDateString('es-AR');
   const L = [`${d} · ${st.resultado || 'Llamada'}${st.dia ? ' · ' + st.dia : ''}`];
-  [['Perfil','perfil'],['Situación','situacion'],['Dolor','dolor'],['Anticipo','anticipo'],['Cuota','cuota'],['Decisor','decisor'],['Notas','notas']]
+  [['Perfil','perfil'],['Situación','situacion'],['Dolor','dolor'],['Presupuesto máximo','tope'],['Anticipo','anticipo'],['Cuota','cuota'],['Decisor','decisor'],['Notas','notas']]
     .forEach(([l,k]) => st[k] && L.push(`${l}: ${st[k]}`));
   const falta = REQ.filter(k => !st[k]).map(k => LABEL[k]);
   if (falta.length) L.push(`Faltó preguntar: ${falta.join(', ')}`);
@@ -431,7 +441,7 @@ function render() {
   const ks = document.getElementById('ksave');
   if (ks) ks.onclick = async () => {
     ks.textContent = 'Guardando…';
-    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, nota: note() }); kommoOk = true; ks.textContent = 'Guardada en Kommo ✓'; ks.disabled = true; }
+    try { await api('/guardar', { lead_id: st.lead_id, perfil: st.perfil, anticipo: st.anticipo, cuota: st.cuota, tope: st.tope, nota: note() }); kommoOk = true; ks.textContent = 'Guardada en Kommo ✓'; ks.disabled = true; }
     catch (e) { kommoOk = false; ks.textContent = 'No se pudo guardar (¿está corriendo el puente?). Copiala a mano.'; }
     chips();
   };
@@ -455,7 +465,7 @@ function reset() {
 document.addEventListener('input', e => {
   const k = e.target.dataset && e.target.dataset.v; if (!k) return;
   st[k] = e.target.value; save(); chips();
-  if (['perfil','anticipo','cuota'].includes(k)) sync();
+  if (['perfil','anticipo','cuota','tope'].includes(k)) sync();
   const n = N[hist[hist.length - 1]], s = document.querySelector('#opts .opt');
   if (n.need && s && document.getElementById('title').textContent.startsWith('Falta')) {
     const ok = n.need.every(x => st[x]); s.disabled = !ok; s.style.opacity = ok ? 1 : .4;
