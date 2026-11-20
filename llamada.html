@@ -305,7 +305,7 @@ const PREG = {
 const API = 'http://127.0.0.1:8787';
 let kommoOk = null, syncT = null;
 async function api(path, body) {
-  const r = await fetch(API + path, body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {});
+  const r = await fetch(API + path, { signal: AbortSignal.timeout(10000), ...(body ? { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}) });
   const d = await r.json(); if (!r.ok) throw new Error(d.error || r.status); return d;
 }
 function sync(extra) {
@@ -335,7 +335,7 @@ async function buscarLead() {
     });
   } catch (e) {
     kommoOk = false;
-    out.innerHTML = 'No me pude conectar con el puente de Kommo. Tiene que estar corriendo en tu compu (en el celular no funciona). Podés seguir igual y copiar la nota al final.';
+    out.innerHTML = 'No me pude conectar con el puente de Kommo. Revisá: 1) si Chrome te pide permiso de <b>red local</b> (ícono a la izquierda de la dirección), aceptalo; 2) que el puente esté corriendo en esta compu (en el celular no funciona). Podés seguir igual y copiar la nota al final.';
   }
   chips();
 }
