@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Modo llamada · NOOK</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #1F2D26; --verde-dark: #0F1A14; --crema: #EFE9DD; --crema-light: #F7F3EB;
+    --beige: #C9B89A; --acento: #8B6F47; --negro: #1A1A1A; --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', system-ui, sans-serif; background: var(--crema-light); color: var(--negro); padding-bottom: 5rem; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  /* Variables, siempre arriba */
+  #vars { position: sticky; top: 0; z-index: 20; background: var(--verde-dark); color: #fff; box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+  #vars .bar { display: flex; gap: .4rem; align-items: center; padding: .55rem 0; overflow-x: auto; scrollbar-width: none; }
+  #vars .bar::-webkit-scrollbar { display: none; }
+  .chip { flex: none; font-size: .78rem; padding: .25rem .6rem; border-radius: 999px; background: rgba(255,255,255,.1); white-space: nowrap; cursor: pointer; border: 0; color: #fff; font-family: inherit; }
+  .chip b { color: var(--beige); font-weight: 600; margin-right: .25rem; }
+  .chip.empty { opacity: .45; }
+  .chip.toggle { background: var(--beige); color: var(--verde-dark); font-weight: 600; }
+  #panel { display: none; padding: .25rem 0 .9rem; }
+  #panel.open { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .5rem; }
+  #panel label { font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--beige); display: block; }
+  #panel input, #panel textarea { width: 100%; margin-top: .2rem; padding: .45rem .55rem; border-radius: 4px; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font: inherit; font-size: .9rem; }
+  #panel .full { grid-column: 1 / -1; }
+  #panel .cfg input { border-color: var(--beige); }
+
+  /* Paso actual */
+  .crumbs { font-size: .75rem; color: var(--muted); margin: 1rem 0 .4rem; line-height: 1.6; }
+  .crumbs span + span::before { content: " › "; color: var(--beige); }
+  h1 { font-family: 'Playfair Display', Georgia, serif; font-weight: 600; font-size: 1.45rem; color: var(--verde); margin: 0 0 .75rem; }
+  .say { background: var(--verde); color: #fff; padding: 1rem 1.15rem; border-radius: 6px; border-left: 4px solid var(--beige); font-size: 1.08rem; line-height: 1.75; margin: 0 0 .7rem; }
+  .say .label { display: block; color: var(--beige); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; margin-bottom: .35rem; }
+  .say .dir { color: var(--beige); font-size: .88rem; font-style: italic; }
+  .v { color: var(--beige); font-weight: 600; }
+  .v.miss { background: rgba(201,184,154,.25); padding: 0 .3rem; border-radius: 3px; font-weight: 500; }
+  .tip { background: rgba(201,184,154,.22); border-left: 3px solid var(--acento); padding: .65rem .9rem; border-radius: 4px; font-size: .92rem; line-height: 1.55; margin: 0 0 .7rem; }
+  .ask { margin: .4rem 0 .8rem; }
+  .ask label { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--acento); font-weight: 600; }
+  .ask input { width: 100%; padding: .65rem .75rem; font: inherit; font-size: 1rem; border: 2px solid var(--beige); border-radius: 6px; background: #fff; margin-top: .2rem; }
+  .opts { display: grid; gap: .5rem; margin-top: 1rem; }
+  .opt { text-align: left; font: inherit; font-size: 1rem; font-weight: 600; padding: .9rem 1rem; border-radius: 6px; border: 2px solid var(--verde); background: #fff; color: var(--verde); cursor: pointer; }
+  .opt small { display: block; font-weight: 400; color: var(--muted); font-size: .82rem; margin-top: .15rem; }
+  .opt:hover, .opt:focus-visible { background: var(--verde); color: #fff; outline: none; }
+  .opt:hover small, .opt:focus-visible small { color: var(--beige); }
+  pre.note { white-space: pre-wrap; background: #fff; border: 1px solid var(--beige); padding: .8rem; border-radius: 6px; font-size: .9rem; }
+
+  /* Marcas de tono (mismas que el manual) */
+  .mk { display:inline-block; font-style:normal; font-size:.66rem; font-weight:600; letter-spacing:.05em; line-height:1.35; padding:.05rem .45rem; margin:0 .2rem; border-radius:999px; vertical-align:.12em; white-space:nowrap; text-transform:uppercase; }
+  .mk-p { background:rgba(201,184,154,.35); color:#fff; font-size:.8rem; padding:0 .4rem; }
+  .mk-s { background:var(--beige); color:var(--verde-dark); }
+  .mk-b, .mk-u { border:1px solid var(--beige); color:var(--beige); font-size:.8rem; padding:0 .35rem; }
+  .mk-sm { background:rgba(255,255,255,.14); color:#fff; }
+  .lento { text-decoration:underline dotted var(--beige); text-decoration-thickness:2px; text-underline-offset:5px; letter-spacing:.03em; }
+  .enf { font-weight:700; }
+
+  /* Barra inferior y objeciones */
+  #foot { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--crema); z-index: 20; }
+  #foot .wrap { display: flex; gap: .5rem; padding-top: .6rem; padding-bottom: .6rem; }
+  #foot button { flex: 1; font: inherit; font-weight: 600; padding: .7rem .5rem; border-radius: 6px; border: 1px solid var(--verde); background: #fff; color: var(--verde); cursor: pointer; }
+  #foot .obj { background: var(--acento); border-color: var(--acento); color: #fff; flex: 1.4; }
+  #sheet { display: none; position: fixed; inset: 0; background: rgba(15,26,20,.55); z-index: 30; }
+  #sheet.open { display: flex; align-items: flex-end; justify-content: center; }
+  #sheet .box { background: var(--crema-light); width: 100%; max-width: 760px; max-height: 80vh; overflow: auto; border-radius: 12px 12px 0 0; padding: 1rem 16px 1.5rem; }
+  #sheet h2 { font-family: 'Playfair Display', Georgia, serif; color: var(--verde); margin: 0 0 .6rem; font-size: 1.2rem; }
+  #sheet .opts { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin-top: 0; }
+  .top-link { display: block; text-align: right; font-size: .78rem; color: var(--acento); margin-top: .5rem; }
+</style>
+</head>
+<body>
+
+<div id="vars">
+  <div class="wrap">
+    <div class="bar" id="chips"></div>
+    <div id="panel">
+      <div><label>Nombre del lead</label><input data-v="nombre"></div>
+      <div><label>Perfil</label><input data-v="perfil" placeholder="Vivir / Inversión"></div>
+      <div><label>Situación / objetivo</label><input data-v="situacion" placeholder="Alquila, para alquilar…"></div>
+      <div><label>Anticipo disponible</label><input data-v="anticipo" placeholder="USD"></div>
+      <div><label>Cuota cómoda</label><input data-v="cuota" placeholder="USD por mes"></div>
+      <div><label>Decisor</label><input data-v="decisor" placeholder="Pareja, socio…"></div>
+      <div class="full"><label>Dolor, con sus palabras</label><input data-v="dolor" placeholder='"no quiero seguir tirando plata en alquiler"'></div>
+      <div class="full"><label>Cisne negro / notas</label><textarea data-v="notas" rows="2"></textarea></div>
+      <div class="cfg"><label>Anticipo mínimo (cotizador)</label><input data-v="anticipoMin" placeholder="ej. 30.000"></div>
+      <div class="cfg"><label>Cuota mínima (cotizador)</label><input data-v="cuotaMin" placeholder="ej. 1.500"></div>
+    </div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="crumbs" id="crumbs"></div>
+  <h1 id="title"></h1>
+  <div id="body"></div>
+  <div class="opts" id="opts"></div>
+  <a class="top-link" href="./">Manual completo →</a>
+</main>
+
+<div id="foot"><div class="wrap">
+  <button id="back">← Atrás</button>
+  <button id="objBtn" class="obj">⚡ Objeción</button>
+  <button id="reset">↺ Nueva</button>
+</div></div>
+
+<div id="sheet"><div class="box">
+  <h2>¿Qué te dijo?</h2>
+  <div class="opts" id="objList"></div>
+</div></div>
+
+<script>
+/* Marcas en el texto:
+   ⏸ pausa · {S} silencio · ↘ baja · ↗ sube · ☺ sonrisa · ~texto~ lento · **texto** acento
+   [acotación] · {nombre} {anticipoMin} … variables del panel */
+const N = {
+  inicio: { et: 'Antes de marcar', t: '¿Qué tipo de llamada es?',
+    tip: 'Kommo y el cotizador abiertos. Completá arriba el anticipo y la cuota mínimos del cotizador (quedan guardados). Voz cálida, tono que baja.',
+    o: [['Lead de pauta', 'p1', 'Dejó sus datos por un anuncio'], ['Base fría', 'f1', 'Lista sin datos'], ['Recontacto ya calificado', 'r1', 'Ya tenés anticipo y cuota']] },
+
+  p1: { et: 'Apertura', t: 'Quién sos',
+    s: [['1 · Sin preguntar si es buen momento', '☺Hola, ¿{nombre}?⏸ Soy [tu nombre], de Áureo.⏸ Dejaste tus datos por NOOK, el edificio que estamos construyendo sobre Centenario, en San Isidro. ~Te robo 30 segundos~ y, si no te sirve, cortamos.↘']],
+    tip: 'Sin pausa, seguís con el dato. Nada de "¿te agarro en mal momento?".',
+    o: [['Sigue escuchando', 'p2'], ['No se acuerda del proyecto', 'p1b'], ['"Estoy ocupado"', 'o_ocupado'], ['"Contame vos qué tienen"', 'o_contame']] },
+  p1b: { et: 'Apertura', t: 'No se acuerda',
+    s: [['', '☺Es normal, en esta época llegan muchos anuncios.↘⏸ Te robo un minuto y, si no te sirve, cortamos.']],
+    o: [['Sigue', 'p2']] },
+  p2: { et: 'Apertura', t: 'Lo que vino a buscar, con un número',
+    s: [['2 · Etiqueta + número', 'Seguro estás mirando varios proyectos,↘⏸ así que te lo cuento corto: son 2 y 3 ambientes, lo construye Áureo, que ya entregó **diez obras**, y se paga en cuotas mientras se construye.⏸ Hoy se entra con ~un anticipo desde USD {anticipoMin}~⏸ y cuotas desde USD {cuotaMin}, y se entrega en 2029.↘']],
+    o: [['Sigue', 'p3']] },
+  p3: { et: 'Apertura', t: 'Una pregunta de elección',
+    s: [['3 · Sobre el proyecto, no sobre su plata', 'Para mostrarte las dos o tres unidades que te sirven y no hacerte perder tiempo con el resto:⏸ ¿lo estás mirando más para **vivir** o como **inversión**?↘{S}']],
+    o: [['Para vivir', 'v1', '', { perfil: 'Vivir' }], ['Inversión', 'i1', '', { perfil: 'Inversión' }]] },
+
+  /* ── Vivienda ── */
+  v1: { et: 'Vivir', t: 'Dar y preguntar fácil',
+    s: [['', 'Para vivir, lo que más cuida la gente es que la cuota se pueda sostener junto con el alquiler mientras dura la obra, y el plan se arma desde ahí.↘⏸ ¿Hoy estás alquilando?{S}']],
+    o: [['Alquila', 'v2', '', { situacion: 'Alquila' }], ['No alquila', 'v2', 'Vive con familia, tiene propio, etc.', { situacion: 'No alquila' }]] },
+  v2: { et: 'Vivir', t: 'P · Problema',
+    s: [['Una sola pregunta', '¿Qué es lo que más te pesa de dónde estás hoy:⏸ el alquiler,⏸ el espacio,⏸ la zona?{S}']],
+    tip: 'Mientras habla: espejo ("¿Tirar plata?"↗ y callate). Anotá el dolor con sus palabras.',
+    ask: ['dolor', 'Dolor, con sus palabras'],
+    o: [['El alquiler', 'v3'], ['El espacio o la zona', 'v3e', 'Se agrandó la familia, quiere mudarse']] },
+  v3: { et: 'Vivir', t: 'I · Implicación (una)',
+    s: [['', 'Tiene sentido.↘⏸ ¿Cuánto te subió desde que empezó el contrato?{S}'], ['Solo si viene conversando suelto', '~Y si seguís así hasta 2029,~ ¿cuánto se te fue en alquiler en total?{S}']],
+    tip: 'Si contesta corto, la cuenta la hacés vos y se la decís como dato: "Con lo que pagás, en tres años se van unos USD 25 mil, más que el anticipo." Después, silencio.',
+    o: [['Sigue', 'v4']] },
+  v3e: { et: 'Vivir', t: 'I · Implicación (una)',
+    s: [['', '¿Para cuándo lo necesitás resuelto?{S}'], ['Solo si viene conversando suelto', 'Si esto sigue igual un par de años más,⏸ ¿qué cambia para ustedes?{S}']],
+    o: [['Sigue', 'v4']] },
+  v4: { et: 'Vivir', t: 'NOOK como solución · la cuota',
+    s: [['', 'NOOK se entrega en 2029. La idea es que mientras se construye pagues una cuota y que cuando te mudes ya sea tuyo.↘⏸ Si alquilás, durante la obra pagás cuota y alquiler a la vez, por eso el plan se arma al revés: primero vemos cuánto podés sostener por mes sin ahogarte, y de ahí sale la unidad.⏸ ¿Cuánto podrías poner por mes ~sin que te cambie la vida~?{S}']],
+    ask: ['cuota', 'Cuota cómoda'],
+    o: [['Sigue', 'v5']] },
+  v5: { et: 'Vivir', t: 'El anticipo',
+    s: [['', 'Para arrancar se recomienda alrededor de un 30%, pero se puede menos y se compensa con la cuota.⏸ ¿Tenés algo ahorrado para eso, o lo armamos con más cuotas?{S}']],
+    tip: 'Si dice "no sé": "¿Más cerca de 20, de 40 o de 60 mil dólares?". Si piensa en un crédito, anotalo en notas.',
+    ask: ['anticipo', 'Anticipo disponible'],
+    o: [['Sigue', 'dec']] },
+
+  /* ── Inversión ── */
+  i1: { et: 'Inversión', t: 'Dar y preguntar fácil',
+    s: [['', 'Para inversión, la gracia es que entrás **a precio de pozo** y pagás en cuotas, sin poner todo junto.↘⏸ ¿Lo pensás más para alquilarlo cuando esté terminado o para venderlo?{S}']],
+    o: [['Para alquilarlo', 'i2', '', { situacion: 'Para alquilar' }], ['Para venderlo', 'i2', '', { situacion: 'Para vender' }]] },
+  i2: { et: 'Inversión', t: '¿Ya compró en pozo?',
+    s: [['', '¿Ya invertiste en pozo alguna vez?{S}']],
+    o: [['Nunca', 'i100'], ['Sí', 'i3']] },
+  i100: { et: 'Inversión', t: 'El pozo en tres números',
+    s: [['Bloque 1', 'Te lo pongo en números.⏸ El departamento terminado vale ~100~; en pozo lo comprás en ~80~.↘⏸ Esperás la obra, te lo entregan, y ya no tenés algo que vale 80: tenés un departamento a estrenar que vale 100.↘⏸ ¿Hasta acá estamos bien?{S}'],
+        ['Bloque 2', 'Si el mercado sube, ese 100 pasa a valer más.⏸ Y si baja,⏸ como entraste en 80, ~no perdés lo que pusiste~.↘⏸ ¿Se entiende?{S}'],
+        ['Bloque 3', '¿Y por qué te puedo asegurar el 80? Porque es un fideicomiso al costo con precio cerrado.⏸ Lo que más le importa a un argentino es ~pactar un precio y que no te cambien las reglas en el medio~.↘⏸ Eso te garantiza el fideicomiso, y la plata queda separada de la desarrolladora.↘']],
+    tip: 'Probado en llamada real. Si se queda en "sí" seco, cortá y seguí: las tipologías y los amenities van en la reunión.',
+    o: [['Sigue', 'i3']] },
+  i3: { et: 'Inversión', t: 'P · Problema',
+    s: [['Dato, después pregunta', 'Tiene sentido,↘ en San Isidro los 2 ambientes nuevos se alquilan rápido.⏸ Y la plata para el anticipo, ¿hoy la tenés en algo que te rinda o está parada?{S}']],
+    ask: ['dolor', 'Dolor, con sus palabras'],
+    o: [['Está parada', 'i4', '', { dolor: '__keep__dólares quietos' }], ['Ya le rinde algo', 'i5']] },
+  i4: { et: 'Inversión', t: 'I · Implicación (una)',
+    s: [['', '¿Hace cuánto que esa plata está quieta?{S}'], ['Solo si viene conversando suelto', '~Si dentro de dos años sigue igual,~ ¿qué sentís que perdiste?{S}']],
+    o: [['Sigue', 'i5']] },
+  i5: { et: 'Inversión', t: 'NOOK como solución · anticipo y cuota',
+    s: [['', 'NOOK es un fideicomiso al costo, así que no comprás a precio de terminado. Entrás con un anticipo y el resto en cuotas hasta 2029, en un activo real que ves avanzar.↘ Hay dos formas: un plan corto en 12 cuotas fijas, a mejor valor, o uno largo que acompaña el ritmo de la obra.⏸ Para saber cuál te conviene:⏸ ¿cuánto pondrías de entrada y cuánto preferís ir sumando por mes?{S}']],
+    tip: 'Si dice "no sé": "¿Más cerca de 20, de 40 o de 60 mil dólares?"',
+    ask: ['anticipo', 'Anticipo disponible', 'cuota', 'Cuota cómoda'],
+    o: [['Sigue', 'dec']] },
+
+  /* ── Base fría ── */
+  f1: { et: 'Base fría', t: 'Un solo dolor por llamada',
+    s: [['Elegí uno · dólares quietos', 'Hola, {nombre}, soy [tu nombre], de Áureo, el desarrollador de NOOK, un edificio en construcción en San Isidro. Te llamo porque hablo con mucha gente que tiene dólares ahorrados y quietos, y que siente que no le rinden.⏸ ¿Te pasa algo parecido o ya los tenés invertidos?{S}'],
+        ['Alquiler', '… Te llamo porque mucha gente de San Fernando y Victoria me cuenta que en cada renovación paga más y sigue sin nada propio.⏸ ¿Es tu situación, o ya tenés vivienda propia?{S}'],
+        ['Dejar algo armado', '… Te llamo porque muchas personas me dicen que quieren dejarles algo armado a los hijos, pero no tienen el monto entero para comprar un terminado.⏸ ¿Te lo planteaste alguna vez o todavía no?{S}']],
+    o: [['Le pasa · dólares quietos', 'i4', '', { perfil: 'Inversión', dolor: '__keep__dólares quietos' }], ['Le pasa · alquiler', 'v3', '', { perfil: 'Vivir', situacion: 'Alquila', dolor: '__keep__el alquiler' }], ['Le pasa · dejar algo armado', 'f2', '', { perfil: 'Dejar algo armado' }], ['"Ya lo tengo resuelto"', 'f3']] },
+  f2: { et: 'Base fría', t: 'Dejar algo armado',
+    s: [['I · una', '¿Para cuándo te gustaría que esté?{S} Si lo seguís postergando, ¿qué cambia para ellos?{S}'],
+        ['Solución + números', 'Se arma en cuotas, sin desprenderte de todo junto, y a la entrega queda a nombre de quien vos decidas.↘⏸ Para que no te descapitalice, ¿qué parte pondrías de entrada y qué cuota podrías sostener sin resignar nada importante?{S}']],
+    ask: ['anticipo', 'Anticipo disponible', 'cuota', 'Cuota cómoda'],
+    o: [['Sigue', 'dec']] },
+  f3: { et: 'Base fría', t: 'Ya lo tiene resuelto',
+    s: [['', 'Bárbaro, entonces no te quito más tiempo.↘ ¿Te puedo escribir si sale algo que te pueda servir?{S}']],
+    tip: 'Tarea de nutrición en Kommo.',
+    o: [['Registrar', 'fin', '', { resultado: 'Nutrición: ya lo tiene resuelto' }]] },
+
+  /* ── Recontacto ── */
+  r1: { et: 'Recontacto', t: 'Pedido en 10 segundos, atado a su dolor',
+    s: [['', 'Hola, {nombre}. Soy [tu nombre], de NOOK San Isidro. Hablamos en [mes].⏸ Me quedó dando vueltas lo que me dijiste de {dolor}.↘ Desde que hablamos [novedad real: avance de obra / nuevo plan de pago] y creo que te acerca a resolverlo.⏸ Te lo muestro en 30 minutos.⏸ ¿Martes o miércoles?↘{S}']],
+    tip: 'Sin novedad real no hay recontacto.',
+    o: [['Eligió día', 'ok'], ['No da día', 'ped2']] },
+
+  /* ── Cierre común ── */
+  dec: { et: 'Calificar', t: 'Decisor',
+    s: [['', '¿Cómo se toma esta decisión en tu casa?{S}']],
+    tip: 'Si aparece pareja o socio: "¿Sería una locura que vengan los dos?"',
+    ask: ['decisor', 'Decisor'],
+    o: [['Sigue', 'cal']] },
+  cal: { et: 'Calificar', t: '¿Califica?', summary: true,
+    o: [['Califica', 'res', 'Anticipo y cuota llegan a alguna unidad y quiere resolverlo en meses'], ['Califica, pero no ahora', 'cn', 'Tiene con qué, espera un ingreso o no le pesa todavía'], ['No califica para NOOK', 'nc', 'No llega a ninguna unidad, aun moviendo plazo']] },
+  cn: { et: 'Calificar', t: 'Cisne negro',
+    s: [['', '¿Qué tendría que pasar para que esto tenga sentido?{S}']],
+    tip: 'Sin reunión hoy: tarea fechada con el motivo y el dolor en sus palabras.',
+    ask: ['notas', 'Cisne negro / notas'],
+    o: [['Registrar', 'fin', '', { resultado: 'Stand-by (Camino C)' }]] },
+  nc: { et: 'Calificar', t: 'Sin cerrar la puerta',
+    s: [['', 'Te agradezco que me lo digas así de claro. Con esos números, NOOK hoy te obligaría a estirarte de más y no te lo quiero recomendar.↘⏸ ¿Sería una locura que te muestre otra opción de Áureo que sí entra en lo que me contaste?{S}']],
+    o: [['Acepta ver otra opción', 'ped'], ['No', 'fin', '', { resultado: 'No califica · nutrición' }]] },
+  res: { et: 'Pedido', t: 'Resumen hasta el "exacto"',
+    s: [['Con sus palabras', 'A ver si entendí bien:⏸ lo estás mirando para {perfil}, lo que más te pesa es {dolor}, y podrías arrancar con {anticipo} y una cuota de {cuota}.↘⏸ ¿Es así?{S}']],
+    tip: '"Sí, sí" o "tenés razón" no alcanza: buscás "exacto". Si corrige, ajustá el panel y volvé a resumir.',
+    o: [['"Exacto"', 'nb'], ['Corrigió algo', 'res']] },
+  nb: { et: 'Pedido', t: 'Necesidad-beneficio',
+    s: [['', 'Si ves un plan que te permita resolver {dolor} con ese anticipo y esa cuota,⏸ ¿eso te ayudaría a decidir?{S}']],
+    o: [['Sí', 'ped']] },
+  ped: { et: 'Pedido', t: 'La experiencia inmersiva',
+    s: [['Probado en llamada real', 'A ver, yo te puedo contar mucho por teléfono,⏸ pero lo que te quiero proponer es otra cosa.↘⏸ ☺¿Sería una locura que te invite a hacer una ~experiencia inmersiva~?{S}'],
+        ['Si pregunta qué es', 'Con unas gafas de realidad virtual entrás al departamento:⏸ ves la distribución, la luz que tiene y los espacios comunes.↘ Y de paso conocés la oficina y los edificios que ya entregamos.↘⏸ ¿Te queda mejor a la mañana o a la tarde?{S}'],
+        ['Eligió franja', '¿A las 10 o a las 11?↘{S}']],
+    tip: 'Primero la franja, después la hora. Si propone otra, aceptala sin discutir.',
+    o: [['Eligió día y hora', 'ok'], ['No da día', 'ped2']] },
+  ped2: { et: 'Pedido', t: 'Segundo intento',
+    s: [['Orientada al no', '¿Sería una locura que nos veamos 30 minutos el jueves y lo armamos con tus números?{S}']],
+    tip: 'Hasta tres intentos con horarios distintos. Al tercero sin día concreto: tarea de seguimiento y al siguiente.',
+    o: [['Dio día', 'ok'], ['Sigue sin día', 'fin', '', { resultado: 'Sin reunión: seguimiento' }]] },
+  ok: { et: 'Antes de colgar', t: 'Blindar la reunión',
+    ask: ['dia', 'Día, hora y lugar'],
+    s: [['1 · Confirmá en voz alta', 'Entonces nos vemos el {dia}.↘'],
+        ['2 · Orientada al no', '¿Hay algo que te pueda impedir venir?{S}'],
+        ['3 · Solo si el anticipo no salió', 'Una última pregunta, así te libero:⏸ el anticipo arranca en ~USD {anticipoMin}~.↘⏸ ¿A vos eso te queda bien?{S}']],
+    tip: 'WhatsApp de confirmación ya, con dirección y tu contacto. Confirmación el día anterior: sin ella, el no-show está entre 30% y 45%.',
+    o: [['Registrar en Kommo', 'fin', '', { resultado: 'Reunión fijada' }]] },
+  fin: { et: 'Registro', t: 'Nota para Kommo', note: true,
+    tip: 'Copiala en el lead y cargá la próxima tarea. Ningún lead vivo queda sin tarea.',
+    o: [['Nueva llamada', '__reset']] },
+
+  /* ── Objeciones ── */
+  o_ocupado: { et: 'Objeción', t: '"Estoy ocupado" / "mal momento"', obj: true,
+    s: [['', '☺Me imaginaba,↘ te lo hago en una línea:⏸ se entra con ~un anticipo desde USD {anticipoMin}~ y el resto en cuotas durante la obra, con entrega en 2029.↘⏸ ¿Te llamo mañana a las 11 o preferís que te lo mande por WhatsApp a este número?{S}']],
+    tip: 'No preguntes "¿cuándo te queda cómodo?". Anotá qué eligió: a los 20 casos sabés si el "ocupado" es real.',
+    o: [['Eligió hora', 'fin', '', { resultado: 'Ocupado: eligió llamada' }], ['Eligió WhatsApp', 'fin', 'Mandá número + nooksanisidro.com + "¿vivir o invertir?"', { resultado: 'Ocupado: eligió WhatsApp' }]] },
+  o_contame: { et: 'Objeción', t: '"Contame vos qué tienen"', obj: true,
+    s: [['1 · Etiqueta + concesión', '☺Dale, {nombre},⏸ parece que primero querés ver qué hay, y me parece bien.↘ Te cuento.'],
+        ['2 · Lo que pidió, en 20 segundos', 'NOOK es un edificio de 2 y 3 ambientes sobre Centenario, en San Isidro. Lo construye Áureo, que ya entregó diez obras, y se entrega en 2029. Se paga en cuotas mientras se construye, con dos planes: uno corto, de 12 cuotas fijas y a mejor valor, y otro largo que acompaña el ritmo de la obra.']],
+    tip: 'Sin "entiendo perfectamente" ni "no es por curiosidad". Después vuelve la pregunta vivir/inversión como filtro a su favor.',
+    o: [['Sigue', 'p3']] },
+  o_nointeresa: { et: 'Objeción', t: '"No me interesa"', obj: true,
+    s: [['', 'Tiene sentido,↘ la mayoría no está buscando cuando la llaman.⏸ Una sola cosa antes de cortar: lo de {dolor}, ¿ya lo tenés resuelto por otro lado?{S}'], ['Si dice que no', 'Entonces ~no te quiero vender nada hoy~.↘ Solo ver si esto te sirve para resolverlo. ¿15 minutos el jueves?{S}']] },
+  o_info: { et: 'Objeción', t: '"Mandame info" / "por WhatsApp"', obj: true,
+    s: [['', 'Te la mando. Para mandarte lo que sirve y no llenarte de PDFs:⏸ ¿qué querés resolver, dejar de alquilar o que esos ahorros rindan?{S}'], ['Después de una implicación', 'Eso se entiende mucho mejor con tus números delante.⏸ ¿Te lo muestro mañana a las 11 o a las 18?{S}']],
+    tip: 'La info sale igual, en el momento (nooksanisidro.com). Tarea a 24-48 h: "¿Qué te llamó la atención?"' },
+  o_pensar: { et: 'Objeción', t: '"Lo tengo que pensar"', obj: true,
+    s: [['Etiqueta + silencio', 'Parece que hay algo que todavía no te termina de cerrar.↘{S} ¿Qué es lo que más te hace ruido: el proyecto, la zona, la forma de pago u otra cosa?{S}'], ['Si no suelta nada', 'Me dijiste que {dolor}. Si esto queda sin resolver unos meses más, ¿qué cambia para vos?{S}']] },
+  o_caro: { et: 'Objeción', t: '"Es caro"', obj: true,
+    s: [['Espejo', '¿Caro?↗{S} [te va a decir contra qué compara: esa es la objeción real]'], ['', 'Puede ser, y si no da, no da.↘⏸ Comparalo también con lo que te cuesta seguir como estás: {dolor}. Casi siempre se resuelve con forma de pago, no con precio. ¿Lo miramos el martes?{S}']] },
+  o_alcanza: { et: 'Objeción', t: '"No me alcanza"', obj: true,
+    s: [['', '¿Cuánto te queda corto?{S} Pregunto porque el anticipo y la cantidad de cuotas se pueden mover: lo publicado no siempre refleja lo que tenés que poner por mes. ¿Lo armamos juntos el jueves?{S}']],
+    tip: 'Si de verdad no llega a ninguna unidad, no forzar: ofrecé otro producto de Áureo.' },
+  o_otros: { et: 'Objeción', t: '"Estoy viendo otros proyectos"', obj: true,
+    s: [['', 'Buenísimo, es lo que hay que hacer.↘ ¿Cuáles estás mirando?{S} ¿Y cuál te resuelve mejor lo de {dolor}?{S} Te muestro NOOK en 30 minutos y lo ponés al lado de los otros con los mismos criterios: m² reales, forma de pago y quién construye. ¿Viernes?{S}']] },
+  o_yotellamo: { et: 'Objeción', t: '"Yo te llamo" / "más adelante"', obj: true,
+    s: [['', 'Dale. ¿Qué tendría que pasar de acá a ese momento para que tenga sentido que hablemos?{S} Perfecto, te llamo el [fecha] a las [hora]. Si no podés, no atendés y lo movemos.']] },
+  o_escrito: { et: 'Objeción', t: '"Pasame los números por escrito"', obj: true,
+    s: [['', 'Te paso un rango. El número puntual depende de tu anticipo y la cuota que te sirve, y mandado suelto se termina comparando contra cotizaciones armadas con otros criterios.⏸ ¿Lo armamos en 30 minutos con tus números?{S}']] },
+  o_descuento: { et: 'Objeción', t: '"¿Me hacés un descuento?"', obj: true,
+    s: [['', '~¿Cómo hago para llevarle ese número a la desarrolladora?~↘']],
+    tip: 'Las condiciones las define Áureo: no ofrecer nada que no esté autorizado.' },
+  o_desconfia: { et: 'Objeción', t: 'Desconfía', obj: true,
+    s: [['Auditoría de acusaciones', 'Seguramente pensás que te llama otro vendedor a pintarte todo color de rosa, y que comprar en pozo es darle plata a alguien por algo que todavía no existe. Es una duda razonable.↘⏸ Justamente por eso prefiero que lo veas: cómo es el fideicomiso, dónde está la obra y quién la construye. Pero antes contame:⏸ ¿qué te gustaría resolver con esto?{S}']],
+    tip: 'Una vez por llamada y solo si hay señal de desconfianza.' },
+};
+const OBJ = Object.keys(N).filter(k => N[k].obj);
+
+const KEYS = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','notas','dia','resultado','anticipoMin','cuotaMin'];
+const CFG = ['anticipoMin','cuotaMin'];
+const LABEL = { nombre:'Lead', perfil:'Perfil', situacion:'Situación', dolor:'Dolor', anticipo:'Anticipo', cuota:'Cuota', decisor:'Decisor', dia:'Reunión', anticipoMin:'Ant. mín', cuotaMin:'Cuota mín' };
+let st = {}, hist = [];
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+try { st = JSON.parse(store.get('llamada') || '{}') || {}; hist = st._hist || []; } catch(e) { st = {}; }
+CFG.forEach(k => { const v = store.get('cfg_' + k); if (v != null && !st[k]) st[k] = v; });
+if (!hist.length) hist = ['inicio'];
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MK = { '⏸':'<span class="mk mk-p" title="Pausa de un segundo">⏸</span>', '↘':'<span class="mk mk-b" title="Tono que baja: afirmás">↘</span>', '↗':'<span class="mk mk-u" title="Tono que sube: curiosidad">↗</span>', '☺':'<span class="mk mk-sm" title="Sonreí al decirlo">sonrisa</span>' };
+function fmt(t) {
+  return t
+    .replace(/\{S\}/g, '<span class="mk mk-s" title="Callate hasta que hable">silencio</span>')
+    .replace(/\{(\w+)\}/g, (m, k) => st[k] ? `<span class="v">${esc(st[k])}</span>` : `<span class="v miss">[${LABEL[k] || k}]</span>`)
+    .replace(/[⏸↘↗☺]/g, c => MK[c])
+    .replace(/~([^~]+)~/g, '<span class="lento" title="Más lento">$1</span>')
+    .replace(/\*\*([^*]+)\*\*/g, '<b class="enf">$1</b>')
+    .replace(/\[([^\]]+)\]/g, '<span class="dir">[$1]</span>');
+}
+function save() {
+  st._hist = hist; store.set('llamada', JSON.stringify(st));
+  CFG.forEach(k => store.set('cfg_' + k, st[k] || ''));
+}
+function chips() {
+  const show = ['nombre','perfil','situacion','dolor','anticipo','cuota','decisor','dia','anticipoMin','cuotaMin'];
+  const open = document.getElementById('panel').classList.contains('open');
+  document.getElementById('chips').innerHTML =
+    `<button class="chip toggle" id="tog">${open ? '▲ Cerrar' : '✎ Datos'}</button>` +
+    show.map(k => `<button class="chip ${st[k] ? '' : 'empty'}" data-edit="${k}"><b>${LABEL[k]}</b>${st[k] ? esc(st[k]) : '—'}</button>`).join('');
+  document.querySelectorAll('#panel [data-v]').forEach(i => { if (document.activeElement !== i) i.value = st[i.dataset.v] || ''; });
+}
+function note() {
+  const d = new Date().toLocaleDateString('es-AR');
+  const L = [`${d} · ${st.resultado || 'Llamada'}${st.dia ? ' · ' + st.dia : ''}`];
+  [['Perfil','perfil'],['Situación','situacion'],['Dolor','dolor'],['Anticipo','anticipo'],['Cuota','cuota'],['Decisor','decisor'],['Notas','notas']]
+    .forEach(([l,k]) => st[k] && L.push(`${l}: ${st[k]}`));
+  return L.join('\n');
+}
+function go(id, set) {
+  if (id === '__reset') return reset();
+  if (set) for (const [k, v] of Object.entries(set)) {
+    if (v.startsWith('__keep__')) { if (!st[k]) st[k] = v.slice(8); } else st[k] = v;
+  }
+  hist.push(id); render(); window.scrollTo(0, 0);
+}
+function render() {
+  const id = hist[hist.length - 1], n = N[id];
+  document.getElementById('crumbs').innerHTML = hist.slice(-6).map(h => `<span>${esc(N[h].t)}</span>`).join('');
+  document.getElementById('title').textContent = (n.et ? n.et + ' · ' : '') + n.t;
+  let h = '';
+  (n.s || []).forEach(([l, t]) => h += `<div class="say">${l ? `<span class="label">${esc(l)}</span>` : ''}${fmt(t)}</div>`);
+  if (n.ask) for (let i = 0; i < n.ask.length; i += 2)
+    h += `<div class="ask"><label>${esc(n.ask[i+1])}</label><input data-v="${n.ask[i]}" value="${esc(st[n.ask[i]] || '')}"></div>`;
+  if (n.summary) h += `<div class="tip">${['perfil','dolor','anticipo','cuota','decisor'].map(k => `<b>${LABEL[k]}:</b> ${st[k] ? esc(st[k]) : '<em>falta</em>'}`).join('<br>')}<br><br>Falta anticipo o cuota → volvé y preguntalo antes de pedir la reunión.</div>`;
+  if (n.note) h += `<pre class="note" id="note">${esc(note())}</pre><button class="opt" id="copy">Copiar nota</button>`;
+  if (n.tip) h += `<div class="tip">${fmt(n.tip)}</div>`;
+  document.getElementById('body').innerHTML = h;
+  const o = n.o || (n.obj ? [['Volver a donde estaba', '__back']] : []);
+  document.getElementById('opts').innerHTML = o.map(([t, to, sub, set], i) =>
+    `<button class="opt" data-i="${i}">${esc(t)}${sub ? `<small>${esc(sub)}</small>` : ''}</button>`).join('');
+  document.querySelectorAll('#opts .opt').forEach(b => b.onclick = () => {
+    const [, to, , set] = o[+b.dataset.i];
+    if (to === '__back') return back();
+    go(to, set);
+  });
+  const c = document.getElementById('copy');
+  if (c) c.onclick = () => navigator.clipboard.writeText(note()).then(() => c.textContent = 'Copiada ✓', () => c.textContent = 'No se pudo copiar: seleccioná el texto');
+  chips(); save();
+}
+function back() {
+  if (hist.length < 2) return;
+  const cur = N[hist.pop()];
+  // Al salir de una objeción vuelve al paso del guion donde estabas
+  if (cur.obj) while (hist.length > 1 && N[hist[hist.length - 1]].obj) hist.pop();
+  render();
+}
+function reset() {
+  KEYS.filter(k => !CFG.includes(k)).forEach(k => delete st[k]);
+  hist = ['inicio']; render();
+}
+
+document.addEventListener('input', e => {
+  const k = e.target.dataset && e.target.dataset.v; if (!k) return;
+  st[k] = e.target.value; save(); chips();
+  document.querySelectorAll(`[data-v="${k}"]`).forEach(i => { if (i !== e.target) i.value = e.target.value; });
+});
+document.addEventListener('change', e => { if (e.target.dataset && e.target.dataset.v) render(); });
+document.getElementById('chips').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const p = document.getElementById('panel');
+  if (b.id === 'tog') { p.classList.toggle('open'); return chips(); }
+  p.classList.add('open'); chips();
+  const i = p.querySelector(`[data-v="${b.dataset.edit}"]`); if (i) i.focus();
+};
+document.getElementById('back').onclick = back;
+document.getElementById('reset').onclick = () => { if (confirm('¿Empezar una llamada nueva? Se borran los datos del lead (no los del cotizador).')) reset(); };
+const sheet = document.getElementById('sheet');
+document.getElementById('objList').innerHTML = OBJ.map(k => `<button class="opt" data-o="${k}">${esc(N[k].t)}</button>`).join('');
+document.getElementById('objList').onclick = e => { const b = e.target.closest('[data-o]'); if (b) { sheet.classList.remove('open'); go(b.dataset.o); } };
+document.getElementById('objBtn').onclick = () => sheet.classList.add('open');
+sheet.onclick = e => { if (e.target === sheet) sheet.classList.remove('open'); };
+document.addEventListener('keydown', e => {
+  if (e.target.matches('input, textarea')) return;
+  if (e.key === 'o' || e.key === 'O') sheet.classList.add('open');
+  if (e.key === 'Escape') sheet.classList.remove('open');
+  if (e.key === 'Backspace') back();
+  if (/^[1-9]$/.test(e.key)) { const b = document.querySelectorAll('#opts .opt')[+e.key - 1]; if (b) b.click(); }
+});
+render();
+</script>
+</body>
+</html>
