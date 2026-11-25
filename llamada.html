@@ -140,7 +140,12 @@ const N = {
   /* ── Vivienda ── */
   v1: { et: 'Vivir', t: 'Dar y preguntar fácil',
     s: [['', 'Para vivir, lo que más cuida la gente es que la cuota se pueda sostener junto con el alquiler mientras dura la obra, y el plan se arma desde ahí.↘⏸ ¿Hoy estás alquilando?{S}']],
-    o: [['Alquila', 'v2', '', { situacion: 'Alquila' }], ['No alquila', 'v2', 'Vive con familia, tiene propio, etc.', { situacion: 'No alquila' }]] },
+    o: [['Alquila', 'v2', '', { situacion: 'Alquila' }], ['No alquila', 'v2n', 'Vive con familia, tiene propio, etc.', { situacion: 'No alquila' }]] },
+  v2n: { et: 'Vivir', t: 'P · Problema (no alquila)',
+    s: [['Una sola pregunta', 'Bien.↘⏸ ¿Y qué te lleva a buscar ahora:⏸ independizarte,⏸ más espacio⏸ o cambiar de zona?{S}']],
+    tip: 'Mientras habla: espejo (repetí sus últimas palabras↗ y callate). Anotá el motivo con sus palabras. Si tiene algo propio: "¿El tuyo lo pensás vender para este, o lo conservás?". Anotalo: cambia el anticipo.',
+    ask: ['dolor', 'Motivo, con sus palabras'],
+    o: [['Independizarse', 'v3e', 'Vive con la familia', { situacion: 'Vive con la familia', dolor: '__keep__independizarse' }], ['Más espacio o otra zona', 'v3e', 'Tiene propio y quiere cambiar', { dolor: '__keep__el espacio / la zona' }]] },
   v2: { et: 'Vivir', t: 'P · Problema',
     s: [['Una sola pregunta', '¿Qué es lo que más te pesa de dónde estás hoy:⏸ el alquiler,⏸ el espacio,⏸ la zona?{S}']],
     tip: 'Mientras habla: espejo ("¿Tirar plata?"↗ y callate). Anotá el dolor con sus palabras.',
